@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Overview - A word difference finder</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="A word difference finder">
+<meta name="generator" content="makeinfo 4.8">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="index.html#Top" title="Top">
+<link rel="next" href="Invoking-wdiff.html#Invoking-wdiff" title="Invoking wdiff">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Overview"></a>
+Next:&nbsp;<a rel="next" accesskey="n" href="Invoking-wdiff.html#Invoking-wdiff">Invoking wdiff</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">1 Overview</h2>
+
+<p>The program <code>wdiff</code> is a front end to <code>diff</code> for comparing
+files on a word per word basis.  A word is anything between whitespace. 
+This is useful for comparing two texts in which a few words have been
+changed and for which paragraphs have been refilled.  It works by
+creating two temporary files, one word per line, and then executes
+<code>diff</code> on these files.  It collects the <code>diff</code> output and uses
+it to produce a nicer display of word differences between the original
+files.
+
+   <p>Ideally, <code>wdiff</code> should avoid calling <code>diff</code> and do all the
+work internally, allowing it to be faster and more polished.  However, I
+loathe replicating the <code>diff</code> algorithm and development effort,
+instead of improving <code>diff</code> itself.  It would be more sensible to
+integrate <code>wdiff</code> into <code>diff</code> than the other way around.  I
+did it this way only because I had a sudden and urgent need for it, and
+it would have taken too much time to integrate it correctly into GNU
+<code>diff</code>.  Your advice or opinions about this are welcome.
+
+   <p><code>wdiff</code> was written by {No value for `Francois'} Pinard.  Please report
+bugs to <samp><span class="file">bug-gnu-utils@prep.ai.mit.edu</span></samp><!-- /@w -->.  Include the version
+number, which you can find by running `<samp><span class="samp">wdiff&nbsp;--version</span></samp>'<!-- /@w -->. 
+Include in your message sufficient input to reproduce the problem
+and also, the output you expected.
+
+   </body></html>
+
