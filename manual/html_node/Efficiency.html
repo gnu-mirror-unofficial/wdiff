@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+<title>Efficiency - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="mdiff.html#mdiff" title="mdiff">
+<link rel="prev" href="mdiff-invocation.html#mdiff-invocation" title="mdiff invocation">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="Efficiency"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="mdiff-invocation.html#mdiff-invocation">mdiff invocation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="mdiff.html#mdiff">mdiff</a>
+<hr>
+</div>
+
+<h3 class="section">3.2 Resource considerations and efficiency</h3>
+
+     <dl>
+<dt>Memory consumption<dd>
+<samp><span class="command">mdiff</span></samp> can easily handle medium-sized project.  For a 32 bits
+architecture, the memory requirements may computed like this:
+
+          <ul>
+<li>8 bytes per file
+<li>8 bytes per line
+<li>4 bytes per cluster
+<li>8 bytes per cluster member
+</ul>
+
+     <br><dt>Time consumption<dd>
+To evaluate the speed, consider the example shown above
+(see <a href="mdiff.html#mdiff">mdiff</a>), and yielding these statistics:
+
+     <pre class="example">          Read summary: 137 files, 41975 lines
+          Work summary: 439 clusters, 1608 members ...
+</pre>
+     <p class="noindent">Once many files in the memory cache, and redirecting the output to
+<samp><span class="file">/dev/null</span></samp>, the processing takes 3 seconds of real time on an
+Intel 486/100, which looks good.  I was indeed afraid of some hidden
+O(<var>n</var>^2) behaviour<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>,
+even if the program is mostly O(<var>n</var>*log(<var>n</var>)).  Maybe one will
+discover or construct cases putting <samp><span class="command">mdiff</span></samp> on its knees.  So far,
+<samp><span class="command">mdiff</span></samp> seemingly behaves well for the little problems given to it. 
+If we devise and generate a more traditional <samp><span class="command">diff</span></samp>-like output,
+in which all input files are relisted, this will add some time to the
+processing, but it will be only linear with regard with the total length
+of input files.
+
+     <p>There is a clever optimized sorting algorithm for <em>all</em> substrings
+of a file, which might be generalised to handle words or lines for
+<samp><span class="command">mdiff</span></samp>.  But since the program is already faster than we initially
+expected, there is no emergency to resort to using such an algorithm.
+
+     <br><dt>Trading complexity for clarity<dd>
+When lines repeat a lot, there are surprisingly many ways to relate blocks
+of lines, and reporting them <em>all</em> can make very hairy listings. 
+Any choice about reporting similarities, or not, is somewhat arbitrary,
+but we ought to make some of such choices for the program to be practical. 
+Some of these choices are detailed here.
+
+     <p>If all members of a given cluster <var>A</var> are proper subsets of all
+members of another given cluster <var>B</var>, then cluster <var>A</var> is wholly
+forgotten.  However, let's presume for example that there are more members
+in <var>A</var> than in <var>B</var>.  Then, some members of <var>A</var> necessarily
+appear unrelated to any member of <var>B</var>.  In such case, it has been
+decided more useful to report <em>all</em> occurrences of <var>A</var> members,
+even those embedded within occurrences of <var>B</var> members.  When only
+interested in members <var>B</var>, annotations pertaining to <var>A</var> may be
+perceived as clutter.  However, when interested in members of <var>A</var>,
+getting all of them is probably the most useful choice.
+
+     <p>It sometimes happen that members of a very same cluster overlap.  In the
+string &lsquo;<samp><span class="samp">a&nbsp;a&nbsp;a<!-- /@w --></span></samp>&rsquo;, there are two overlapping members for the cluster
+represented by the string &lsquo;<samp><span class="samp">a&nbsp;a<!-- /@w --></span></samp>&rsquo;, one from the first two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;,
+another from the last two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;.  In such cases, one member of such
+an overlap is automatically chopped so the overlap does not occur.
+
+     <p>White lines and items containing only delimiters are the possible source of
+a lot of complexity, if these are fully taken as significant.  Since this
+does not add much to clarity, they are better ignored, usually, through
+using <samp><span class="option">--ignore-blank-lines</span></samp> (<samp><span class="option">-B</span></samp>) or <samp><span class="option">--ignore-delimiters</span></samp>
+(<samp><span class="option">-j</span></samp>).  Increasing the value of <samp><span class="option">--minimum-size=</span><var>items</var></samp>
+(&lsquo;<samp><span class="samp">-J&nbsp;</span><var>items</var><span class="samp"><!-- /@w --></span></samp>&rsquo;) option also cut off complexity in favor of
+clarity, yet some small matches may then go unnoticed.  Exactly how to
+best adjust the <var>items</var> value is left for the user to decide.
+
+</dl>
+
+<!-- ============================================================= -->
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> <var>n</var> is the total number of lines.</p>
+
+   <hr></div>
+
+   </body></html>
+

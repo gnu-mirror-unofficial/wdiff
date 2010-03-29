@@ -1,11 +1,33 @@
 <html lang="en">
 <head>
-<title>A word difference finder</title>
-<meta http-equiv="Content-Type" content="text/html">
-<meta name="description" content="A word difference finder">
-<meta name="generator" content="makeinfo 4.8">
+<title>A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
 <link title="Top" rel="top" href="#Top">
 <link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
 <meta http-equiv="Content-Style-Type" content="text/css">
 <style type="text/css"><!--
   pre.display { font-family:inherit }
@@ -20,42 +42,112 @@
 --></style>
 </head>
 <body>
-<h1 class="settitle">A word difference finder</h1>
+<h1 class="settitle">A word difference finder (and others)</h1>
 <div class="node">
-<p><hr>
 <a name="Top"></a>
+<p><hr>
 Next:&nbsp;<a rel="next" accesskey="n" href="#Overview">Overview</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="#dir">(dir)</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
 
 </div>
 
-<h2 class="unnumbered">GNU <code>wdiff</code></h2>
+<h2 class="unnumbered">GNU wdiff</h2>
 
-<!-- @item @b{@code{wdiff}} @value{hfillkludge} (UtilT, SrcCD) -->
-<p><code>wdiff</code> is a front-end to GNU <code>diff</code>.  It compares two files,
-finding which words have been deleted or added to the first in order to
-create the second.  It has many output formats and interacts well with
-terminals and pagers (notably with <code>less</code>).  <code>wdiff</code> is
-particularily useful when two texts differ only by a few words and
-paragraphs have been refilled.
+<!-- ============================================================= -->
+<p>These Info pages document <samp><span class="command">wdiff</span></samp>, a word difference finder, together
+with some other <samp><span class="command">diff</span></samp> related tools. 
+Note that some tools documented here are considered experimental and may
+not be part of every <samp><span class="command">wdiff</span></samp> installation. 
+See <a href="#Experimental">Experimental</a>.
 
-   <p>This is release 0.5. 
-<!-- We still hope integrating it, as -->
-<!-- well as some ideas from a similar program called @code{spiff}, into -->
-<!-- future releases of GNU @code{diff}. -->
+<p>This is for release 0.6.0.
 
 <ul class="menu">
-<li><a accesskey="1" href="#Overview">Overview</a>:                     Preliminary information. 
-<li><a accesskey="2" href="#Invoking-wdiff">Invoking wdiff</a>:               How to run <code>wdiff</code>. 
-<li><a accesskey="3" href="#Examples">Examples</a>:                     Actual examples of <code>wdiff</code> usage. 
-</ul>
+<li><a accesskey="1" href="#Overview">Overview</a>:                     Overview
+<li><a accesskey="2" href="#wdiff">wdiff</a>:                        The word difference finder 
+<li><a accesskey="3" href="#mdiff">mdiff</a>:                        The line cluster finder
+<li><a accesskey="4" href="#unify">unify</a>:                        The diff format converter
+<li><a accesskey="5" href="#Compatibility">Compatibility</a>:                How <samp><span class="command">mdiff</span></samp> differs
+<li><a accesskey="6" href="#Experimental">Experimental</a>:                 About experimental programs
 
-<!-- @end ifinfo -->
+</li></ul>
+<p>--- The Detailed Node Listing ---
+
+<p>The word difference finder
+
+</p>
+<ul class="menu">
+<li><a accesskey="7" href="#wdiff-invocation">wdiff invocation</a>:             Invoking <samp><span class="command">wdiff</span></samp>
+<li><a accesskey="8" href="#wdiff-Examples">wdiff Examples</a>:               Actual examples of <samp><span class="command">wdiff</span></samp> usage
+
+</li></ul>
+<p>The multi-difference finder
+
+</p>
+<ul class="menu">
+<li><a accesskey="9" href="#mdiff-invocation">mdiff invocation</a>:             Invoking <samp><span class="command">mdiff</span></samp>
+<li><a href="#Efficiency">Efficiency</a>:                   Resource considerations and efficiency
+
+</li></ul>
+<p>The diff format converter
+
+</p>
+<ul class="menu">
+<li><a href="#unify-invocation">unify invocation</a>:             Invoking <samp><span class="command">unify</span></samp>
+
+</li></ul>
+<p>How <samp><span class="command">mdiff</span></samp> differs
+
+</p>
+<ul class="menu">
+<li><a href="#diff-Compatibility">diff Compatibility</a>:           Differences with <samp><span class="command">diff</span></samp>
+<li><a href="#wdiff-Compatibility">wdiff Compatibility</a>:          Differences with <samp><span class="command">wdiff</span></samp>
+
+</li></ul>
+<p>Experimental programs
+
+</p>
+<ul class="menu">
+<li><a href="#Experimental-History">Experimental History</a>:         History of the experimental programs
+
+   </ul>
+
+   <div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top">GNU wdiff</a>
+<li><a name="toc_Overview" href="#Overview">1 Overview</a>
+<li><a name="toc_wdiff" href="#wdiff">2 The word difference finder</a>
+<ul>
+<li><a href="#wdiff-invocation">2.1 Invoking <samp><span class="command">wdiff</span></samp></a>
+<li><a href="#wdiff-Examples">2.2 Actual examples of <samp><span class="command">wdiff</span></samp> usage</a>
+</li></ul>
+<li><a name="toc_mdiff" href="#mdiff">3 The multi-difference finder</a>
+<ul>
+<li><a href="#mdiff-invocation">3.1 Invoking <samp><span class="command">mdiff</span></samp></a>
+<li><a href="#Efficiency">3.2 Resource considerations and efficiency</a>
+</li></ul>
+<li><a name="toc_unify" href="#unify">4 The diff format converter</a>
+<ul>
+<li><a href="#unify-invocation">4.1 Invoking <samp><span class="command">unify</span></samp></a>
+</li></ul>
+<li><a name="toc_Compatibility" href="#Compatibility">5 How <samp><span class="command">mdiff</span></samp> differs</a>
+<ul>
+<li><a href="#diff-Compatibility">5.1 Differences with <samp><span class="command">diff</span></samp></a>
+<li><a href="#wdiff-Compatibility">5.2 Differences with <samp><span class="command">wdiff</span></samp></a>
+</li></ul>
+<li><a name="toc_Experimental" href="#Experimental">6 Experimental programs</a>
+<ul>
+<li><a href="#Experimental-History">6.1 History of the Experimental programs</a>
+</li></ul>
+</li></ul>
+</div>
+
+<!-- ============================================================= -->
 <div class="node">
-<p><hr>
 <a name="Overview"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="#Invoking-wdiff">Invoking wdiff</a>,
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#wdiff">wdiff</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="#Top">Top</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
@@ -63,50 +155,92 @@ Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 <h2 class="chapter">1 Overview</h2>
 
-<p>The program <code>wdiff</code> is a front end to <code>diff</code> for comparing
-files on a word per word basis.  A word is anything between whitespace. 
-This is useful for comparing two texts in which a few words have been
-changed and for which paragraphs have been refilled.  It works by
-creating two temporary files, one word per line, and then executes
-<code>diff</code> on these files.  It collects the <code>diff</code> output and uses
-it to produce a nicer display of word differences between the original
-files.
+<!-- ============================================================= -->
+<p><samp><span class="command">wdiff</span></samp> is a front end to <samp><span class="command">diff</span></samp> for comparing files on
+a word per word basis. It works by creating two temporary files, one
+word per line, and then executes <samp><span class="command">diff</span></samp> on these files. It collects the
+<samp><span class="command">diff</span></samp> output and uses it to produce a nicer display of word differences
+between the original files.
 
-   <p>Ideally, <code>wdiff</code> should avoid calling <code>diff</code> and do all the
-work internally, allowing it to be faster and more polished.  However, I
-loathe replicating the <code>diff</code> algorithm and development effort,
-instead of improving <code>diff</code> itself.  It would be more sensible to
-integrate <code>wdiff</code> into <code>diff</code> than the other way around.  I
-did it this way only because I had a sudden and urgent need for it, and
-it would have taken too much time to integrate it correctly into GNU
-<code>diff</code>.  Your advice or opinions about this are welcome.
+   <p><samp><span class="command">mdiff</span></samp> studies one or more input files altogether, and discovers
+blocks of items which repeat at more than one place.  Items may be lines,
+words, or units defined by user.  When in word mode, <samp><span class="command">mdiff</span></samp> compares
+two files, finding which words have been deleted or added to the first
+in order to create the second, which is useful when two texts differ
+only by a few words and paragraphs have been refilled.  The program has
+many output formats and interacts well with terminals and pagers (notably
+with <samp><span class="command">less</span></samp>).
 
-   <p><code>wdiff</code> was written by {No value for `Francois'} Pinard.  Please report
-bugs to <samp><span class="file">bug-gnu-utils@prep.ai.mit.edu</span></samp><!-- /@w -->.  Include the version
-number, which you can find by running `<samp><span class="samp">wdiff&nbsp;--version</span></samp>'<!-- /@w -->. 
-Include in your message sufficient input to reproduce the problem
-and also, the output you expected.
+   <p><samp><span class="command">unify</span></samp> is able to convert context diffs to unidiff format, or the
+other way around.  Some people just prefer one format and despise the
+other, it is a religious issue.  This program brings peace back to Earth.
 
+   <p><samp><span class="command">wdiff2</span></samp> is intended as a replacement to <samp><span class="command">wdiff</span></samp>. 
+It aims at supporting the same set of options, but uses <samp><span class="command">mdiff</span></samp>
+instead of <samp><span class="command">diff</span></samp> as its backend.
+
+   <p><samp><span class="command">wdiff</span></samp>, <samp><span class="command">mdiff</span></samp> and <samp><span class="command">wdiff2</span></samp>
+were written by Fran&ccedil;ois Pinard, while
+<samp><span class="command">unify</span></samp> has been contributed by Wayne Davison. 
+Please report bugs to <a href="mailto:wdiff-bugs@gnu.org">wdiff-bugs@gnu.org</a>. 
+Include the version number, which
+you can find by running the program with <samp><span class="option">--version</span></samp>.  Please include
+in your message sufficient input to reproduce what you got, the output you
+indeed expected, and careful explanations about the nature of the problem.
+
+<!-- ============================================================= -->
 <div class="node">
+<a name="wdiff"></a>
 <p><hr>
-<a name="Invoking-wdiff"></a>
-Next:&nbsp;<a rel="next" accesskey="n" href="#Examples">Examples</a>,
+Next:&nbsp;<a rel="next" accesskey="n" href="#mdiff">mdiff</a>,
 Previous:&nbsp;<a rel="previous" accesskey="p" href="#Overview">Overview</a>,
 Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
 
 </div>
 
-<h2 class="chapter">2 Invoking <code>wdiff</code></h2>
+<h2 class="chapter">2 The word difference finder</h2>
 
-<p>The format for running the <code>wdiff</code> program is:
+<!-- ============================================================= -->
+<p>There are actually two programs for comparing files on a word per word
+basis. 
+<samp><span class="command">wdiff</span></samp> is a front-end to <samp><span class="command">diff</span></samp> as found in the
+GNU diffutils package. It is quite mature. 
+Its planned successor, <samp><span class="command">wdiff2</span></samp>, is a front end to <samp><span class="command">mdiff</span></samp>,
+and as experimental as <samp><span class="command">mdiff</span></samp> itself. 
+See <a href="#Experimental">Experimental</a>.
+
+<p>A word is anything between whitespace.  This is useful for comparing two
+texts in which a few words have been changed and for which paragraphs
+have been refilled.
+
+<ul class="menu">
+<li><a accesskey="1" href="#wdiff-invocation">wdiff invocation</a>:             Invoking <samp><span class="command">wdiff</span></samp>
+<li><a accesskey="2" href="#wdiff-Examples">wdiff Examples</a>:               Actual examples of <samp><span class="command">wdiff</span></samp> usage
+</ul>
+
+<!--  -->
+<div class="node">
+<a name="wdiff-invocation"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#wdiff-Examples">wdiff Examples</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#wdiff">wdiff</a>
+
+</div>
+
+<h3 class="section">2.1 Invoking <samp><span class="command">wdiff</span></samp></h3>
+
+<p>The programs <samp><span class="command">wdiff</span></samp> and <samp><span class="command">wdiff2</span></samp> aim at providing the
+same set of command line options. They are described below. 
+See <a href="#wdiff-Compatibility">wdiff Compatibility</a>, for a list of differences.
 
 <pre class="example">     wdiff <var>option</var> ... <var>old_file</var> <var>new_file</var>
+     wdiff <var>option</var> ... -d [<var>diff_file</var>]
 </pre>
-   <p><code>wdiff</code> compares files <var>old_file</var> and <var>new_file</var> and
+   <p><samp><span class="command">wdiff</span></samp> compares files <var>old_file</var> and <var>new_file</var> and
 produces an annotated copy of <var>new_file</var> on standard output.  The
-empty string or the string `<samp><span class="samp">-</span></samp>' denotes standard input, but standard
+empty string or the string &lsquo;<samp><span class="samp">-</span></samp>&rsquo; denotes standard input, but standard
 input cannot be used twice in the same invocation.  The complete path of
-a file should be given, a directory name is not accepted.  <code>wdiff</code>
+a file should be given, a directory name is not accepted.  <samp><span class="command">wdiff</span></samp>
 will exit with a status of 0 if no differences were found, a status of 1
 if any differences were found, or a status of 2 for any error.
 
@@ -114,225 +248,996 @@ if any differences were found, or a status of 2 for any error.
 <var>old_file</var> which is not in <var>new_file</var>, while <dfn>inserted text</dfn>
 refers to text on <var>new_file</var> which is not in <var>old_file</var>.
 
-   <p><code>wdiff</code> supports the following command line options:
+   <p><samp><span class="command">wdiff</span></samp> supports the following command line options:
 
      <dl>
-<dt>`<samp><span class="samp">--help</span></samp>'<dt>`<samp><span class="samp">-h</span></samp>'<dd>Print an informative help message describing the options.
+<dt><samp><span class="option">--help</span></samp><dt><samp><span class="option">-h</span></samp><dd>Print an informative help message describing the options.
 
-     <br><dt>`<samp><span class="samp">--version</span></samp>'<dt>`<samp><span class="samp">-v</span></samp>'<dd>Print the version number of <code>wdiff</code> on the standard error output.
+     <br><dt><samp><span class="option">--version</span></samp><dt><samp><span class="option">-v</span></samp><dd>Print the version number of <samp><span class="command">wdiff</span></samp> on the standard error output.
 
-     <br><dt>`<samp><span class="samp">--no-deleted</span></samp>'<dt>`<samp><span class="samp">-1</span></samp>'<dd>Avoid producing deleted words on the output.  If neither `<samp><span class="samp">-1</span></samp>' or
-`<samp><span class="samp">-2</span></samp>' is selected, the original right margin may be exceeded for
+     <br><dt><samp><span class="option">--no-deleted</span></samp><dt><samp><span class="option">-1</span></samp><dd>Avoid producing deleted words on the output.  If neither <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp> is selected, the original right margin may be exceeded for
 some lines.
 
-     <br><dt>`<samp><span class="samp">--no-inserted</span></samp>'<dt>`<samp><span class="samp">-2</span></samp>'<dd>Avoid producing inserted words on the output.  When this flag is given,
+     <br><dt><samp><span class="option">--no-inserted</span></samp><dt><samp><span class="option">-2</span></samp><dd>Avoid producing inserted words on the output.  When this flag is given,
 the whitespace in the output is taken from <var>old_file</var> instead of
-<var>new_file</var>.  If neither `<samp><span class="samp">-1</span></samp>' or `<samp><span class="samp">-2</span></samp>' is selected, the
+<var>new_file</var>.  If neither <samp><span class="option">-1</span></samp> or <samp><span class="option">-2</span></samp> is selected, the
 original right margin may be exceeded for some lines.
 
-     <br><dt>`<samp><span class="samp">--no-common</span></samp>'<dt>`<samp><span class="samp">-3</span></samp>'<dd>Avoid producing common words on the output.  When this option is not
+     <br><dt><samp><span class="option">--no-common</span></samp><dt><samp><span class="option">-3</span></samp><dd>Avoid producing common words on the output.  When this option is not
 selected, common words and whitespace are taken from <var>new_file</var>,
-unless option `<samp><span class="samp">-2</span></samp>' is given, in which case common words and
+unless option <samp><span class="option">-2</span></samp> is given, in which case common words and
 whitespace are rather taken from <var>old_file</var>.  When selected,
 differences are separated from one another by lines of dashes. 
-Moreover, if this option is selected at the same time as `<samp><span class="samp">-1</span></samp>' or
-`<samp><span class="samp">-2</span></samp>', then none of the output will have any emphasis, i.e. no bold
+Moreover, if this option is selected at the same time as <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp>, then none of the output will have any emphasis, i.e. no bold
 or underlining.  Finally, if this option is not selected, but both
-`<samp><span class="samp">-1</span></samp>' and `<samp><span class="samp">-2</span></samp>' are, then sections of common words between
+<samp><span class="option">-1</span></samp> and <samp><span class="option">-2</span></samp> are, then sections of common words between
 differences are segregated by lines of dashes.
 
-     <br><dt>`<samp><span class="samp">--ignore-case</span></samp>'<dt>`<samp><span class="samp">-c</span></samp>'<dd>Do not consider case difference while comparing words.  Each lower case
+     <br><dt><samp><span class="option">--ignore-case</span></samp><dt><samp><span class="option">-i</span></samp><dd>Do not consider case difference while comparing words.  Each lower case
 letter is seen as identical to its upper case equivalent for the purpose
 of deciding if two words are the same.
 
-     <br><dt>`<samp><span class="samp">--statistics</span></samp>'<dt>`<samp><span class="samp">-s</span></samp>'<dd>On completion, for each file, the total number of words, the number of
+     <br><dt><samp><span class="option">--statistics</span></samp><dt><samp><span class="option">-s</span></samp><dd>On completion, for each file, the total number of words, the number of
 common words between the files, the number of words deleted or inserted
 and the number of words that have changed is output.  (A changed word is
 one that has been replaced or is part of a replacement.)  Except for the
 total number of words, all of the numbers are followed by a percentage
 relative to the total number of words in the file.
 
-     <br><dt>`<samp><span class="samp">--auto-pager</span></samp>'<dt>`<samp><span class="samp">-a</span></samp>'<dd>Some initiatives which were previously automatically taken in previous
-versions of <code>wdiff</code> are now put under the control of this option. 
-By using it, a pager is interposed whenever the <code>wdiff</code> output is
+     <br><dt><samp><span class="option">--auto-pager</span></samp><dt><samp><span class="option">-a</span></samp><dd>Some initiatives which were previously automatically taken in previous
+versions of <samp><span class="command">wdiff</span></samp> are now put under the control of this option. 
+By using it, a pager is interposed whenever the <samp><span class="command">wdiff</span></samp> output is
 directed to the user's terminal.  Without this option, no pager will be
-called, the user is then responsible for explicitly piping <code>wdiff</code>
+called, the user is then responsible for explicitly piping <samp><span class="command">wdiff</span></samp>
 output into a pager, if required.
 
-     <p>The pager is selected by the value of the <code>PAGER</code> environment
-variable when <code>wdiff</code> is run.  If <code>PAGER</code> is not defined at
+     <p>The pager is selected by the value of the <var>PAGER</var> environment
+variable when <samp><span class="command">wdiff</span></samp> is run.  If <var>PAGER</var> is not defined at
 run time, then a default pager, selected at installation time, will be
-used instead.  A defined but empty value of <code>PAGER</code> means no pager
+used instead.  A defined but empty value of <var>PAGER</var> means no pager
 at all.
 
      <p>When a pager is interposed through the use of this option,
-one of the options `<samp><span class="samp">-l</span></samp>' or `<samp><span class="samp">-t</span></samp>' is also selected, depending on
-whether the string `<samp><span class="samp">less</span></samp>' appears in the pager's name or not.
+one of the options <samp><span class="option">-l</span></samp> or <samp><span class="option">-t</span></samp> is also selected, depending on
+whether the string &lsquo;<samp><span class="samp">less</span></samp>&rsquo; appears in the pager's name or not.
 
-     <p>It is often useful to define `<samp><span class="samp">wdiff</span></samp>' as an alias for `<samp><span class="samp">wdiff
--a</span></samp>'.  However, this <em>hides</em> the normal <code>wdiff</code> behaviour.  The
+     <p>It is often useful to define &lsquo;<samp><span class="samp">wdiff</span></samp>&rsquo; as an alias for &lsquo;<samp><span class="samp">wdiff
+-a</span></samp>&rsquo;.  However, this <em>hides</em> the normal <samp><span class="command">wdiff</span></samp> behaviour.  The
 default behaviour may be restored simply by piping the output from
-<code>wdiff</code> through <code>cat</code>.  This dissociates the output from the
+<samp><span class="command">wdiff</span></samp> through <samp><span class="command">cat</span></samp>.  This dissociates the output from the
 user's terminal.
 
-     <br><dt>`<samp><span class="samp">--printer</span></samp>'<dt>`<samp><span class="samp">-p</span></samp>'<dd>Use over-striking to emphasize parts of the output.  Each character of the
-deleted text is underlined by writing an underscore `<samp><span class="samp">_</span></samp>' first,
+     <br><dt><samp><span class="option">--printer</span></samp><dt><samp><span class="option">-p</span></samp><dd>Use over-striking to emphasize parts of the output.  Each character of the
+deleted text is underlined by writing an underscore &lsquo;<samp><span class="samp">_</span></samp>&rsquo; first,
 then a backspace and then the letter to be underlined.  Each character of the
 inserted text is emboldened by writing it twice, with a backspace in
 between.  This option is not selected by default.
 
-     <br><dt>`<samp><span class="samp">--less-mode</span></samp>'<dt>`<samp><span class="samp">-l</span></samp>'<dd>Use over-striking to emphasize parts of output.  This option works as
-option <code>-p</code>, but also over-strikes whitespace associated with
-inserted text.  <code>less</code> shows such whitespace using reverse video. 
+     <br><dt><samp><span class="option">--less-mode</span></samp><dt><samp><span class="option">-l</span></samp><dd>Use over-striking to emphasize parts of output.  This option works as
+option <samp><span class="option">-p</span></samp>, but also over-strikes whitespace associated with
+inserted text.  <samp><span class="command">less</span></samp> shows such whitespace using reverse video. 
 This option is not selected by default.  However, it is automatically
-turned on whenever <code>wdiff</code> launches the pager <code>less</code>.  See
-option `<samp><span class="samp">-a</span></samp>'.
+turned on whenever <samp><span class="command">wdiff</span></samp> launches the pager <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
 
-     <p>This option is commonly used in conjunction with <code>less</code>:
+     <p>This option is commonly used in conjunction with <samp><span class="command">less</span></samp>:
 
      <pre class="example">          wdiff -l <var>old_file</var> <var>new_file</var> | less
-     </pre>
-     <br><dt>`<samp><span class="samp">--terminal</span></samp>'<dt>`<samp><span class="samp">-t</span></samp>'<dd>Force the production of <code>termcap</code> strings for emphasising parts of
+</pre>
+     <br><dt><samp><span class="option">--terminal</span></samp><dt><samp><span class="option">-t</span></samp><dd>Force the production of <code>termcap</code> strings for emphasising parts of
 output, even if the standard output is not associated with a terminal. 
-The `<samp><span class="samp">TERM</span></samp>' environment variable must contain the name of a valid
+The <samp><span class="env">TERM</span></samp> environment variable must contain the name of a valid
 <code>termcap</code> entry.  If the terminal description permits, underlining
 is used for marking deleted text, while bold or reverse video is used
 for marking inserted text.  This option is not selected by default. 
-However, it is automatically turned on whenever <code>wdiff</code> launches a
-pager, and it is known that the pager is <em>not</em> <code>less</code>.  See
-option `<samp><span class="samp">-a</span></samp>'.
+However, it is automatically turned on whenever <samp><span class="command">wdiff</span></samp> launches a
+pager, and it is known that the pager is <em>not</em> <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
 
-     <p>This option is commonly used when <code>wdiff</code> output is not redirected,
+     <p>This option is commonly used when <samp><span class="command">wdiff</span></samp> output is not redirected,
 but sent directly to the user terminal, as in:
 
      <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var>
-     </pre>
-     <p>A common kludge uses <code>wdiff</code> together with the pager <code>more</code>,
+</pre>
+     <p>A common kludge uses <samp><span class="command">wdiff</span></samp> together with the pager <samp><span class="command">more</span></samp>,
 as in:
 
      <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var> | more
-     </pre>
-     <p>However, some versions of <code>more</code> use <code>termcap</code> emphasis for
+</pre>
+     <p>However, some versions of <samp><span class="command">more</span></samp> use <code>termcap</code> emphasis for
 their own purposes, so strange interactions are possible.
 
-     <br><dt>`<samp><span class="samp">--start-delete </span><var>argument</var></samp>'<dt>`<samp><span class="samp">-w </span><var>argument</var></samp>'<dd>Use <var>argument</var> as the <dfn>start delete</dfn> string.  This string will
+     <br><dt><samp><span class="option">--start-delete </span><var>argument</var></samp><dt><samp><span class="option">-w </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start delete</dfn> string.  This string will
 be output prior to any sequence of deleted text, to mark where it
 starts.  By default, no start delete string is used unless there is no
 other means of distinguishing where such text starts; in this case the
-default start delete string is `<samp><span class="samp">[-</span></samp>'.
+default start delete string is &lsquo;<samp><span class="samp">[-</span></samp>&rsquo;.
 
-     <br><dt>`<samp><span class="samp">--end-delete </span><var>argument</var></samp>'<dt>`<samp><span class="samp">-x </span><var>argument</var></samp>'<dd>Use <var>argument</var> as the <dfn>end delete</dfn> string.  This string will be
+     <br><dt><samp><span class="option">--end-delete </span><var>argument</var></samp><dt><samp><span class="option">-x </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end delete</dfn> string.  This string will be
 output after any sequence of deleted text, to mark where it ends.  By
 default, no end delete string is used unless there is no other means of
 distinguishing where such text ends; in this case the default end delete
-string is `<samp><span class="samp">-]</span></samp>'.
+string is <samp><span class="option">-]</span></samp>.
 
-     <br><dt>`<samp><span class="samp">--start-insert </span><var>argument</var></samp>'<dt>`<samp><span class="samp">-y </span><var>argument</var></samp>'<dd>Use <var>argument</var> as the <dfn>start insert</dfn> string.  This string will
+     <br><dt><samp><span class="option">--start-insert </span><var>argument</var></samp><dt><samp><span class="option">-y </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start insert</dfn> string.  This string will
 be output prior to any sequence of inserted text, to mark where it
 starts.  By default, no start insert string is used unless there is no
 other means of distinguishing where such text starts; in this case the
-default start insert string is `<samp><span class="samp">{+</span></samp>'.
+default start insert string is &lsquo;<samp><span class="samp">{+</span></samp>&rsquo;.
 
-     <br><dt>`<samp><span class="samp">--end-insert </span><var>argument</var></samp>'<dt>`<samp><span class="samp">-z </span><var>argument</var></samp>'<dd>Use <var>argument</var> as the <dfn>end insert</dfn> string.  This string will be
+     <br><dt><samp><span class="option">--end-insert </span><var>argument</var></samp><dt><samp><span class="option">-z </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end insert</dfn> string.  This string will be
 output after any sequence of inserted text, to mark where it ends.  By
 default, no end insert string is used unless there is no other means of
 distinguishing where such text ends; in this case the default end insert
-string is `<samp><span class="samp">+}</span></samp>'.
+string is &lsquo;<samp><span class="samp">+}</span></samp>&rsquo;.
 
-     <br><dt>`<samp><span class="samp">--avoid-wraps</span></samp>'<dt>`<samp><span class="samp">-n</span></samp>'<dd>Avoid spanning the end of line while showing deleted or inserted text. 
+     <br><dt><samp><span class="option">--avoid-wraps</span></samp><dt><samp><span class="option">-n</span></samp><dd>Avoid spanning the end of line while showing deleted or inserted text. 
 Any single fragment of deleted or inserted text spanning many lines will
 be considered as being made up of many smaller fragments not containing
 a newline.  So deleted text, for example, will have an end delete string
 at the end of each line, just before the new line, and a start delete
 string at the beginning of the next line.  A long paragraph of inserted
 text will have each line bracketed between start insert and end insert
-strings.  This behaviour is not selected by default. 
-</dl>
+strings.  This behaviour is not selected by default.
 
-   <p>Note that options `<samp><span class="samp">-p</span></samp>', `<samp><span class="samp">-t</span></samp>', and `<samp><span class="samp">-[wxyz]</span></samp>' are not
+     <br><dt><samp><span class="option">--diff-input</span></samp><dt><samp><span class="option">-d</span></samp><dd>Use single unified diff as input. If no input file is specified,
+standard input is used instead. This can be used to post-process diffs
+generated form other applications, like version control systems:
+
+     <pre class="example">          svn diff | wdiff -d
+</pre>
+     </dl>
+
+   <p>Note that options <samp><span class="option">-p</span></samp>, <samp><span class="option">-t</span></samp>, and <samp><span class="option">-[wxyz]</span></samp> are not
 mutually exclusive.  If you use a combination of them, you will merely
-accumulate the effect of each.  Option `<samp><span class="samp">-l</span></samp>' is a variant of option
-`<samp><span class="samp">-p</span></samp>'.
+accumulate the effect of each.  Option <samp><span class="option">-l</span></samp> is a variant of option
+<samp><span class="option">-p</span></samp>.
 
+<!--  -->
 <div class="node">
+<a name="wdiff-Examples"></a>
 <p><hr>
-<a name="Examples"></a>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="#Invoking-wdiff">Invoking wdiff</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#wdiff-invocation">wdiff invocation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#wdiff">wdiff</a>
 
 </div>
 
-<h2 class="chapter">3 Actual examples of <code>wdiff</code> usage</h2>
+<h3 class="section">2.2 Actual examples of <samp><span class="command">wdiff</span></samp> usage</h3>
 
 <p>This section presents a few examples of usage, most of them have been
-contributed by <code>wdiff</code> users.
+contributed by <samp><span class="command">wdiff</span></samp> users.
 
      <ul>
 <li>Change bars example.
 
-     <p>This example comes from a discussion with Joe Wells,
-`<samp><span class="samp">jbw@cs.bu.edu</span></samp>'.
+          <ul>
+<li>This example comes from a discussion with
+<a href="mailto:jbw@cs.bu.edu">Joe Wells</a>.
 
-     <p>The following command produces a copy of <var>new_file</var>, shifted right
+          <p>The following command produces a copy of <var>new_file</var>, shifted right
 one space to accommodate change bars since the last revision, ignoring
 those changes coming only from paragraph refilling.  Any line with new
-or changed text will get a `<samp><span class="samp">|</span></samp>' in column 1.  However, deleted text
+or changed text will get a &lsquo;<samp><span class="samp">|</span></samp>&rsquo; in column 1.  However, deleted text
 is not shown nor marked.
 
-     <pre class="example">          wdiff -1n <var>old_file</var> <var>new_file</var> |
-            sed -e 's/^/  /;/{+/s/^ /|/;s/{+//g;s/+}//g'
-     </pre>
-     <p>Here is how it works.  Word differences are found, paying attention only
-to additions, as requested by option `<samp><span class="samp">-1</span></samp>'.  For bigger changes
+          <pre class="example">               wdiff -1n <var>old_file</var> <var>new_file</var> |
+                 sed -e 's/^/  /;/{+/s/^ /|/;s/{+//g;s/+}//g'
+</pre>
+          <p>Here is how it works.  Word differences are found, paying attention only
+to additions, as requested by option <samp><span class="option">-1</span></samp>.  For bigger changes
 which span line boundaries, the insert bracket strings are repeated on
-each output line, as requested by option `<samp><span class="samp">-n</span></samp>'.  This output is then
-reformatted with a <code>sed</code> script which shifts the text right two
+each output line, as requested by option <samp><span class="option">-n</span></samp>.  This output is then
+reformatted with a <samp><span class="command">sed</span></samp> script which shifts the text right two
 columns, turns the initial space into a bar only if there is some new
 text on that line, then removes all insert bracket strings.
 
-     <li><code>LaTeX</code> example.
+     </ul>
 
-     <p>This example has been provided by Steve Fisk,
-`<samp><span class="samp">fisk@polar.bowdoin.edu</span></samp>'.
+     <li>LaTeX example.
 
-     <p>The following uses LaTeX to put deleted text in boxes, and new text
+          <ul>
+<li>
+This example has been provided by
+<a href="mailto:fisk@polar.bowdoin.edu">Steve Fisk</a>.
+
+          <p>The following uses LaTeX to put deleted text in boxes, and new text
 in double boxes:
 
-     <pre class="example">          wdiff -w "\fbox{" -x "}" -y "\fbox{\fbox{" -z "}}" ...
-     </pre>
-     <p class="noindent">works nicely.
+          <pre class="example">               wdiff -w "\fbox{" -x "}" -y "\fbox{\fbox{" -z "}}" ...
+</pre>
+          <p class="noindent">works nicely.
 
-     <li><code>troff</code> example.
+     </ul>
 
-     <p>This example comes from Paul Fox, `<samp><span class="samp">pgf@cayman.com</span></samp>'.
+     <li><samp><span class="command">troff</span></samp> example.
 
-     <p>Using <code>wdiff</code>, with some <code>troff</code>-specific delimiters gives
+          <ul>
+<li>This example comes from <a href="mailto:pgf@cayman.com">Paul Fox</a>.
+
+          <p>Using <samp><span class="command">wdiff</span></samp>, with some <samp><span class="command">troff</span></samp>-specific delimiters gives
 <em>much</em> better output.  The delimiters I used:
 
-     <pre class="example">          wdiff -w'\s-5' -x'\s0' -y'\fB' -z'\fP' ...
-     </pre>
-     <p>This makes the pointsize of deletions 5 points smaller than normal, and
+          <pre class="example">               wdiff -w'\s-5' -x'\s0' -y'\fB' -z'\fP' ...
+</pre>
+          <p>This makes the pointsize of deletions 5 points smaller than normal, and
 emboldens insertions.  Fantastic!
 
-     <p>I experimented with:
+          <p>I experimented with:
 
-     <pre class="example">          wdiff -w'\fI' -x'\fP' -y'\fB' -z'\fP'
-     </pre>
-     <p>since that's more like the defaults you use for terminals/printers, but
-since I actually use italics for emphasis in my documents, I thought the
-point size thing was clearer.
+          <pre class="example">               wdiff -w'\fI' -x'\fP' -y'\fB' -z'\fP'
+</pre>
+          <p>since that's more like the defaults you use for terminals or printers,
+but since I actually use italics for emphasis in my documents, I thought
+the point size thing was clearer.
 
-     <p>I tried it on code, and it works surprisingly well there, too...
+          <p>I tried it on code, and it works surprisingly well there, too...
 
-     <p>Marty Leisner `<samp><span class="samp">leisner@eso.mc.xerox.com</span></samp>' says:
+          <li><a href="mailto:leisner@eso.mc.xerox.com">Marty Leisner</a> says:
 
-     <p>In the previous example, you had smaller text being taken out and bold
+          <p>In the previous example, you had smaller text being taken out and bold
 face inserted.  I had smaller text being taken out and larger text being
 inserted, I'm using bold face for other things, so this is more clear.
 
-     <pre class="example">          wdiff -w '\s-3' -x'\s0' -y'\s+3' -z'\s0'
-     </pre>
+          <pre class="example">               wdiff -w '\s-3' -x'\s0' -y'\s+3' -z'\s0'
+</pre>
+          </ul>
+
+     <li>Colored output example.
+
+          <ul>
+<li>This example comes from <a href="mailto:Martin.vGagern@gmx.net">Martin von Gagern</a>.
+
+          <p>If you like colored output, and your terminal supports ANSI escape
+sequences, you can use this invocation:
+
+          <pre class="example">               wdiff -n \
+                 -w $'\033[30;41m' -x $'\033[0m' \
+                 -y $'\033[30;42m' -z $'\033[0m' \
+                 ... | less -R
+</pre>
+          <p>This will print deleted text black on red, and inserted text black on
+green, assuming that your normal terminal colors are white on black. 
+Of course you can choose different colors if you prefer.
+
+          <p>The &lsquo;<samp><span class="samp">$'...'</span></samp>&rsquo; notation is supported by GNU bash, and maybe other
+shells as well. If your shell doesn't support it, you might need some
+more tricks to generate these escape sequences as command line
+arguments.
+
      </ul>
+
+   </ul>
+
+   <p>On a related note, GNU Emacs users might notice that the interactive
+function <code>compare-windows</code> ignores changes in whitespace, if it is
+given a numeric argument.  If the variable <code>compare-ignore-case</code>
+is non-<code>nil</code>, it ignores differences in case as well.  So, in a way,
+this offers a kind of incremental version of <samp><span class="command">wdiff</span></samp>.
+
+<!-- ============================================================= -->
+<div class="node">
+<a name="mdiff"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#unify">unify</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#wdiff">wdiff</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">3 The multi-difference finder</h2>
+
+<!-- ============================================================= -->
+<p>The name <samp><span class="command">mdiff</span></samp> stands for <em>multi-</em><samp><span class="command">diff</span></samp>, and has the
+purpose of encompassing the functionnality of a few other <samp><span class="command">diff</span></samp>-type
+programs.  The prefix <em>multi-</em> also stands for the fact the program
+is often able to study more than two input files at once.
+
+   <p>The theory of operation is simple.  The program splits all input files
+into a sequence of items, which may be lines or words.  <samp><span class="command">mdiff</span></samp> is
+then said to operate either in <dfn>line mode</dfn> or in <dfn>word mode</dfn>. 
+It then tries to find sequences of items which are repeated in the
+input files.  Such common sequences are called <dfn>clusters</dfn> of items,
+and each occurrence of a repetition is called a cluster <dfn>member</dfn>. 
+What remains, once all cluster members are conceptually removed from all
+input files, is a set of <dfn>differences</dfn>.  The role of <samp><span class="command">mdiff</span></samp>
+is to conveniently list either cluster members and differences.
+
+   <p>When input files are very similar, it is likely that clusters will
+encompass many items (lines or words) and differences will be small.  So,
+most listing options inhibit the printing of cluster members.  However,
+one may ask for the few beginning or ending items of cluster members
+to be printed nevertheless, as a way to provide a kind of feedback
+or <dfn>context</dfn> of the difference, those context items are sometimes
+said to be at the <dfn>horizon</dfn> of the difference.  In merged listings,
+cluster members may just not be printed, except maybe for a few context
+items at the beginning of the member (just after a difference), and a
+few context items at the end of the member (just before a difference).
+
+   <p>When cluster members are short, or if you prefer, when the differences
+are not far away from each other, it is quite possible that the required
+context items often cover the full extent of the cluster members, which
+then are not inhibited anymore when this happens.  A run of differences
+intermixed with such non-suppressed members is called a <dfn>hunk</dfn>. 
+Some reports produced by <samp><span class="command">mdiff</span></samp> are showned as a list of hunks,
+and it is to be understood that common items are elided between hunks. 
+However, each hunk in itself has no item missing, and each item of the
+hunk is analysed as pertaining either to only one of the input file or
+to many of them.  Each hunk is preceded by a header, which explains the
+line position of all input files prior to the hunk itself.  By comparing
+a hunk header with the previous hunk header, the user can have a hint
+about how much printing was spared.
+
+   <p>When two input files are quite similar, clusters are usually presented in
+the same order in all files.  If a cluster member <var>A</var> in the first
+file corresponds to a cluster member <var>A</var> in the second file, it is
+likely that another cluster member <var>B</var> which appears <em>after</em>
+<var>A</var> in the first file will correspond to a cluster member <var>B</var>
+in the second file which appears <em>after</em> <var>A</var> as well.  So, in
+many cases, while producing merged listing of files, cluster members may
+be made to naturally correspond to one another.  However, this is not
+always true, in particular when the second file has been produced from
+the first by moving a big chunk of code away from its original position. 
+In such cases, we say that members have <dfn>crossed</dfn>.  When members are
+crossed and <samp><span class="command">mdiff</span></samp> has to make a merged listing, it selects one
+cluster member as being <em>naturally</em> associated with its correspondant
+(either the pair of <var>A</var>'s or the pair of <var>B</var>'s) and then consider
+the other cluster as being part of a difference.  The crossed nature of
+the member may still be analysed and reported, or it may be ignored.
+
+   <p>The standard <samp><span class="command">diff</span></samp> program is meant for when there are exactly two
+input files, for which crossed members should be ignored.  <samp><span class="command">mdiff</span></samp>
+output format has been designed in such a way that it should resemble
+<samp><span class="command">diff</span></samp> output for this precise case.  However, <samp><span class="command">diff</span></samp> formats are
+not sufficient for representing all cases which <samp><span class="command">mdiff</span></samp> may address,
+and this is not mature yet.  That is why <samp><span class="command">mdiff</span></samp>, in its current
+state, still experiments with output formats, which are subject to change.
+
+   <p>When the input files are not very similar, or rather different, merged
+listings are not very significant nor useful, and may even be rather
+confusing.  The best to do in such cases is using <samp><span class="command">mdiff</span></samp> for making
+an annotated relisting of all input files, in which cluster members are
+properly identified and referred to one another.
+
+   <p>Statistics.
+
+<pre class="example">     Read summary: 137 files, 41975 lines
+     Work summary: 439 clusters, 1608 members, 8837 duplicate lines
+</pre>
+   <p class="noindent">The summary lines, triggered by the <samp><span class="option">-s</span></samp> option, say that about 8837
+non-ignorable lines could be removed over the 41975 which has been read,
+by using functions, <code>#include</code>, <code>#define</code>, or similar devices.
+
+   <p>If one manages to execute <samp><span class="command">mdiff</span></samp> within GNU Emacs so the output
+described above is collected into the <code>*compilation*</code> buffer, the
+command <kbd>C-`</kbd> (&lsquo;<samp><span class="samp">M-x&nbsp;next-error<!-- /@w --></span></samp>&rsquo;) will proceed to the next
+cluster member in the other window, and similarily for other compilation
+mode commands.  This is a useful way for handling <samp><span class="command">mdiff</span></samp> output.
+
+   <p>Each line in the hunk, after the header, comes from the compared files,
+but is shifted right so the first column (or the first few columns)
+of each line gives information about where the line is coming from. 
+A space indicates a line which is common to all files.  In case there
+are only two input files, a minus sign indicates a line from the first
+file and a plus sign a line from the second file.  Else, a letter from
+&lsquo;<samp><span class="samp">a</span></samp>&rsquo; to &lsquo;<samp><span class="samp">z</span></samp>&rsquo;, or more than one letter if there are more than
+26 files, indicates to which file the line pertains.  If a line or a
+block of line pertains to many files but not to all of them, the first
+column holds a vertical bar, and the line or block of lines is bracketed
+between &lsquo;<samp><span class="samp">@/</span></samp>&rsquo; and &lsquo;<samp><span class="samp">@\</span></samp>&rsquo; lines, which are kind of comments within
+the hunk.  The initial bracket lists all file letters that are related
+to the incoming line.
+
+   <p>I initially wrote <samp><span class="command">mdiff</span></samp> specifically to help cleaning a C++
+project which was a bit large, and in which many big monolithic classes
+were derived from each other most probably by rough copying followed by
+local modifications.  I intended to fragment most common clusters and
+segregate the parts into virtual methods in outer classes, and override
+these methods, as appropriate, with less common variants within inner
+classes.  <samp><span class="command">mdiff</span></samp> was good at pointing me to exactly where I should
+look at.  Of course, it never did the cleanup for me, but it helped doing
+the research about what should be done.  Reusing <samp><span class="command">mdiff</span></samp> over the
+half-cleaned project gave me more fine grained analysis of what was left
+to consider.
+
+<ul class="menu">
+<li><a accesskey="1" href="#mdiff-invocation">mdiff invocation</a>:             Invoking <samp><span class="command">mdiff</span></samp>
+<li><a accesskey="2" href="#Efficiency">Efficiency</a>:                   Resource considerations and efficiency
+</ul>
+
+<!--  -->
+<div class="node">
+<a name="mdiff-invocation"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Efficiency">Efficiency</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#mdiff">mdiff</a>
+
+</div>
+
+<h3 class="section">3.1 Invoking <samp><span class="command">mdiff</span></samp></h3>
+
+<p>The format for running the <samp><span class="command">mdiff</span></samp> program is:
+
+<pre class="example">     mdiff <var>option</var> ... <var>file</var> ...
+</pre>
+   <p><samp><span class="command">mdiff</span></samp> read all input <var>file</var>s and produces its results on
+standard output.  Optionally, standard error might receive a progress
+report or a few statistics.
+
+   <p><samp><span class="command">wdiff</span></samp> compares files <var>old_file</var> and <var>new_file</var> and
+produces an annotated copy of <var>new_file</var> on standard output.  The
+empty string or the string <samp><span class="option">-</span></samp> denotes standard input, but standard
+input cannot be used twice in the same invocation.  The complete path of
+a file should be given, a directory name is not accepted.  <samp><span class="command">wdiff</span></samp>
+will exit with a status of 0 if no differences were found, a status of 1
+if any differences were found, or a status of 2 for any error.
+
+   <p>In this documentation, <dfn>deleted text</dfn> refers to text in
+<var>old_file</var> which is not in <var>new_file</var>, while <dfn>inserted text</dfn>
+refers to text on <var>new_file</var> which is not in <var>old_file</var>.
+
+   <p><samp><span class="command">mdiff</span></samp> supports the following command line options:
+
+     <dl>
+<dt><samp><span class="option">--version</span></samp><dd>Merely prints the version numbers on standard output, and exits without
+doing anything else.
+
+     <br><dt><samp><span class="option">--help</span></samp><dd>Merely prints a page of help on standard output, and exits without doing
+anything else.
+
+     <br><dt><samp><span class="option">--threshold=</span><var>number</var></samp><dt><samp><span class="option">-t </span><var>number</var></samp><dd>Specifies the minimum number of non-ignorable lines which are required for
+two runs of lines to compare as equal.  No cluster member may ever have
+less than <var>number</var> lines.  By default, clusters have 4 lines or more.
+
+     <br><dt><samp><span class="option">--no-deleted</span></samp><dt><samp><span class="option">-1</span></samp><dd>Avoid producing deleted words on the output.  If neither <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp> is selected, the original right margin may be exceeded for
+some lines.
+
+     <br><dt><samp><span class="option">--no-inserted</span></samp><dt><samp><span class="option">-2</span></samp><dd>Avoid producing inserted words on the output.  When this flag is given,
+the whitespace in the output is taken from <var>old_file</var> instead of
+<var>new_file</var>.  If neither <samp><span class="option">-1</span></samp> or <samp><span class="option">-2</span></samp> is selected, the
+original right margin may be exceeded for some lines.
+
+     <br><dt><samp><span class="option">--no-common</span></samp><dt><samp><span class="option">-3</span></samp><dd>Avoid producing common words on the output.  When this option is not
+selected, common words and whitespace are taken from <var>new_file</var>,
+unless option <samp><span class="option">-2</span></samp> is given, in which case common words and
+whitespace are rather taken from <var>old_file</var>.  When selected,
+differences are separated from one another by lines of dashes. 
+Moreover, if this option is selected at the same time as <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp>, then none of the output will have any emphasis, i.e. no bold
+or underlining.  Finally, if this option is not selected, but both
+<samp><span class="option">-1</span></samp> and <samp><span class="option">-2</span></samp> are, then sections of common words between
+differences are segregated by lines of dashes.
+
+     <br><dt><samp><span class="option">--ignore-case</span></samp><dt><samp><span class="option">-i</span></samp><dd>Do not consider case difference while comparing words.  Each lower case
+letter is seen as identical to its upper case equivalent for the purpose
+of deciding if two words are the same.
+
+     <br><dt><samp><span class="option">--auto-pager</span></samp><dt><samp><span class="option">-A</span></samp><dd>Some initiatives which were previously automatically taken in previous
+versions of <samp><span class="command">wdiff</span></samp> are now put under the control of this option. 
+By using it, a pager is interposed whenever the <samp><span class="command">wdiff</span></samp> output is
+directed to the user's terminal.  Without this option, no pager will be
+called, the user is then responsible for explicitly piping <samp><span class="command">wdiff</span></samp>
+output into a pager, if required.
+
+     <p>The pager is selected by the value of the <var>PAGER</var> environment
+variable when <samp><span class="command">wdiff</span></samp> is run.  If <var>PAGER</var> is not defined at
+run time, then a default pager, selected at installation time, will be
+used instead.  A defined but empty value of <var>PAGER</var> means no pager
+at all.
+
+     <p>When a pager is interposed through the use of this option,
+one of the options <samp><span class="option">-l</span></samp> or <samp><span class="option">-t</span></samp> is also selected, depending on
+whether the string &lsquo;<samp><span class="samp">less</span></samp>&rsquo; appears in the pager's name or not.
+
+     <p>It is often useful to define &lsquo;<samp><span class="samp">wdiff</span></samp>&rsquo; as an alias for &lsquo;<samp><span class="samp">wdiff
+-a</span></samp>&rsquo;.  However, this <em>hides</em> the normal <samp><span class="command">wdiff</span></samp> behaviour.  The
+default behaviour may be restored simply by piping the output from
+<samp><span class="command">wdiff</span></samp> through <samp><span class="command">cat</span></samp>.  This dissociates the output from the
+user's terminal.
+
+     <br><dt><samp><span class="option">--printer</span></samp><dt><samp><span class="option">-p</span></samp><dd>Use over-striking to emphasize parts of the output.  Each character of the
+deleted text is underlined by writing an underscore &lsquo;<samp><span class="samp">_</span></samp>&rsquo; first,
+then a backspace and then the letter to be underlined.  Each character of the
+inserted text is emboldened by writing it twice, with a backspace in
+between.  This option is not selected by default.
+
+     <br><dt><samp><span class="option">--less-mode</span></samp><dt><samp><span class="option">-l</span></samp><dd>Use over-striking to emphasize parts of output.  This option works as
+option <samp><span class="option">-p</span></samp>, but also over-strikes whitespace associated with
+inserted text.  <samp><span class="command">less</span></samp> shows such whitespace using reverse video. 
+This option is not selected by default.  However, it is automatically
+turned on whenever <samp><span class="command">wdiff</span></samp> launches the pager <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
+
+     <p>This option is commonly used in conjunction with <samp><span class="command">less</span></samp>:
+
+     <pre class="example">          wdiff -l <var>old_file</var> <var>new_file</var> | less
+</pre>
+     <br><dt><samp><span class="option">--terminal</span></samp><dt><samp><span class="option">-t</span></samp><dd>Force the production of <code>termcap</code> strings for emphasising parts of
+output, even if the standard output is not associated with a terminal. 
+The &lsquo;<samp><span class="samp">TERM</span></samp>&rsquo; environment variable must contain the name of a valid
+<code>termcap</code> entry.  If the terminal description permits, underlining
+is used for marking deleted text, while bold or reverse video is used
+for marking inserted text.  This option is not selected by default. 
+However, it is automatically turned on whenever <samp><span class="command">wdiff</span></samp> launches a
+pager, and it is known that the pager is <em>not</em> <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
+
+     <p>This option is commonly used when <samp><span class="command">wdiff</span></samp> output is not redirected,
+but sent directly to the user terminal, as in:
+
+     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var>
+</pre>
+     <p>A common kludge uses <samp><span class="command">wdiff</span></samp> together with the pager <samp><span class="command">more</span></samp>,
+as in:
+
+     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var> | more
+</pre>
+     <p>However, some versions of <samp><span class="command">more</span></samp> use <code>termcap</code> emphasis for
+their own purposes, so strange interactions are possible.
+
+     <br><dt><samp><span class="option">--start-delete </span><var>argument</var></samp><dt><samp><span class="option">-w </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start delete</dfn> string.  This string will
+be output prior to any sequence of deleted text, to mark where it
+starts.  By default, no start delete string is used unless there is no
+other means of distinguishing where such text starts; in this case the
+default start delete string is &lsquo;<samp><span class="samp">[-</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--end-delete </span><var>argument</var></samp><dt><samp><span class="option">-x </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end delete</dfn> string.  This string will be
+output after any sequence of deleted text, to mark where it ends.  By
+default, no end delete string is used unless there is no other means of
+distinguishing where such text ends; in this case the default end delete
+string is <samp><span class="option">-]</span></samp>.
+
+     <br><dt><samp><span class="option">--start-insert </span><var>argument</var></samp><dt><samp><span class="option">-y </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start insert</dfn> string.  This string will
+be output prior to any sequence of inserted text, to mark where it
+starts.  By default, no start insert string is used unless there is no
+other means of distinguishing where such text starts; in this case the
+default start insert string is &lsquo;<samp><span class="samp">{+</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--end-insert </span><var>argument</var></samp><dt><samp><span class="option">-z </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end insert</dfn> string.  This string will be
+output after any sequence of inserted text, to mark where it ends.  By
+default, no end insert string is used unless there is no other means of
+distinguishing where such text ends; in this case the default end insert
+string is &lsquo;<samp><span class="samp">+}</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--avoid-wraps</span></samp><dt><samp><span class="option">-n</span></samp><dd>Avoid spanning the end of line while showing deleted or inserted text. 
+Any single fragment of deleted or inserted text spanning many lines will
+be considered as being made up of many smaller fragments not containing
+a newline.  So deleted text, for example, will have an end delete string
+at the end of each line, just before the new line, and a start delete
+string at the beginning of the next line.  A long paragraph of inserted
+text will have each line bracketed between start insert and end insert
+strings.  This behaviour is not selected by default.
+
+   </dl>
+
+   <p>Some choices are hard-wired into the program, but might well become options
+in later releases.  For example:
+
+     <ul>
+<li>No cluster may span a file boundary, that is, start near the end of one
+input file and continue at the beginning of the next file.
+
+     <li>A cluster may have many members from the same file.
+
+     <li>White space is ignored between the beginning of a line and the first
+non-white character.
+
+     <li>White space is significant when embedded in a line, or when ending a line.
+
+     <li>Lines having no significant part (only white lines for now) are
+<dfn>ignorable</dfn>.  Such ignorable lines are logically considered as not
+being part of the input files for the sake of comparisons.
+
+     <li>Comments from the C language are not especially ignored.  Unless ignored
+for other reasons (being white lines), they are indeed significant lines.
+
+     <li>No cluster member may ever directly start nor end with ignorable lines. 
+However, ignorable lines may still be embedded within a cluster member.
+
+     <li>In the generated output, clusters containing the biggest number of
+ignorable lines are output first, while smaller clusters appear last. 
+All lines pertaining to a single cluster are output together.  Within a
+cluster, members are listed in the order of the initial reading of
+input files.
+
+   </ul>
+
+   <p>Note that options <samp><span class="option">-p</span></samp>, <samp><span class="option">-t</span></samp>, and <samp><span class="option">-[wxyz]</span></samp> are not
+mutually exclusive.  If you use a combination of them, you will merely
+accumulate the effect of each.  Option <samp><span class="option">-l</span></samp> is a variant of option
+<samp><span class="option">-p</span></samp>.
+
+<!--  -->
+<div class="node">
+<a name="Efficiency"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#mdiff-invocation">mdiff invocation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#mdiff">mdiff</a>
+
+</div>
+
+<h3 class="section">3.2 Resource considerations and efficiency</h3>
+
+     <dl>
+<dt>Memory consumption<dd>
+<samp><span class="command">mdiff</span></samp> can easily handle medium-sized project.  For a 32 bits
+architecture, the memory requirements may computed like this:
+
+          <ul>
+<li>8 bytes per file
+<li>8 bytes per line
+<li>4 bytes per cluster
+<li>8 bytes per cluster member
+</ul>
+
+     <br><dt>Time consumption<dd>
+To evaluate the speed, consider the example shown above
+(see <a href="#mdiff">mdiff</a>), and yielding these statistics:
+
+     <pre class="example">          Read summary: 137 files, 41975 lines
+          Work summary: 439 clusters, 1608 members ...
+</pre>
+     <p class="noindent">Once many files in the memory cache, and redirecting the output to
+<samp><span class="file">/dev/null</span></samp>, the processing takes 3 seconds of real time on an
+Intel 486/100, which looks good.  I was indeed afraid of some hidden
+O(<var>n</var>^2) behaviour<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>,
+even if the program is mostly O(<var>n</var>*log(<var>n</var>)).  Maybe one will
+discover or construct cases putting <samp><span class="command">mdiff</span></samp> on its knees.  So far,
+<samp><span class="command">mdiff</span></samp> seemingly behaves well for the little problems given to it. 
+If we devise and generate a more traditional <samp><span class="command">diff</span></samp>-like output,
+in which all input files are relisted, this will add some time to the
+processing, but it will be only linear with regard with the total length
+of input files.
+
+     <p>There is a clever optimized sorting algorithm for <em>all</em> substrings
+of a file, which might be generalised to handle words or lines for
+<samp><span class="command">mdiff</span></samp>.  But since the program is already faster than we initially
+expected, there is no emergency to resort to using such an algorithm.
+
+     <br><dt>Trading complexity for clarity<dd>
+When lines repeat a lot, there are surprisingly many ways to relate blocks
+of lines, and reporting them <em>all</em> can make very hairy listings. 
+Any choice about reporting similarities, or not, is somewhat arbitrary,
+but we ought to make some of such choices for the program to be practical. 
+Some of these choices are detailed here.
+
+     <p>If all members of a given cluster <var>A</var> are proper subsets of all
+members of another given cluster <var>B</var>, then cluster <var>A</var> is wholly
+forgotten.  However, let's presume for example that there are more members
+in <var>A</var> than in <var>B</var>.  Then, some members of <var>A</var> necessarily
+appear unrelated to any member of <var>B</var>.  In such case, it has been
+decided more useful to report <em>all</em> occurrences of <var>A</var> members,
+even those embedded within occurrences of <var>B</var> members.  When only
+interested in members <var>B</var>, annotations pertaining to <var>A</var> may be
+perceived as clutter.  However, when interested in members of <var>A</var>,
+getting all of them is probably the most useful choice.
+
+     <p>It sometimes happen that members of a very same cluster overlap.  In the
+string &lsquo;<samp><span class="samp">a&nbsp;a&nbsp;a<!-- /@w --></span></samp>&rsquo;, there are two overlapping members for the cluster
+represented by the string &lsquo;<samp><span class="samp">a&nbsp;a<!-- /@w --></span></samp>&rsquo;, one from the first two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;,
+another from the last two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;.  In such cases, one member of such
+an overlap is automatically chopped so the overlap does not occur.
+
+     <p>White lines and items containing only delimiters are the possible source of
+a lot of complexity, if these are fully taken as significant.  Since this
+does not add much to clarity, they are better ignored, usually, through
+using <samp><span class="option">--ignore-blank-lines</span></samp> (<samp><span class="option">-B</span></samp>) or <samp><span class="option">--ignore-delimiters</span></samp>
+(<samp><span class="option">-j</span></samp>).  Increasing the value of <samp><span class="option">--minimum-size=</span><var>items</var></samp>
+(&lsquo;<samp><span class="samp">-J&nbsp;</span><var>items</var><span class="samp"><!-- /@w --></span></samp>&rsquo;) option also cut off complexity in favor of
+clarity, yet some small matches may then go unnoticed.  Exactly how to
+best adjust the <var>items</var> value is left for the user to decide.
+
+</dl>
+
+<!-- ============================================================= -->
+<div class="node">
+<a name="unify"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Compatibility">Compatibility</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#mdiff">mdiff</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">4 The diff format converter</h2>
+
+<!-- ============================================================= -->
+<p>The program <samp><span class="command">unify</span></samp> has the purpose of manipulating context diffs
+and unified context diffs.  <samp><span class="command">unify</span></samp> will accept either a regular
+context diff (old- or new-style) or a unified context diff as input,
+and generate either a unified diff or a new-style context diff as output.
+
+   <p>Various other options allow you to echo the non-diff (comment) lines to
+stderr, modify the diff by removing the comment lines, and/or tweak the
+diff into a format that is good for releasing patches.
+
+   <p>I think most people prefer unified context diffs in general.  But some
+of us just have trouble reading unidiffs, unless they get very simple. 
+Usual context diffs show how the code was <em>before</em>, and then, how
+the code is <em>after</em>.  Some people just prefer understanding twice
+thoroughly, than once fuzzily.  The tool is useful for those who handle
+a lot of diffs from various sources, and want them in a uniform format.
+
+<ul class="menu">
+<li><a accesskey="1" href="#unify-invocation">unify invocation</a>:             Invoking <samp><span class="command">unify</span></samp>
+</ul>
+
+<!--  -->
+<div class="node">
+<a name="unify-invocation"></a>
+<p><hr>
+Up:&nbsp;<a rel="up" accesskey="u" href="#unify">unify</a>
+
+</div>
+
+<h3 class="section">4.1 Invoking <samp><span class="command">unify</span></samp></h3>
+
+<p>The format for running the <samp><span class="command">unify</span></samp> program is:
+
+<pre class="example">     unify <var>option</var> ... [<var>file</var>]
+</pre>
+   <p>The program reads the diff to convert from <var>file</var>, or if the
+source file is not mentioned, it will be read from the standard input. 
+The default is to output the diff in the opposite style of whatever was
+input, that is, regular context diffs will become unified context diffs,
+and unified context diffs will become unified context diffs, but this
+can be overridden by options.
+
+   <p><samp><span class="command">unify</span></samp> supports the following command line options:
+
+     <dl>
+<dt><samp><span class="option">--version</span></samp><dd>Merely prints the version numbers on standard output, and exits without
+doing anything else.
+
+     <br><dt><samp><span class="option">--help</span></samp><dd>Merely prints a page of help on standard output, and exits without doing
+anything else.
+
+     <br><dt><samp><span class="option">--context-diffs</span></samp><dt><samp><span class="option">-c</span></samp><dd>Forces context diff output.
+
+     <br><dt><samp><span class="option">--echo-comments</span></samp><dt><samp><span class="option">-e</span></samp><dd>Echoes non-diff (comment) lines to stderr.  If a comment line is
+being stripped via the <samp><span class="option">-p</span></samp> option, it is echoed with a preceding
+&lsquo;<samp><span class="samp">!!! </span></samp>&rsquo;.  If all comments are being stripped (via the <samp><span class="option">-s</span></samp>
+option), no special designation is given.
+
+     <br><dt><samp><span class="option">--old-diffs</span></samp><dt><samp><span class="option">-o</span></samp><dd>Is used to force a context diff to be interpreted as being of the
+old-style even if it has the extra trailing asterisks that normally mark
+the new-style.  This is only needed if <samp><span class="command">unify</span></samp> fails to work with
+your version of <samp><span class="command">diff</span></samp>.
+
+     <br><dt><samp><span class="option">--patch-format</span></samp><dt><samp><span class="option">-p</span></samp><dd>Turns on patch-output mode.  This will do two things:
+
+          <ol type=1 start=1>
+<li>Transform a header like:
+
+          <pre class="example">               *** orig/file	Sat May  5 02:59:37 1990
+               --- ./file	Sat May  5 03:00:08 1990
+</pre>
+          <p class="noindent">into a line of &lsquo;<samp><span class="samp">Index: file</span></samp>&rsquo; &mdash; we choose the shorter name and strip
+a leading &lsquo;<samp><span class="samp">./</span></samp>&rsquo; sequence if present.
+
+          <li>Strip lines that begin with &lsquo;<samp><span class="samp">Only&nbsp;in&nbsp;<!-- /@w --></span></samp>&rsquo;, &lsquo;<samp><span class="samp">Common&nbsp;subdir<!-- /@w --></span></samp>&rsquo;,
+&lsquo;<samp><span class="samp">Binary&nbsp;files<!-- /@w --></span></samp>&rsquo; or &lsquo;<samp><span class="samp">diff&nbsp;-<!-- /@w --></span></samp>&rsquo;.
+
+          </ol>
+
+     <br><dt><samp><span class="option">-P</span></samp><dd>Is the same as <samp><span class="option">-p</span></samp>.
+
+     <br><dt><samp><span class="option">--strip-comments</span></samp><dt><samp><span class="option">-s</span></samp><dd>Strips non-diff lines (comments).
+
+     <br><dt><samp><span class="option">--unidiffs</span></samp><dt><samp><span class="option">-u</span></samp><dd>Forces unified diff output.
+
+     <br><dt><samp><span class="option">-U</span></samp><dd>Is the same as <samp><span class="option">-up</span></samp>.
+
+     <br><dt><samp><span class="option">--use-equals</span></samp><dt><samp><span class="option">-=</span></samp><dd>Will use a &lsquo;<samp><span class="samp">=</span></samp>&rsquo; prefix in a unified diff for lines that are common
+to both files instead of using a leading space.  Though this is harder to
+read, it is less likely to be mangled by trailing-space-stripping sites
+when posted to Usenet.
+
+   </dl>
+
+<!-- ============================================================= -->
+<div class="node">
+<a name="Compatibility"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#Experimental">Experimental</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#unify">unify</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">5 How <samp><span class="command">mdiff</span></samp> differs</h2>
+
+<!-- ============================================================= -->
+<p>The GNU project already has a <samp><span class="command">diff</span></samp> program which is part of the
+GNU diffutils package.  There also are various non-GNU <samp><span class="command">diff</span></samp>
+programs provided by various constructors.
+
+   <p>There is also the well-established <samp><span class="command">wdiff</span></samp> which uses
+<samp><span class="command">diff</span></samp> under the hood. It differs slightly from
+<samp><span class="command">wdiff2</span></samp>, its intended <samp><span class="command">mdiff</span></samp>-based successor.
+
+   <p>The following sections compare <samp><span class="command">mdiff</span></samp> specifications with both GNU
+<samp><span class="command">diff</span></samp> and with <samp><span class="command">wdiff</span></samp>.
+
+<ul class="menu">
+<li><a accesskey="1" href="#diff-Compatibility">diff Compatibility</a>:           Differences with <samp><span class="command">diff</span></samp>
+<li><a accesskey="2" href="#wdiff-Compatibility">wdiff Compatibility</a>:          Differences with <samp><span class="command">wdiff</span></samp>
+</ul>
+
+<!--  -->
+<div class="node">
+<a name="diff-Compatibility"></a>
+<p><hr>
+Next:&nbsp;<a rel="next" accesskey="n" href="#wdiff-Compatibility">wdiff Compatibility</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Compatibility">Compatibility</a>
+
+</div>
+
+<h3 class="section">5.1 Differences with <samp><span class="command">diff</span></samp></h3>
+
+<p>GNU <samp><span class="command">diff</span></samp> is a program which matured for a long while, and for which
+algorithms are based on computer science literature.  It is a fast program. 
+By comparison, <samp><span class="command">mdiff</span></samp> is not more than a program kludged up rapidly
+to satisfy a few precise needs.  It only tries not being inordinately slow.
+
+   <p>Most <samp><span class="command">diff</span></samp> options are accepted by <samp><span class="command">mdiff</span></samp> under the same
+short and long option names, and is able to produce resembling output,
+for making <samp><span class="command">mdiff</span></samp> easier to learn and less surprising to users. 
+Yet, some differences exist in option decoding and output format.  Since
+<samp><span class="command">diff</span></samp> and <samp><span class="command">mdiff</span></samp> use different matching algorithms, it is
+very likely that the differences will not be exactly analyzed identically.
+
+     <ul>
+<li>A few <samp><span class="command">diff</span></samp> options, which either accept no argument or require
+a mandatory one, are implemented in <samp><span class="command">mdiff</span></samp> as options accepting
+an optional argument.  This may yield some surprises, for example,
+<samp><span class="option">-c4bir</span></samp> would be accepted by <samp><span class="command">diff</span></samp> and rejected by
+<samp><span class="command">mdiff</span></samp>, yet it may rewritten <samp><span class="option">-birc4</span></samp> for both.  See below.
+
+     <li>Options <samp><span class="option">-c</span></samp> and <samp><span class="option">-u</span></samp> in <samp><span class="command">diff</span></samp> ask for regular context
+and unified context output, respectively, without specifying the number
+of lines in the context.  <samp><span class="command">diff</span></samp> has &lsquo;<samp><span class="samp">-C&nbsp;</span><var>number</var><span class="samp"><!-- /@w --></span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">-U&nbsp;</span><var>number</var><span class="samp"><!-- /@w --></span></samp>&rsquo; options for asking for regular or unified context
+diffs with <var>number</var> context lines.  If <samp><span class="option">-c4</span></samp> asks for four lines
+of context, the &lsquo;<samp><span class="samp">4</span></samp>&rsquo; is not really an argument of <samp><span class="option">-c</span></samp>, and this
+is really interpreted as &lsquo;<samp><span class="samp">-c&nbsp;-4<!-- /@w --></span></samp>&rsquo;, where <samp><span class="option">-</span><var>number</var></samp> is
+meant to be a deprecated option for choosing the number of context lines,
+option which <samp><span class="command">mdiff</span></samp> does not implement.  In <samp><span class="command">mdiff</span></samp>, <samp><span class="option">-c</span></samp>
+and <samp><span class="option">-u</span></samp> are really two options which are allowed to receive an
+optional argument, so the number of lines may, or may not be given, at
+the choice of the user.  In <samp><span class="command">mdiff</span></samp>, options <samp><span class="option">-C</span></samp> and <samp><span class="option">-U</span></samp>
+are completely equivalent to <samp><span class="option">-c</span></samp> and <samp><span class="option">-u</span></samp>, and are provided
+only for the sake of compatibility.
+
+     <li>Option <samp><span class="option">-v</span></samp> in <samp><span class="command">diff</span></samp> means <samp><span class="option">--version</span></samp>, while it
+means <samp><span class="option">--verbose</span></samp> in <samp><span class="command">mdiff</span></samp>.  There is no short form for
+<samp><span class="option">--version</span></samp> in <samp><span class="command">mdiff</span></samp>.
+
+   </ul>
+
+<!--  -->
+<div class="node">
+<a name="wdiff-Compatibility"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#diff-Compatibility">diff Compatibility</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Compatibility">Compatibility</a>
+
+</div>
+
+<h3 class="section">5.2 Differences with <samp><span class="command">wdiff</span></samp></h3>
+
+<p>Even if <samp><span class="command">mdiff</span></samp> is meant to fully support <samp><span class="command">wdiff</span></samp>, options have
+been shuffled around so <samp><span class="command">mdiff</span></samp> could better merge both <samp><span class="command">diff</span></samp>
+and <samp><span class="command">wdiff</span></samp> options in a common scheme.  <samp><span class="command">diff</span></samp> habits were
+almost always favored in this option reorganisation.
+
+   <p><samp><span class="command">wdiff2</span></samp> is now a mere front-end to <samp><span class="command">mdiff</span></samp> that only
+rewrites the options.  The following notes apply.
+
+     <ul>
+<li>Some options are just transmitted unchanged, these are <samp><span class="option">-1</span></samp>,
+<samp><span class="option">-2</span></samp>, <samp><span class="option">-3</span></samp> and <samp><span class="option">-i</span></samp>.
+
+     <li>Option <samp><span class="option">-c</span></samp> also gets turned into <samp><span class="option">-i</span></samp>, to be compatible with
+<samp><span class="command">wdiff</span></samp> versions up to &lsquo;<samp><span class="samp">0.4</span></samp>&rsquo;.
+
+     <li>Simple option <samp><span class="option">-a</span></samp> in <samp><span class="command">wdiff</span></samp> becomes <samp><span class="option">-A</span></samp> in <samp><span class="command">mdiff</span></samp>,
+<samp><span class="option">-l</span></samp> becomes <samp><span class="option">-k</span></samp>, <samp><span class="option">-n</span></samp> becomes <samp><span class="option">-m</span></samp>, <samp><span class="option">-p</span></samp> becomes
+<samp><span class="option">-o</span></samp>, <samp><span class="option">-s</span></samp> becomes <samp><span class="option">-v</span></samp> and <samp><span class="option">-t</span></samp> becomes <samp><span class="option">-z</span></samp>.
+
+     <li>Options introducing strings, which are <samp><span class="option">-w</span></samp>, <samp><span class="option">-x</span></samp>, <samp><span class="option">-y</span></samp>
+and <samp><span class="option">-z</span></samp> in <samp><span class="command">wdiff</span></samp>, respectively become <samp><span class="option">-Y</span></samp>, <samp><span class="option">-Z</span></samp>,
+<samp><span class="option">-Q</span></samp> and <samp><span class="option">-R</span></samp> in <samp><span class="command">mdiff</span></samp>.
+
+     <li>Options <samp><span class="option">-C</span></samp>, <samp><span class="option">-h</span></samp> and <samp><span class="option">-v</span></samp> are processed directly by
+<samp><span class="command">wdiff</span></samp> and are not transmitted to <samp><span class="command">mdiff</span></samp>.
+
+     <li>Further, the <samp><span class="option">-C</span></samp> option of <samp><span class="command">wdiff</span></samp> has no equivalent in
+<samp><span class="command">mdiff</span></samp>.
+
+     <li>A new option <samp><span class="option">-q</span></samp> inhibits the message which explains how <samp><span class="command">mdiff</span></samp>
+might have been directly called.
+
+     <li>The option <samp><span class="option">--diff-input</span></samp> (<samp><span class="option">-d</span></samp>) from <samp><span class="command">wdiff</span></samp>
+isn't supported by <samp><span class="command">wdiff2</span></samp> (yet).
+
+   </ul>
+
+<!-- end ifset EXPERIMENTAL -->
+<!-- ============================================================= -->
+<div class="node">
+<a name="Experimental"></a>
+<p><hr>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Compatibility">Compatibility</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+
+</div>
+
+<h2 class="chapter">6 Experimental programs</h2>
+
+<!-- ============================================================= -->
+<p>The GNU wdiff source package contains sources for a number of tools
+besides <samp><span class="command">wdiff</span></samp> itself. 
+These are considered experimental: they might work for you, but they
+might just as well fail. 
+The following programs are considered experimental:
+
+     <ul>
+<li><samp><span class="command">mdiff</span></samp>
+<li><samp><span class="command">wdiff2</span></samp>
+<li><samp><span class="command">unify</span></samp>
+</ul>
+
+   <p>Building these applications can be configured at build time by passing
+<samp><span class="option">--with-experimental</span></samp> to the <samp><span class="file">configure</span></samp> script.
+
+   <p><em>For this build, they have been enabled.</em>
+If you encounter a bug in an experimental program, the maintainers would
+still like to learn about it, but there is a greater chance that they
+decide not to fix such issues unless you provide a patch as well.
+
+<ul class="menu">
+<li><a accesskey="1" href="#Experimental-History">Experimental History</a>:    History of the experimental programs
+</ul>
+
+<!--  -->
+<div class="node">
+<a name="Experimental-History"></a>
+<p><hr>
+Up:&nbsp;<a rel="up" accesskey="u" href="#Experimental">Experimental</a>
+
+</div>
+
+<h3 class="section">6.1 History of the Experimental programs</h3>
+
+<p>Many users
+suggested features, which were in turn inviting for the integration of
+<samp><span class="command">wdiff</span></samp> into GNU diffutils.  Collaboration proved to be rather
+difficult.  After a few years, the <samp><span class="command">wdiff</span></samp> author finally gave in
+and created <samp><span class="command">mdiff</span></samp> as a way to break out of the situation and for
+becoming able to proceed with users' suggestions.
+
+   <p>Before <samp><span class="command">mdiff</span></samp> and the new <samp><span class="command">wdiff2</span></samp> based on it were
+officially released, the original author resigned maintainership. 
+The new maintainers had little experience with the code, and therefore
+decided to mark it experimental. That way, the code wouldn't be lost,
+but it would be clear that it wasn't as testes as the good old
+<code>wdiff</code> command.
+
+   <div class="footnote">
+<hr>
+<a name="texinfo-footnotes-in-document"></a><h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> <var>n</var> is the total number of lines.</p>
+
+   <hr></div>
 
 </body></html>
 
+<!--
+
+Local Variables:
+coding: utf-8
+End:
+
+-->

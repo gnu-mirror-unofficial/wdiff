@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+<title>wdiff Compatibility - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compatibility.html#Compatibility" title="Compatibility">
+<link rel="prev" href="diff-Compatibility.html#diff-Compatibility" title="diff Compatibility">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="wdiff-Compatibility"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="diff-Compatibility.html#diff-Compatibility">diff Compatibility</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compatibility.html#Compatibility">Compatibility</a>
+<hr>
+</div>
+
+<h3 class="section">5.2 Differences with <samp><span class="command">wdiff</span></samp></h3>
+
+<p>Even if <samp><span class="command">mdiff</span></samp> is meant to fully support <samp><span class="command">wdiff</span></samp>, options have
+been shuffled around so <samp><span class="command">mdiff</span></samp> could better merge both <samp><span class="command">diff</span></samp>
+and <samp><span class="command">wdiff</span></samp> options in a common scheme.  <samp><span class="command">diff</span></samp> habits were
+almost always favored in this option reorganisation.
+
+   <p><samp><span class="command">wdiff2</span></samp> is now a mere front-end to <samp><span class="command">mdiff</span></samp> that only
+rewrites the options.  The following notes apply.
+
+     <ul>
+<li>Some options are just transmitted unchanged, these are <samp><span class="option">-1</span></samp>,
+<samp><span class="option">-2</span></samp>, <samp><span class="option">-3</span></samp> and <samp><span class="option">-i</span></samp>.
+
+     <li>Option <samp><span class="option">-c</span></samp> also gets turned into <samp><span class="option">-i</span></samp>, to be compatible with
+<samp><span class="command">wdiff</span></samp> versions up to &lsquo;<samp><span class="samp">0.4</span></samp>&rsquo;.
+
+     <li>Simple option <samp><span class="option">-a</span></samp> in <samp><span class="command">wdiff</span></samp> becomes <samp><span class="option">-A</span></samp> in <samp><span class="command">mdiff</span></samp>,
+<samp><span class="option">-l</span></samp> becomes <samp><span class="option">-k</span></samp>, <samp><span class="option">-n</span></samp> becomes <samp><span class="option">-m</span></samp>, <samp><span class="option">-p</span></samp> becomes
+<samp><span class="option">-o</span></samp>, <samp><span class="option">-s</span></samp> becomes <samp><span class="option">-v</span></samp> and <samp><span class="option">-t</span></samp> becomes <samp><span class="option">-z</span></samp>.
+
+     <li>Options introducing strings, which are <samp><span class="option">-w</span></samp>, <samp><span class="option">-x</span></samp>, <samp><span class="option">-y</span></samp>
+and <samp><span class="option">-z</span></samp> in <samp><span class="command">wdiff</span></samp>, respectively become <samp><span class="option">-Y</span></samp>, <samp><span class="option">-Z</span></samp>,
+<samp><span class="option">-Q</span></samp> and <samp><span class="option">-R</span></samp> in <samp><span class="command">mdiff</span></samp>.
+
+     <li>Options <samp><span class="option">-C</span></samp>, <samp><span class="option">-h</span></samp> and <samp><span class="option">-v</span></samp> are processed directly by
+<samp><span class="command">wdiff</span></samp> and are not transmitted to <samp><span class="command">mdiff</span></samp>.
+
+     <li>Further, the <samp><span class="option">-C</span></samp> option of <samp><span class="command">wdiff</span></samp> has no equivalent in
+<samp><span class="command">mdiff</span></samp>.
+
+     <li>A new option <samp><span class="option">-q</span></samp> inhibits the message which explains how <samp><span class="command">mdiff</span></samp>
+might have been directly called.
+
+     <li>The option <samp><span class="option">--diff-input</span></samp> (<samp><span class="option">-d</span></samp>) from <samp><span class="command">wdiff</span></samp>
+isn't supported by <samp><span class="command">wdiff2</span></samp> (yet).
+
+   </ul>
+
+<!-- end ifset EXPERIMENTAL -->
+<!-- ============================================================= -->
+   </body></html>
+

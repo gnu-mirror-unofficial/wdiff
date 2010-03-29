@@ -1,0 +1,251 @@
+<html lang="en">
+<head>
+<title>mdiff invocation - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="mdiff.html#mdiff" title="mdiff">
+<link rel="next" href="Efficiency.html#Efficiency" title="Efficiency">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="mdiff-invocation"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Efficiency.html#Efficiency">Efficiency</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="mdiff.html#mdiff">mdiff</a>
+<hr>
+</div>
+
+<h3 class="section">3.1 Invoking <samp><span class="command">mdiff</span></samp></h3>
+
+<p>The format for running the <samp><span class="command">mdiff</span></samp> program is:
+
+<pre class="example">     mdiff <var>option</var> ... <var>file</var> ...
+</pre>
+   <p><samp><span class="command">mdiff</span></samp> read all input <var>file</var>s and produces its results on
+standard output.  Optionally, standard error might receive a progress
+report or a few statistics.
+
+   <p><samp><span class="command">wdiff</span></samp> compares files <var>old_file</var> and <var>new_file</var> and
+produces an annotated copy of <var>new_file</var> on standard output.  The
+empty string or the string <samp><span class="option">-</span></samp> denotes standard input, but standard
+input cannot be used twice in the same invocation.  The complete path of
+a file should be given, a directory name is not accepted.  <samp><span class="command">wdiff</span></samp>
+will exit with a status of 0 if no differences were found, a status of 1
+if any differences were found, or a status of 2 for any error.
+
+   <p>In this documentation, <dfn>deleted text</dfn> refers to text in
+<var>old_file</var> which is not in <var>new_file</var>, while <dfn>inserted text</dfn>
+refers to text on <var>new_file</var> which is not in <var>old_file</var>.
+
+   <p><samp><span class="command">mdiff</span></samp> supports the following command line options:
+
+     <dl>
+<dt><samp><span class="option">--version</span></samp><dd>Merely prints the version numbers on standard output, and exits without
+doing anything else.
+
+     <br><dt><samp><span class="option">--help</span></samp><dd>Merely prints a page of help on standard output, and exits without doing
+anything else.
+
+     <br><dt><samp><span class="option">--threshold=</span><var>number</var></samp><dt><samp><span class="option">-t </span><var>number</var></samp><dd>Specifies the minimum number of non-ignorable lines which are required for
+two runs of lines to compare as equal.  No cluster member may ever have
+less than <var>number</var> lines.  By default, clusters have 4 lines or more.
+
+     <br><dt><samp><span class="option">--no-deleted</span></samp><dt><samp><span class="option">-1</span></samp><dd>Avoid producing deleted words on the output.  If neither <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp> is selected, the original right margin may be exceeded for
+some lines.
+
+     <br><dt><samp><span class="option">--no-inserted</span></samp><dt><samp><span class="option">-2</span></samp><dd>Avoid producing inserted words on the output.  When this flag is given,
+the whitespace in the output is taken from <var>old_file</var> instead of
+<var>new_file</var>.  If neither <samp><span class="option">-1</span></samp> or <samp><span class="option">-2</span></samp> is selected, the
+original right margin may be exceeded for some lines.
+
+     <br><dt><samp><span class="option">--no-common</span></samp><dt><samp><span class="option">-3</span></samp><dd>Avoid producing common words on the output.  When this option is not
+selected, common words and whitespace are taken from <var>new_file</var>,
+unless option <samp><span class="option">-2</span></samp> is given, in which case common words and
+whitespace are rather taken from <var>old_file</var>.  When selected,
+differences are separated from one another by lines of dashes. 
+Moreover, if this option is selected at the same time as <samp><span class="option">-1</span></samp> or
+<samp><span class="option">-2</span></samp>, then none of the output will have any emphasis, i.e. no bold
+or underlining.  Finally, if this option is not selected, but both
+<samp><span class="option">-1</span></samp> and <samp><span class="option">-2</span></samp> are, then sections of common words between
+differences are segregated by lines of dashes.
+
+     <br><dt><samp><span class="option">--ignore-case</span></samp><dt><samp><span class="option">-i</span></samp><dd>Do not consider case difference while comparing words.  Each lower case
+letter is seen as identical to its upper case equivalent for the purpose
+of deciding if two words are the same.
+
+     <br><dt><samp><span class="option">--auto-pager</span></samp><dt><samp><span class="option">-A</span></samp><dd>Some initiatives which were previously automatically taken in previous
+versions of <samp><span class="command">wdiff</span></samp> are now put under the control of this option. 
+By using it, a pager is interposed whenever the <samp><span class="command">wdiff</span></samp> output is
+directed to the user's terminal.  Without this option, no pager will be
+called, the user is then responsible for explicitly piping <samp><span class="command">wdiff</span></samp>
+output into a pager, if required.
+
+     <p>The pager is selected by the value of the <var>PAGER</var> environment
+variable when <samp><span class="command">wdiff</span></samp> is run.  If <var>PAGER</var> is not defined at
+run time, then a default pager, selected at installation time, will be
+used instead.  A defined but empty value of <var>PAGER</var> means no pager
+at all.
+
+     <p>When a pager is interposed through the use of this option,
+one of the options <samp><span class="option">-l</span></samp> or <samp><span class="option">-t</span></samp> is also selected, depending on
+whether the string &lsquo;<samp><span class="samp">less</span></samp>&rsquo; appears in the pager's name or not.
+
+     <p>It is often useful to define &lsquo;<samp><span class="samp">wdiff</span></samp>&rsquo; as an alias for &lsquo;<samp><span class="samp">wdiff
+-a</span></samp>&rsquo;.  However, this <em>hides</em> the normal <samp><span class="command">wdiff</span></samp> behaviour.  The
+default behaviour may be restored simply by piping the output from
+<samp><span class="command">wdiff</span></samp> through <samp><span class="command">cat</span></samp>.  This dissociates the output from the
+user's terminal.
+
+     <br><dt><samp><span class="option">--printer</span></samp><dt><samp><span class="option">-p</span></samp><dd>Use over-striking to emphasize parts of the output.  Each character of the
+deleted text is underlined by writing an underscore &lsquo;<samp><span class="samp">_</span></samp>&rsquo; first,
+then a backspace and then the letter to be underlined.  Each character of the
+inserted text is emboldened by writing it twice, with a backspace in
+between.  This option is not selected by default.
+
+     <br><dt><samp><span class="option">--less-mode</span></samp><dt><samp><span class="option">-l</span></samp><dd>Use over-striking to emphasize parts of output.  This option works as
+option <samp><span class="option">-p</span></samp>, but also over-strikes whitespace associated with
+inserted text.  <samp><span class="command">less</span></samp> shows such whitespace using reverse video. 
+This option is not selected by default.  However, it is automatically
+turned on whenever <samp><span class="command">wdiff</span></samp> launches the pager <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
+
+     <p>This option is commonly used in conjunction with <samp><span class="command">less</span></samp>:
+
+     <pre class="example">          wdiff -l <var>old_file</var> <var>new_file</var> | less
+</pre>
+     <br><dt><samp><span class="option">--terminal</span></samp><dt><samp><span class="option">-t</span></samp><dd>Force the production of <code>termcap</code> strings for emphasising parts of
+output, even if the standard output is not associated with a terminal. 
+The &lsquo;<samp><span class="samp">TERM</span></samp>&rsquo; environment variable must contain the name of a valid
+<code>termcap</code> entry.  If the terminal description permits, underlining
+is used for marking deleted text, while bold or reverse video is used
+for marking inserted text.  This option is not selected by default. 
+However, it is automatically turned on whenever <samp><span class="command">wdiff</span></samp> launches a
+pager, and it is known that the pager is <em>not</em> <samp><span class="command">less</span></samp>.  See
+option <samp><span class="option">-a</span></samp>.
+
+     <p>This option is commonly used when <samp><span class="command">wdiff</span></samp> output is not redirected,
+but sent directly to the user terminal, as in:
+
+     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var>
+</pre>
+     <p>A common kludge uses <samp><span class="command">wdiff</span></samp> together with the pager <samp><span class="command">more</span></samp>,
+as in:
+
+     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var> | more
+</pre>
+     <p>However, some versions of <samp><span class="command">more</span></samp> use <code>termcap</code> emphasis for
+their own purposes, so strange interactions are possible.
+
+     <br><dt><samp><span class="option">--start-delete </span><var>argument</var></samp><dt><samp><span class="option">-w </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start delete</dfn> string.  This string will
+be output prior to any sequence of deleted text, to mark where it
+starts.  By default, no start delete string is used unless there is no
+other means of distinguishing where such text starts; in this case the
+default start delete string is &lsquo;<samp><span class="samp">[-</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--end-delete </span><var>argument</var></samp><dt><samp><span class="option">-x </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end delete</dfn> string.  This string will be
+output after any sequence of deleted text, to mark where it ends.  By
+default, no end delete string is used unless there is no other means of
+distinguishing where such text ends; in this case the default end delete
+string is <samp><span class="option">-]</span></samp>.
+
+     <br><dt><samp><span class="option">--start-insert </span><var>argument</var></samp><dt><samp><span class="option">-y </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start insert</dfn> string.  This string will
+be output prior to any sequence of inserted text, to mark where it
+starts.  By default, no start insert string is used unless there is no
+other means of distinguishing where such text starts; in this case the
+default start insert string is &lsquo;<samp><span class="samp">{+</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--end-insert </span><var>argument</var></samp><dt><samp><span class="option">-z </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end insert</dfn> string.  This string will be
+output after any sequence of inserted text, to mark where it ends.  By
+default, no end insert string is used unless there is no other means of
+distinguishing where such text ends; in this case the default end insert
+string is &lsquo;<samp><span class="samp">+}</span></samp>&rsquo;.
+
+     <br><dt><samp><span class="option">--avoid-wraps</span></samp><dt><samp><span class="option">-n</span></samp><dd>Avoid spanning the end of line while showing deleted or inserted text. 
+Any single fragment of deleted or inserted text spanning many lines will
+be considered as being made up of many smaller fragments not containing
+a newline.  So deleted text, for example, will have an end delete string
+at the end of each line, just before the new line, and a start delete
+string at the beginning of the next line.  A long paragraph of inserted
+text will have each line bracketed between start insert and end insert
+strings.  This behaviour is not selected by default.
+
+   </dl>
+
+   <p>Some choices are hard-wired into the program, but might well become options
+in later releases.  For example:
+
+     <ul>
+<li>No cluster may span a file boundary, that is, start near the end of one
+input file and continue at the beginning of the next file.
+
+     <li>A cluster may have many members from the same file.
+
+     <li>White space is ignored between the beginning of a line and the first
+non-white character.
+
+     <li>White space is significant when embedded in a line, or when ending a line.
+
+     <li>Lines having no significant part (only white lines for now) are
+<dfn>ignorable</dfn>.  Such ignorable lines are logically considered as not
+being part of the input files for the sake of comparisons.
+
+     <li>Comments from the C language are not especially ignored.  Unless ignored
+for other reasons (being white lines), they are indeed significant lines.
+
+     <li>No cluster member may ever directly start nor end with ignorable lines. 
+However, ignorable lines may still be embedded within a cluster member.
+
+     <li>In the generated output, clusters containing the biggest number of
+ignorable lines are output first, while smaller clusters appear last. 
+All lines pertaining to a single cluster are output together.  Within a
+cluster, members are listed in the order of the initial reading of
+input files.
+
+   </ul>
+
+   <p>Note that options <samp><span class="option">-p</span></samp>, <samp><span class="option">-t</span></samp>, and <samp><span class="option">-[wxyz]</span></samp> are not
+mutually exclusive.  If you use a combination of them, you will merely
+accumulate the effect of each.  Option <samp><span class="option">-l</span></samp> is a variant of option
+<samp><span class="option">-p</span></samp>.
+
+<!--  -->
+   </body></html>
+

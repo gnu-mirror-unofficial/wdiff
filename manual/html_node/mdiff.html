@@ -1,0 +1,178 @@
+<html lang="en">
+<head>
+<title>mdiff - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="wdiff.html#wdiff" title="wdiff">
+<link rel="next" href="unify.html#unify" title="unify">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="mdiff"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="unify.html#unify">unify</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="wdiff.html#wdiff">wdiff</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">3 The multi-difference finder</h2>
+
+<!-- ============================================================= -->
+<p>The name <samp><span class="command">mdiff</span></samp> stands for <em>multi-</em><samp><span class="command">diff</span></samp>, and has the
+purpose of encompassing the functionnality of a few other <samp><span class="command">diff</span></samp>-type
+programs.  The prefix <em>multi-</em> also stands for the fact the program
+is often able to study more than two input files at once.
+
+   <p>The theory of operation is simple.  The program splits all input files
+into a sequence of items, which may be lines or words.  <samp><span class="command">mdiff</span></samp> is
+then said to operate either in <dfn>line mode</dfn> or in <dfn>word mode</dfn>. 
+It then tries to find sequences of items which are repeated in the
+input files.  Such common sequences are called <dfn>clusters</dfn> of items,
+and each occurrence of a repetition is called a cluster <dfn>member</dfn>. 
+What remains, once all cluster members are conceptually removed from all
+input files, is a set of <dfn>differences</dfn>.  The role of <samp><span class="command">mdiff</span></samp>
+is to conveniently list either cluster members and differences.
+
+   <p>When input files are very similar, it is likely that clusters will
+encompass many items (lines or words) and differences will be small.  So,
+most listing options inhibit the printing of cluster members.  However,
+one may ask for the few beginning or ending items of cluster members
+to be printed nevertheless, as a way to provide a kind of feedback
+or <dfn>context</dfn> of the difference, those context items are sometimes
+said to be at the <dfn>horizon</dfn> of the difference.  In merged listings,
+cluster members may just not be printed, except maybe for a few context
+items at the beginning of the member (just after a difference), and a
+few context items at the end of the member (just before a difference).
+
+   <p>When cluster members are short, or if you prefer, when the differences
+are not far away from each other, it is quite possible that the required
+context items often cover the full extent of the cluster members, which
+then are not inhibited anymore when this happens.  A run of differences
+intermixed with such non-suppressed members is called a <dfn>hunk</dfn>. 
+Some reports produced by <samp><span class="command">mdiff</span></samp> are showned as a list of hunks,
+and it is to be understood that common items are elided between hunks. 
+However, each hunk in itself has no item missing, and each item of the
+hunk is analysed as pertaining either to only one of the input file or
+to many of them.  Each hunk is preceded by a header, which explains the
+line position of all input files prior to the hunk itself.  By comparing
+a hunk header with the previous hunk header, the user can have a hint
+about how much printing was spared.
+
+   <p>When two input files are quite similar, clusters are usually presented in
+the same order in all files.  If a cluster member <var>A</var> in the first
+file corresponds to a cluster member <var>A</var> in the second file, it is
+likely that another cluster member <var>B</var> which appears <em>after</em>
+<var>A</var> in the first file will correspond to a cluster member <var>B</var>
+in the second file which appears <em>after</em> <var>A</var> as well.  So, in
+many cases, while producing merged listing of files, cluster members may
+be made to naturally correspond to one another.  However, this is not
+always true, in particular when the second file has been produced from
+the first by moving a big chunk of code away from its original position. 
+In such cases, we say that members have <dfn>crossed</dfn>.  When members are
+crossed and <samp><span class="command">mdiff</span></samp> has to make a merged listing, it selects one
+cluster member as being <em>naturally</em> associated with its correspondant
+(either the pair of <var>A</var>'s or the pair of <var>B</var>'s) and then consider
+the other cluster as being part of a difference.  The crossed nature of
+the member may still be analysed and reported, or it may be ignored.
+
+   <p>The standard <samp><span class="command">diff</span></samp> program is meant for when there are exactly two
+input files, for which crossed members should be ignored.  <samp><span class="command">mdiff</span></samp>
+output format has been designed in such a way that it should resemble
+<samp><span class="command">diff</span></samp> output for this precise case.  However, <samp><span class="command">diff</span></samp> formats are
+not sufficient for representing all cases which <samp><span class="command">mdiff</span></samp> may address,
+and this is not mature yet.  That is why <samp><span class="command">mdiff</span></samp>, in its current
+state, still experiments with output formats, which are subject to change.
+
+   <p>When the input files are not very similar, or rather different, merged
+listings are not very significant nor useful, and may even be rather
+confusing.  The best to do in such cases is using <samp><span class="command">mdiff</span></samp> for making
+an annotated relisting of all input files, in which cluster members are
+properly identified and referred to one another.
+
+   <p>Statistics.
+
+<pre class="example">     Read summary: 137 files, 41975 lines
+     Work summary: 439 clusters, 1608 members, 8837 duplicate lines
+</pre>
+   <p class="noindent">The summary lines, triggered by the <samp><span class="option">-s</span></samp> option, say that about 8837
+non-ignorable lines could be removed over the 41975 which has been read,
+by using functions, <code>#include</code>, <code>#define</code>, or similar devices.
+
+   <p>If one manages to execute <samp><span class="command">mdiff</span></samp> within GNU Emacs so the output
+described above is collected into the <code>*compilation*</code> buffer, the
+command <kbd>C-`</kbd> (&lsquo;<samp><span class="samp">M-x&nbsp;next-error<!-- /@w --></span></samp>&rsquo;) will proceed to the next
+cluster member in the other window, and similarily for other compilation
+mode commands.  This is a useful way for handling <samp><span class="command">mdiff</span></samp> output.
+
+   <p>Each line in the hunk, after the header, comes from the compared files,
+but is shifted right so the first column (or the first few columns)
+of each line gives information about where the line is coming from. 
+A space indicates a line which is common to all files.  In case there
+are only two input files, a minus sign indicates a line from the first
+file and a plus sign a line from the second file.  Else, a letter from
+&lsquo;<samp><span class="samp">a</span></samp>&rsquo; to &lsquo;<samp><span class="samp">z</span></samp>&rsquo;, or more than one letter if there are more than
+26 files, indicates to which file the line pertains.  If a line or a
+block of line pertains to many files but not to all of them, the first
+column holds a vertical bar, and the line or block of lines is bracketed
+between &lsquo;<samp><span class="samp">@/</span></samp>&rsquo; and &lsquo;<samp><span class="samp">@\</span></samp>&rsquo; lines, which are kind of comments within
+the hunk.  The initial bracket lists all file letters that are related
+to the incoming line.
+
+   <p>I initially wrote <samp><span class="command">mdiff</span></samp> specifically to help cleaning a C++
+project which was a bit large, and in which many big monolithic classes
+were derived from each other most probably by rough copying followed by
+local modifications.  I intended to fragment most common clusters and
+segregate the parts into virtual methods in outer classes, and override
+these methods, as appropriate, with less common variants within inner
+classes.  <samp><span class="command">mdiff</span></samp> was good at pointing me to exactly where I should
+look at.  Of course, it never did the cleanup for me, but it helped doing
+the research about what should be done.  Reusing <samp><span class="command">mdiff</span></samp> over the
+half-cleaned project gave me more fine grained analysis of what was left
+to consider.
+
+<ul class="menu">
+<li><a accesskey="1" href="mdiff-invocation.html#mdiff-invocation">mdiff invocation</a>:             Invoking <samp><span class="command">mdiff</span></samp>
+<li><a accesskey="2" href="Efficiency.html#Efficiency">Efficiency</a>:                   Resource considerations and efficiency
+</ul>
+
+<!--  -->
+   </body></html>
+

@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+<title>wdiff Examples - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="wdiff.html#wdiff" title="wdiff">
+<link rel="prev" href="wdiff-invocation.html#wdiff-invocation" title="wdiff invocation">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="wdiff-Examples"></a>
+<p>
+Previous:&nbsp;<a rel="previous" accesskey="p" href="wdiff-invocation.html#wdiff-invocation">wdiff invocation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="wdiff.html#wdiff">wdiff</a>
+<hr>
+</div>
+
+<h3 class="section">2.2 Actual examples of <samp><span class="command">wdiff</span></samp> usage</h3>
+
+<p>This section presents a few examples of usage, most of them have been
+contributed by <samp><span class="command">wdiff</span></samp> users.
+
+     <ul>
+<li>Change bars example.
+
+          <ul>
+<li>This example comes from a discussion with
+<a href="mailto:jbw@cs.bu.edu">Joe Wells</a>.
+
+          <p>The following command produces a copy of <var>new_file</var>, shifted right
+one space to accommodate change bars since the last revision, ignoring
+those changes coming only from paragraph refilling.  Any line with new
+or changed text will get a &lsquo;<samp><span class="samp">|</span></samp>&rsquo; in column 1.  However, deleted text
+is not shown nor marked.
+
+          <pre class="example">               wdiff -1n <var>old_file</var> <var>new_file</var> |
+                 sed -e 's/^/  /;/{+/s/^ /|/;s/{+//g;s/+}//g'
+</pre>
+          <p>Here is how it works.  Word differences are found, paying attention only
+to additions, as requested by option <samp><span class="option">-1</span></samp>.  For bigger changes
+which span line boundaries, the insert bracket strings are repeated on
+each output line, as requested by option <samp><span class="option">-n</span></samp>.  This output is then
+reformatted with a <samp><span class="command">sed</span></samp> script which shifts the text right two
+columns, turns the initial space into a bar only if there is some new
+text on that line, then removes all insert bracket strings.
+
+     </ul>
+
+     <li>LaTeX example.
+
+          <ul>
+<li>
+This example has been provided by
+<a href="mailto:fisk@polar.bowdoin.edu">Steve Fisk</a>.
+
+          <p>The following uses LaTeX to put deleted text in boxes, and new text
+in double boxes:
+
+          <pre class="example">               wdiff -w "\fbox{" -x "}" -y "\fbox{\fbox{" -z "}}" ...
+</pre>
+          <p class="noindent">works nicely.
+
+     </ul>
+
+     <li><samp><span class="command">troff</span></samp> example.
+
+          <ul>
+<li>This example comes from <a href="mailto:pgf@cayman.com">Paul Fox</a>.
+
+          <p>Using <samp><span class="command">wdiff</span></samp>, with some <samp><span class="command">troff</span></samp>-specific delimiters gives
+<em>much</em> better output.  The delimiters I used:
+
+          <pre class="example">               wdiff -w'\s-5' -x'\s0' -y'\fB' -z'\fP' ...
+</pre>
+          <p>This makes the pointsize of deletions 5 points smaller than normal, and
+emboldens insertions.  Fantastic!
+
+          <p>I experimented with:
+
+          <pre class="example">               wdiff -w'\fI' -x'\fP' -y'\fB' -z'\fP'
+</pre>
+          <p>since that's more like the defaults you use for terminals or printers,
+but since I actually use italics for emphasis in my documents, I thought
+the point size thing was clearer.
+
+          <p>I tried it on code, and it works surprisingly well there, too...
+
+          <li><a href="mailto:leisner@eso.mc.xerox.com">Marty Leisner</a> says:
+
+          <p>In the previous example, you had smaller text being taken out and bold
+face inserted.  I had smaller text being taken out and larger text being
+inserted, I'm using bold face for other things, so this is more clear.
+
+          <pre class="example">               wdiff -w '\s-3' -x'\s0' -y'\s+3' -z'\s0'
+</pre>
+          </ul>
+
+     <li>Colored output example.
+
+          <ul>
+<li>This example comes from <a href="mailto:Martin.vGagern@gmx.net">Martin von Gagern</a>.
+
+          <p>If you like colored output, and your terminal supports ANSI escape
+sequences, you can use this invocation:
+
+          <pre class="example">               wdiff -n \
+                 -w $'\033[30;41m' -x $'\033[0m' \
+                 -y $'\033[30;42m' -z $'\033[0m' \
+                 ... | less -R
+</pre>
+          <p>This will print deleted text black on red, and inserted text black on
+green, assuming that your normal terminal colors are white on black. 
+Of course you can choose different colors if you prefer.
+
+          <p>The &lsquo;<samp><span class="samp">$'...'</span></samp>&rsquo; notation is supported by GNU bash, and maybe other
+shells as well. If your shell doesn't support it, you might need some
+more tricks to generate these escape sequences as command line
+arguments.
+
+     </ul>
+
+   </ul>
+
+   <p>On a related note, GNU Emacs users might notice that the interactive
+function <code>compare-windows</code> ignores changes in whitespace, if it is
+given a numeric argument.  If the variable <code>compare-ignore-case</code>
+is non-<code>nil</code>, it ignores differences in case as well.  So, in a way,
+this offers a kind of incremental version of <samp><span class="command">wdiff</span></samp>.
+
+<!-- ============================================================= -->
+   </body></html>
+

@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<title>unify - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="mdiff.html#mdiff" title="mdiff">
+<link rel="next" href="Compatibility.html#Compatibility" title="Compatibility">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="unify"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="Compatibility.html#Compatibility">Compatibility</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="mdiff.html#mdiff">mdiff</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr>
+</div>
+
+<h2 class="chapter">4 The diff format converter</h2>
+
+<!-- ============================================================= -->
+<p>The program <samp><span class="command">unify</span></samp> has the purpose of manipulating context diffs
+and unified context diffs.  <samp><span class="command">unify</span></samp> will accept either a regular
+context diff (old- or new-style) or a unified context diff as input,
+and generate either a unified diff or a new-style context diff as output.
+
+   <p>Various other options allow you to echo the non-diff (comment) lines to
+stderr, modify the diff by removing the comment lines, and/or tweak the
+diff into a format that is good for releasing patches.
+
+   <p>I think most people prefer unified context diffs in general.  But some
+of us just have trouble reading unidiffs, unless they get very simple. 
+Usual context diffs show how the code was <em>before</em>, and then, how
+the code is <em>after</em>.  Some people just prefer understanding twice
+thoroughly, than once fuzzily.  The tool is useful for those who handle
+a lot of diffs from various sources, and want them in a uniform format.
+
+<ul class="menu">
+<li><a accesskey="1" href="unify-invocation.html#unify-invocation">unify invocation</a>:             Invoking <samp><span class="command">unify</span></samp>
+</ul>
+
+<!--  -->
+   </body></html>
+

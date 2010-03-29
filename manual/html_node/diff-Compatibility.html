@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+<title>diff Compatibility - A word difference finder (and others)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="A word difference finder (and others)">
+<meta name="generator" content="makeinfo 4.13">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Compatibility.html#Compatibility" title="Compatibility">
+<link rel="next" href="wdiff-Compatibility.html#wdiff-Compatibility" title="wdiff Compatibility">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<!--
+This file documents the `wdiff' command, which compares two files,
+finding which words have been deleted or added to the first for getting
+the second.
+It also documents some other `diff' related tools.
+
+Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010 Free Software
+Foundation, Inc.
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the entire
+resulting derived work is distributed under the terms of a permission
+notice identical to this one.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be stated in a translation approved
+by the Foundation.-->
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc    { font-variant:small-caps }
+  span.roman { font-family:serif; font-weight:normal; } 
+  span.sansserif { font-family:sans-serif; font-weight:normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<a name="diff-Compatibility"></a>
+<p>
+Next:&nbsp;<a rel="next" accesskey="n" href="wdiff-Compatibility.html#wdiff-Compatibility">wdiff Compatibility</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Compatibility.html#Compatibility">Compatibility</a>
+<hr>
+</div>
+
+<h3 class="section">5.1 Differences with <samp><span class="command">diff</span></samp></h3>
+
+<p>GNU <samp><span class="command">diff</span></samp> is a program which matured for a long while, and for which
+algorithms are based on computer science literature.  It is a fast program. 
+By comparison, <samp><span class="command">mdiff</span></samp> is not more than a program kludged up rapidly
+to satisfy a few precise needs.  It only tries not being inordinately slow.
+
+   <p>Most <samp><span class="command">diff</span></samp> options are accepted by <samp><span class="command">mdiff</span></samp> under the same
+short and long option names, and is able to produce resembling output,
+for making <samp><span class="command">mdiff</span></samp> easier to learn and less surprising to users. 
+Yet, some differences exist in option decoding and output format.  Since
+<samp><span class="command">diff</span></samp> and <samp><span class="command">mdiff</span></samp> use different matching algorithms, it is
+very likely that the differences will not be exactly analyzed identically.
+
+     <ul>
+<li>A few <samp><span class="command">diff</span></samp> options, which either accept no argument or require
+a mandatory one, are implemented in <samp><span class="command">mdiff</span></samp> as options accepting
+an optional argument.  This may yield some surprises, for example,
+<samp><span class="option">-c4bir</span></samp> would be accepted by <samp><span class="command">diff</span></samp> and rejected by
+<samp><span class="command">mdiff</span></samp>, yet it may rewritten <samp><span class="option">-birc4</span></samp> for both.  See below.
+
+     <li>Options <samp><span class="option">-c</span></samp> and <samp><span class="option">-u</span></samp> in <samp><span class="command">diff</span></samp> ask for regular context
+and unified context output, respectively, without specifying the number
+of lines in the context.  <samp><span class="command">diff</span></samp> has &lsquo;<samp><span class="samp">-C&nbsp;</span><var>number</var><span class="samp"><!-- /@w --></span></samp>&rsquo; and
+&lsquo;<samp><span class="samp">-U&nbsp;</span><var>number</var><span class="samp"><!-- /@w --></span></samp>&rsquo; options for asking for regular or unified context
+diffs with <var>number</var> context lines.  If <samp><span class="option">-c4</span></samp> asks for four lines
+of context, the &lsquo;<samp><span class="samp">4</span></samp>&rsquo; is not really an argument of <samp><span class="option">-c</span></samp>, and this
+is really interpreted as &lsquo;<samp><span class="samp">-c&nbsp;-4<!-- /@w --></span></samp>&rsquo;, where <samp><span class="option">-</span><var>number</var></samp> is
+meant to be a deprecated option for choosing the number of context lines,
+option which <samp><span class="command">mdiff</span></samp> does not implement.  In <samp><span class="command">mdiff</span></samp>, <samp><span class="option">-c</span></samp>
+and <samp><span class="option">-u</span></samp> are really two options which are allowed to receive an
+optional argument, so the number of lines may, or may not be given, at
+the choice of the user.  In <samp><span class="command">mdiff</span></samp>, options <samp><span class="option">-C</span></samp> and <samp><span class="option">-U</span></samp>
+are completely equivalent to <samp><span class="option">-c</span></samp> and <samp><span class="option">-u</span></samp>, and are provided
+only for the sake of compatibility.
+
+     <li>Option <samp><span class="option">-v</span></samp> in <samp><span class="command">diff</span></samp> means <samp><span class="option">--version</span></samp>, while it
+means <samp><span class="option">--verbose</span></samp> in <samp><span class="command">mdiff</span></samp>.  There is no short form for
+<samp><span class="option">--version</span></samp> in <samp><span class="command">mdiff</span></samp>.
+
+   </ul>
+
+<!--  -->
+   </body></html>
+
