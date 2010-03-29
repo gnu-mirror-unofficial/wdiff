@@ -1,2 +1,2 @@
-Redirect permanent /software/wdiff/manual/html_node/Examples.html http://www.gnu.org/software/wdiff/manual/html_node/Invoking-wdiff.html
-Redirect permanent /software/wdiff/manual/html_node/Examples.html http://www.gnu.org/software/wdiff/manual/html_node/wdiff-invocation.html
+Redirect permanent /software/wdiff/manual/html_node/Examples.html http://www.gnu.org/software/wdiff/manual/html_node/wdiff-Examples.html
+Redirect permanent /software/wdiff/manual/html_node/Invoking-wdiff.html http://www.gnu.org/software/wdiff/manual/html_node/wdiff-invocation.html
