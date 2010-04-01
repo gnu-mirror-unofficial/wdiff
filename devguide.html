@@ -1,0 +1,267 @@
+<!--#include virtual="/server/header.html" -->
+<title>wdiff developer guide - GNU Project - Free Software Foundation (FSF)</title>
+<meta name="keywords" content="wdiff" />
+<!--#include virtual="/server/banner.html" -->
+<h2>GNU wdiff developer's guide</h2>
+
+<!-- This document uses XHTML 1.0 Strict, but may be served as -->
+<!-- text/html.  Please ensure that markup style considers -->
+<!-- appendix C of the XHTML 1.0 standard. See validator.w3.org. -->
+
+<!-- Please ensure links are consistent with Apache's MultiView. -->
+<!-- Change include statements to be consistent with the relevant -->
+<!-- language, where necessary. -->
+
+<h3>Contributing</h3>
+
+<p>There are many ways to contribute
+to <a href="http://www.gnu.org/software/wdiff/">GNU wdiff</a>.
+You can <a href="https://savannah.gnu.org/bugs/?group=wdiff&func=additem">file
+bug reports</a> using
+the <a href="https://savannah.gnu.org/bugs/?group=wdiff">Savannah
+bug tracker</a>, or by <a href="mailto:wdiff-bugs@gnu.org">writing</a>
+an e-mail to
+the <a href="http://lists.gnu.org/mailman/listinfo/wdiff-bugs">wdiff-bugs
+mailing list</a>.
+You can <a href="http://translationproject.org/html/translators.html">join
+a language team</a> at
+the <a href="http://translationproject.org/">translation project</a> and
+help writing translations for various GNU applications, wdiff among them.
+And of course you can contribute modifications to the source code and
+documentation shipped with wdiff, which I'll describe in more detail below.</p>
+
+<h4>Simple contributions</h4>
+<p>If you have a simple fix or improvement to offer for wdiff, it's
+probably easiest to write a patch against the latest released version.
+You can <a href="https://savannah.gnu.org/patch/?group=wdiff&func=additem">submit</a> this patch
+to the <a href="https://savannah.gnu.org/patch/?group=wdiff">Savannah
+patch tracker</a>, where it can be discussed
+and eventually approved for inclusion.</p>
+<p>If your patch affects more than a few lines of code, we kindly ask you
+to assign the copyright for your modification to the Free Software Foundation.
+To do so, please <a href="http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob_plain;f=doc/Copyright/request-assign.future;hb=HEAD">request</a> the appropriate form.</p>
+<p>If you think you have a valuable contribution to make, but don't
+feel like assigning copyright, please contact us so we can discuss the
+situation.</p>
+
+<h4>Accessing the bzr repository</h4>
+<p>The sources for GNU wdiff are kept in
+a <a href="http://bazaar.canonical.com/">Bazaar</a> repository registered with
+the <a href="https://savannah.gnu.org/projects/wdiff/">GNU wdiff project
+at Savannah</a>.</p>
+<p>Unfortunately, at the time of this writing, web access to the bazaar
+repositories on Savannah is disabled.
+There is a <a href="https://code.launchpad.net/~gagern/wdiff/trunk">mirror
+branch</a> at launchpad.net, but it might lag behind the official trunk,
+and doesn't cover other branches available in the Savannah repository.
+You can also browse the <a href="http://bzr.savannah.gnu.org/r/wdiff/">tree
+containing the branches</a> manually; any directory in there containing a
+subdirectory named <code>.bzr/branch</code> can be accessed as a bzr branch.</p>
+<p>The steps below should give you a general idea about how to work on
+the wdiff sources. Of course, if you know bzr, or are willing to read
+its extensive manuals, you can get much more out of this tool.
+Generally, bzr distinguishes three concepts: the <em>working tree</em> is
+the sum of the source files you have on your disk. It might contain ignored
+files and uncommitted changes. The <em>branch</em> denotes a line of
+development. You may think of it as a sequence of commits and merges.
+Below we'll keep the branches alongside each working tree, so you may
+in most cases ignore this distinction.
+The <em>repository</em> is the place where bzr stores most of its data.
+Sharing it between multiple branches saves storage space, so that's what
+we'll do below. The repository will be a directory containing all branches.</p>
+<ol>
+<li><p><code>bzr whoami "John Doe &lt;jdoe@example.com&gt;"</code></p>
+<p>Tell bzr who you are. This has to be done only once, when you first use bzr.
+The command itself will only affect local bzr configuration, but the name
+and e-mail address you provide will be stored in the commits you make.</p></li>
+<li><p><code>bzr init-repo --2a wdiff &amp;&amp; cd wdiff</code></p>
+<p>This creates a directory called <code>wdiff</code> to contain your
+personal repository. If you have an old version of bazaar not supporting
+the 2a format, either upgrade bzr or choose any rich-root format available
+in your bzr setup. The Savannah repository currently uses
+<code>--1.6.1-rich-root</code> to maximize compatibility, but that
+might change in the future.</p></li>
+<li><p><code>bzr clone http://bzr.savannah.gnu.org/r/wdiff/trunk</code></p>
+<p>this creates a directory <code>trunk</code> within the
+current <code>wdiff</code> directory which will contain the upstream
+source tree. I would advise not to modify code in that directory,
+in order to avoid confusion.</p></li>
+<li><p><code>bzr clone trunk my-feature</code></p>
+<p>This creates your own local branch, called <code>my-feature</code>,
+to contain your modifications. Notice that every bzr branch has a nickname,
+which will be saved with the commits you make and initially corresponds
+to the directory name. You can change this using the <code>bzr nick</code>
+command. Choose a name describing the changes you are up to.
+By the way, this is the step to start at when you want to work on
+another, independent feature or fix.</p>
+<li><p><code>cd my-feature &amp;&amp; ./autogen.sh</code></p>
+<p>branch and generates some files usually
+shipped with a distribution tarball. From here on, the working tree will
+behave mostly as a snapshot tarball would.</p></li>
+<li><p><code>./configure --enable-experimental &amp;&amp; make</code></p>
+<p>This builds the application in the usual way.</p></li>
+<li><p>Now edit the code as you see fit. If you add, remove or rename files,
+use the corresponding bzr subcommands to track these changes.</p></li>
+<li><p><code>make check; make syntax-check</code></p>
+<p>These are some automatic tests to run against your modifications.
+They are not perfect, so we might consider modifications that fail these
+checks, but please fix any avoidable errors.</p></li>
+<li><p><code>bzr diff; bzr status</code></p>
+<p>This will print a diff of your uncommitted changes, and list the
+affected files. You should definitely do at least the latter before
+committing your changes.</p></li>
+<li><p><code>bzr commit</code></p>
+<p>This will commit your changes to your local branch. Your default
+editor, configured using the <code>EDITOR</code> environment setting,
+will be started to prompt you for a commit message. Write a short
+summary on the first line. If more information is appropriate, include
+it after a blank line.</p></li>
+<li><p><code>bzr send -o my-feature-1.patch ../trunk</code></p>
+<p>This will bundle all the commits included in the current branch
+but not in trunk into a file called <code>my-feature-1.patch</code> suitable
+for <a href="https://savannah.gnu.org/patch/?group=wdiff&func=additem">submission</a> to
+the <a href="https://savannah.gnu.org/patch/?group=wdiff">Savannah
+patch tracker</a>. It can be easily merged into trunk, maintaining all your
+development history, commit messages, and authorship attribution.</p></li>
+<li><p><code>bzr push lp:~jdoe/wdiff/my-feature</code></p>
+<p>If you are a launchpad user and your user name there is <code>jdoe</code>,
+you can use this command to upload and share your branch.</p></li>
+<li><p><code>bzr pull -d ../trunk</code></p>
+<p>This updates your copy of the trunk branch from its online version.</p></li>
+<li><p><code>bzr merge ../trunk &amp;&amp; bzr commit -m "merge from trunk"</code></p>
+<p>This incorporates changes made to trunk into your personal branch.
+The commit message is given on the command line this time. Notice that
+concurrent modifications to overlapping portions of code might lead to
+so-called merge conflicts, which you'll have to resolve manually.</p></li>
+<li><p><code>bzr resolve src/wdiff.c &amp;&amp; bzr commit -m "merge from trunk"</code></p>
+<p>Assuming you had a merge conflict in <code>wdiff.c</code>, and you
+have edited the file to adjust the marked conflicts. Then this command
+tells bzr that the problem has been resolved, and the merge can now be
+committed.</p></li>
+</ol>
+
+<h3>Useful links</h3>
+
+<h4>GNU documentation</h4>
+<ul>
+<li><a href="http://www.gnu.org/prep/standards/standards.html">Coding standards</a></li>
+<li><a href="http://www.gnu.org/prep/maintain/maintain.html">Information for maintainers</a></li>
+</ul>
+
+<h4>wdiff in various bug trackers</h4>
+<ul>
+<li><a href="https://savannah.gnu.org/bugs/?group=wdiff">Savannah</a></li>
+<li><a href="https://launchpad.net/distros/ubuntu/+source/wdiff/+bugs">Ubuntu</a></li>
+<li><a href="http://bugs.debian.org/src:wdiff">Debian</a></li>
+<li><a href="https://bugs.gentoo.org/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=wdiff&amp;resolution=UPSTREAM&amp;resolution=---"/>Gentoo</a></li>
+</ul>
+
+<h4>wdiff in various distributions</h4>
+<ul>
+<li><a href="http://packages.ubuntu.com/search?keywords=wdiff&amp;searchon=names&amp;exact=1&amp;suite=all&amp;section=all">Ubuntu</a></li>
+<li><a href="http://packages.debian.org/search?keywords=wdiff&amp;searchon=names&amp;exact=1&amp;suite=all&amp;section=all">Debian</a></li>
+<li><a href="http://packages.gentoo.org/package/app-text/wdiff">Gentoo</a></li>
+</ul>
+
+<h3>For package maintainers</h3>
+
+<h4>Release process</h4>
+<ol>
+<li><code>make syntax-check</code></li>
+<li>Add or update <code>NEWS</code> section</li>
+<li><code>bzr clean-tree --ignored --detritus</code></li>
+<li>change version number in <code>configure.ac</code></li>
+<li><code>./autogen.sh</code></li>
+<li><code>./configure --enable-experimental</code></li>
+<li><code>make distcheck</code></li>
+<li><code>LC_ALL=C make -C doc manual</code>
+(the <code>LC_ALL=C</code> due a <a href="http://thread.gmane.org/gmane.comp.tex.texinfo.bugs/5023">problem with texi2dvi</a>)</li>
+<li><code><a href="http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blob_plain;f=build-aux/gnupload;hb=HEAD">gnupload</a> --symlink-regex --to ftp.gnu.org:wdiff wdiff-#.#.#.tar.gz</code></li>
+<li><code>bzr commit -m "Releasing #.#.#."</code></li>
+<li><code>bzr tag RELEASE_#_#_#</code></li>
+<li><code>bzr push</code></li>
+<li>Ensure ../web is a checkout of the gnu web server
+<li><code>find ../web/manual \( -name CVS -prune \) -o \( -type f -print \) | xargs rm</code></li>
+<li><code>cp -r doc/manual ../web/</code></li>
+<li><code>cd ../web/manual</code></li>
+<li><code>cvs up</code></li>
+<li>Add (-ko) new files, remove lost files (except .htaccess)</li>
+<li>Set up redirections for removed files in .htaccess</li>
+<li><code>cvs commit -m "Updated manual to wdiff #.#.#."</code></li>
+<li><a href="https://savannah.gnu.org/news/submit.php?group_id=9335">Add</a> Savannah news item</li>
+<li><a href="https://launchpad.net/wdiff/+announce">Make</a> launchpad announcement</li>
+<li>Write mail to <a href="mailto:info-gnu@gnu.org">info-gnu@gnu.org</a> and <a href="mailto:wdiff-bugs@gnu.org">wdiff-bugs@gnu.org</a></li>
+</ol>
+
+<!-- If needed, change the copyright block at the bottom. In general, -->
+<!-- all pages on the GNU web server should have the section about    -->
+<!-- verbatim copying.  Please do NOT remove this without talking     -->
+<!-- with the webmasters first. --> 
+<!-- Please make sure the copyright date is consistent with the document -->
+<!-- and that it is like this "2001, 2002" not this "2001-2002." -->
+</div><!-- for id="content", starts in the include above -->
+<!--#include virtual="/server/footer-short.html" -->
+<div id="footer">
+
+<p>
+Please send FSF &amp; GNU inquiries to 
+<a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
+There are also <a href="/contact/">other ways to contact</a> 
+the FSF.
+<br />
+Please send broken links and other corrections or suggestions to
+<!-- If you are a project maintainer or developer, please use -->
+<!-- your own email, as webmasters does not manage most -->
+<!-- project webpages (those that we do, you know who you are). -->
+<a href="mailto:wdiff-bugs@gnu.org"><em>wdiff-bugs@gnu.org</em></a>.
+</p>
+
+<p>
+Please see the 
+<a href="/server/standards/README.translations.html">Translations
+README</a> for information on coordinating and submitting
+translations of this article.
+</p>
+
+<p>
+Copyright &copy; 2010 Free Software Foundation, Inc.,
+</p>
+<address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address>
+<p>Verbatim copying and distribution of this entire article are
+permitted worldwide, without royalty, in any medium, provided this
+notice, and the copyright notice, are preserved.
+</p>
+
+<p>
+Updated:
+<!-- timestamp start -->
+$Date: 2010/04/01 16:05:36 $
+<!-- timestamp end -->
+</p>
+</div>
+
+<div id="translations">
+<h4>Translations of this page</h4>
+
+<!-- Please keep this list alphabetical. -->
+<!-- Comment what the language is for each type, i.e. de is German. -->
+<!-- Write the language name in its own language (Deutsch) in the text. -->
+<!-- If you add a new language here, please -->
+<!-- advise web-translators@gnu.org and add it to -->
+<!--  - /home/www/bin/nightly-vars either TAGSLANG or WEBLANG -->
+<!--  - /home/www/html/server/standards/README.translations.html -->
+<!--  - one of the lists under the section "Translations Underway" -->
+<!--  - if there is a translation team, you also have to add an alias -->
+<!--  to mail.gnu.org:/com/mailer/aliases -->
+<!-- Please also check you have the 2 letter language code right, cf. -->
+<!-- <URL:http://www.w3.org/WAI/ER/IG/ert/iso639.htm> -->
+<!-- Please use W3C normative character entities. -->
+
+<ul class="translations-list">
+<!-- English -->
+<li><a href="/software/wdiff/devguide.html">English</a>&nbsp;[en]</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
