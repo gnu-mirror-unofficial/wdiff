@@ -2,7 +2,7 @@
 <title>wdiff - GNU Project - Free Software Foundation (FSF)</title>
 <meta name="keywords" content="wdiff" />
 <!--#include virtual="/server/banner.html" -->
-<h2>wdiff</h2>
+<h2>GNU wdiff</h2>
 
 <!-- This document uses XHTML 1.0 Strict, but may be served as -->
 <!-- text/html.  Please ensure that markup style considers -->
@@ -25,7 +25,7 @@ executes diff on these files.  It collects the diff output and uses it
 to produce a nicer display of word differences between the original
 files.</p>
 
-<h3>Downloading wdiff</h3>
+<h3>Downloading</h3>
 
 <p>
 wdiff can be found on
@@ -37,11 +37,11 @@ It can also be found on one of <a href="/order/ftp.html">our FTP mirrors</a>.
 </p>
 
 <p>
-The latest bleeding-edge version of the source code, along with a
-revision history, can be found in the <a
-href="http://savannah.gnu.org/projects/wdiff/">wdiff Savannah
-repository</a>.  Pretest tarballs are periodically released at
+Pretest tarballs are periodically released at
 <a href="http://alpha.gnu.org/gnu/wdiff/">http://alpha.gnu.org/gnu/wdiff/</a>.
+Access to the latest developers is available to developers
+as described in more detail in
+the <a href="devguide.html">developer's guide</a>.
 Please note that we do not suggest using wdiff
 sources from these locations for production use.
 </p>
@@ -49,11 +49,68 @@ sources from these locations for production use.
 <h3>Documentation</h3>
 
 <p>
-wdiff documentation can be found at
+wdiff documentation is shipped with the sources.
+It also can be found at
 <a href="/software/wdiff/manual/">http://www.gnu.org/software/wdiff/manual/</a>.
 </p>
 
-<h3>Mailing Lists</h3>
+<h3>News</h3>
+
+<dl>
+<dt>Version <strong>0.6.1</strong> - April 2010, by Martin von Gagern</dt>
+<dd><ul>
+<li>Introduce --with-default-pager=PAGER configure switch.</li>
+<li>Fix missing newline in info dir entry list.</li>
+</ul><p></p></dd>
+<dt>Version <strong>0.6.0</strong> - March 2010, by Martin von Gagern</dt>
+<dd>
+<p>First official release in a long time.
+Everything since 0.5 was inofficial.</p>
+<ul>
+<li>`wdiff -d' to read input from single unified diff, perhaps stdin.</li>
+<li>Updated texinfo documentation taking experimental switch into account.</li>
+<li>Experimental programs (mdiff & friends) and a configure switch
+    --enable-experimental to control them.</li>
+<li>Recent imports from gnulib, use of recent autotools.</li>
+<li>Improved autodetection of termcap library like ncurses.</li>
+<li>Reformatted translations, still a number of fuzzy translations.</li>
+<li>Changed from CVS to bzr for source code version control.</li>
+<li>Various bug fixes. See ChangeLog for a more exhaustive list.</li>
+</ul><p></p></dd>
+</dl>
+
+<p>You will find a listing of release notes and other news items in
+the <a href="https://savannah.gnu.org/news/?group_id=9335">Savannah
+news archive</a>.</p>
+
+<h3>Community</h3>
+
+<p>The <a href="https://savannah.gnu.org/projects/wdiff/">wdiff project page
+at Savannah</a> offers many resources for people wanting to help the
+project in any form. Some of these are described here as well.
+The <a href="devguide.html">developer's guide</a> has a lot more details
+for those wishing to contribute code or documentation.</p>
+
+<h4>Bug reporting</h4>
+
+<p>There are two means of dealing with bugs,
+the <a href="https://savannah.gnu.org/bugs/?group=wdiff">Savannah
+bug tracker</a> and
+the <a href="http://lists.gnu.org/mailman/listinfo/wdiff-bugs">wdiff-bugs
+mailing list</a>.
+Before reporting a new bug, please search at least the list of open
+bug reports in the bug tracker. A search through
+the <a href="http://lists.gnu.org/archive/html/wdiff-bugs/">mailing list
+archives</a> will include bugs reported by mail or web interface,
+and is therefore likely to increase the number of hits for your search.</p>
+
+<p>If you are fairly certain that the issue hasn't been reported before,
+please <a href="https://savannah.gnu.org/bugs/?group=wdiff&amp;func=additem">file
+a bug report</a> using the Savannah bug tracker. You may also report bugs
+by <a href="mailto:wdiff-bugs@gnu.org">writing to the wdiff-bugs</a> mailing
+list, but reports there are harder to find and easier to forget.</p>
+
+<h4>Mailing Lists</h4>
 
 <p>
 To subscribe to any GNU mailing list, please send an empty mail with
@@ -110,7 +167,7 @@ translations of this article.
 </p>
 
 <p>
-Copyright &copy; 1998, 2007 Free Software Foundation, Inc.,
+Copyright &copy; 1998, 2007, 2010 Free Software Foundation, Inc.,
 </p>
 <address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address>
 <p>Verbatim copying and distribution of this entire article are
@@ -121,7 +178,7 @@ notice, and the copyright notice, are preserved.
 <p>
 Updated:
 <!-- timestamp start -->
-$Date: 2010/01/27 07:24:17 $
+$Date: 2010/04/01 16:41:40 $
 <!-- timestamp end -->
 </p>
 </div>
