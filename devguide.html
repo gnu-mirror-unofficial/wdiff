@@ -12,7 +12,7 @@
 <!-- Change include statements to be consistent with the relevant -->
 <!-- language, where necessary. -->
 
-<h3>Contributing</h3>
+<h3 id="contributing">Contributing</h3>
 
 <p>There are many ways to contribute
 to <a href="http://www.gnu.org/software/wdiff/">GNU wdiff</a>.
@@ -30,7 +30,7 @@ help writing translations for various GNU applications, wdiff among them.
 And of course you can contribute modifications to the source code and
 documentation shipped with wdiff, which I'll describe in more detail below.</p>
 
-<h4>Simple contributions</h4>
+<h4 id="simple">Simple contributions</h4>
 <p>If you have a simple fix or improvement to offer for wdiff, it's
 probably easiest to write a patch against the latest released version.
 You can <a href="https://savannah.gnu.org/patch/?group=wdiff&amp;func=additem">submit</a> this patch
@@ -44,7 +44,7 @@ To do so, please <a href="http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=blo
 feel like assigning copyright, please contact us so we can discuss the
 situation.</p>
 
-<h4>Accessing the bzr repository</h4>
+<h4 id="bzr">Accessing the bzr repository</h4>
 <p>The sources for GNU wdiff are kept in
 a <a href="http://bazaar.canonical.com/">Bazaar</a> repository registered with
 the <a href="https://savannah.gnu.org/projects/wdiff/">GNU wdiff project
@@ -140,15 +140,15 @@ tells bzr that the problem has been resolved, and the merge can now be
 committed.</p></li>
 </ol>
 
-<h3>Useful links</h3>
+<h3 id="links">Useful links</h3>
 
-<h4>GNU documentation</h4>
+<h4 id="gnudocs">GNU documentation</h4>
 <ul>
 <li><a href="http://www.gnu.org/prep/standards/standards.html">Coding standards</a></li>
 <li><a href="http://www.gnu.org/prep/maintain/maintain.html">Information for maintainers</a></li>
 </ul>
 
-<h4>wdiff in various bug trackers</h4>
+<h4 id="bugtrackers">wdiff in various bug trackers</h4>
 <ul>
 <li><a href="https://savannah.gnu.org/bugs/?group=wdiff">Savannah</a></li>
 <li><a href="https://launchpad.net/distros/ubuntu/+source/wdiff/+bugs">Ubuntu</a></li>
@@ -156,16 +156,21 @@ committed.</p></li>
 <li><a href="https://bugs.gentoo.org/buglist.cgi?query_format=advanced&amp;short_desc_type=allwordssubstr&amp;short_desc=wdiff&amp;resolution=UPSTREAM&amp;resolution=---">Gentoo</a></li>
 </ul>
 
-<h4>wdiff in various distributions</h4>
+<h4 id="distros">wdiff in various distributions</h4>
 <ul>
 <li><a href="http://packages.ubuntu.com/search?keywords=wdiff&amp;searchon=names&amp;exact=1&amp;suite=all&amp;section=all">Ubuntu</a></li>
 <li><a href="http://packages.debian.org/search?keywords=wdiff&amp;searchon=names&amp;exact=1&amp;suite=all&amp;section=all">Debian</a></li>
 <li><a href="http://packages.gentoo.org/package/app-text/wdiff">Gentoo</a></li>
 </ul>
 
-<h3>For package maintainers</h3>
+<h4 id="otherlinks">Other links</h4>
+<ul>
+<li><a href="http://translationproject.org/domain/wdiff.html">Translations</a></li>
+</ul>
 
-<h4>Release process</h4>
+<h3 id="maintainers">For package maintainers</h3>
+
+<h4 id="release">Release process</h4>
 <ol>
 <li><code>make syntax-check</code></li>
 <li>Add or update <code>NEWS</code> section</li>
@@ -187,10 +192,11 @@ committed.</p></li>
 <li><code>cvs up</code></li>
 <li>Add (-ko) new files, remove lost files (except .htaccess)</li>
 <li>Set up redirections for removed files in .htaccess</li>
+<li>Add items to the <a href="wdiff.html#news">News</a> section of <code>wdiff.html</code></li>
 <li><code>cvs commit -m "Updated manual to wdiff #.#.#."</code></li>
 <li><a href="https://savannah.gnu.org/news/submit.php?group_id=9335">Add</a> Savannah news item</li>
 <li><a href="https://launchpad.net/wdiff/+announce">Make</a> launchpad announcement</li>
-<li>Write mail to <a href="mailto:info-gnu@gnu.org">info-gnu@gnu.org</a> and <a href="mailto:wdiff-bugs@gnu.org">wdiff-bugs@gnu.org</a></li>
+<li>Write mail to <a href="mailto:info-gnu@gnu.org,wdiff-bugs@gnu.org?cc=coordinator@translationproject.org">info-gnu@gnu.org, wdiff-bugs@gnu.org and coordinator@translationproject.org</a></li>
 </ol>
 
 <!-- If needed, change the copyright block at the bottom. In general, -->
@@ -235,7 +241,7 @@ notice, and the copyright notice, are preserved.
 <p>
 Updated:
 <!-- timestamp start -->
-$Date: 2010/04/01 16:13:26 $
+$Date: 2010/05/25 19:37:23 $
 <!-- timestamp end -->
 </p>
 </div>
