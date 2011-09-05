@@ -1,21 +1,26 @@
-<!--#include virtual="/server/header.html" -->
-<title>wdiff - GNU Project - Free Software Foundation (FSF)</title>
-<meta name="keywords" content="wdiff" />
+<!--#include virtual="/server/html5-header.html" -->
+<!-- Parent-Version: 1.60 -->
+
+<!-- This is based on the template document for GNU web pages.  We use
+     server side includes (#include) for common elements, for
+     instance, the very first line of the file.  If you're reading
+     this in its expanded form, you can retrieve the original source,
+     with the SSI statements intact, from
+     http://web.cvs.savannah.gnu.org/viewvc/*checkout*/www/server/standards/boilerplate.html?root=www&content-type=text%2Fplain
+-->
+
+<!-- 4. You can use the patch-from-parent script to semi-automate
+        merging future changes to the boilerplate with your file:
+        http://web.cvs.savannah.gnu.org/viewvc/*checkout*/www/server/standards/patch-from-parent?root=www&content-type=text%2Fplain
+-->
+
+<title>Wdiff
+- GNU Project - Free Software Foundation</title>
 <!--#include virtual="/server/banner.html" -->
-<h2>GNU wdiff</h2>
-
-<!-- This document uses XHTML 1.0 Strict, but may be served as -->
-<!-- text/html.  Please ensure that markup style considers -->
-<!-- appendix C of the XHTML 1.0 standard. See validator.w3.org. -->
-
-<!-- Please ensure links are consistent with Apache's MultiView. -->
-<!-- Change include statements to be consistent with the relevant -->
-<!-- language, where necessary. -->
-
-<h3 id="introduction">Introduction to wdiff</h3>
+<h2>GNU Wdiff</h2>
 
 <p>
-The program wdiff is a front end to
+The GNU wdiff program is a front end to
 <a href="/software/diffutils/diffutils.html">diff</a> for comparing
 files on a word per word basis.  A word is anything between
 whitespace.  This is useful for comparing two texts in which a few
@@ -25,39 +30,50 @@ executes diff on these files.  It collects the diff output and uses it
 to produce a nicer display of word differences between the original
 files.</p>
 
-<h3 id="downloading">Downloading</h3>
 
-<p>
-wdiff can be found on
+<h3 id="download">Downloading
+  Wdiff</h3>
+
+<p>Wdiff
+can be found on the main GNU ftp server:
 <a href="http://ftp.gnu.org/gnu/wdiff/">http://ftp.gnu.org/gnu/wdiff/</a>
-[via http] and
-<a href="ftp://ftp.gnu.org/gnu/wdiff/">ftp://ftp.gnu.org/gnu/wdiff/</a> 
-[via FTP].
-It can also be found on one of <a href="/order/ftp.html">our FTP mirrors</a>.
-</p>
+(via HTTP) and
+<a href="ftp://ftp.gnu.org/gnu/wdiff/">ftp://ftp.gnu.org/gnu/wdiff/</a>
+(via FTP).  It can also be found
+on the <a href="/prep/ftp.html">GNU mirrors</a>;
+please
+<a href="http://ftpmirror.gnu.org/wdiff/">use
+a mirror</a> if possible.</p>
 
 <p>
-Pretest tarballs are periodically released at
-<a href="http://alpha.gnu.org/gnu/wdiff/">http://alpha.gnu.org/gnu/wdiff/</a>.
-Access to the latest developers is available to developers
-as described in more detail in
-the <a href="devguide.html">developer's guide</a>.
-Please note that we do not suggest using wdiff
-sources from these locations for production use.
+Access to the latest source code is available to developers as
+described in more detail in the <a href="devguide">developer's
+guide</a>.  Please note that we do not suggest using wdiff sources
+from development sources for production use.
 </p>
 
 <h3 id="documentation">Documentation</h3>
 
-<p>
-wdiff documentation is shipped with the sources.
-It also can be found at
-<a href="/software/wdiff/manual/">http://www.gnu.org/software/wdiff/manual/</a>.
-</p>
+<p><a href="manual/">Documentation for
+Wdiff</a>
+is available online, as
+is <a href="/manual/">documentation for most GNU software</a>.  You may
+also find more information about
+Wdiff
+by running
+<em>info&nbsp;wdiff</em>
+or
+<em>man&nbsp;wdiff</em>,
+or by looking at
+<em>/usr/doc/wdiff/</em>,
+<em>/usr/local/doc/wdiff/</em>,
+or similar directories on your system.  A brief summary is available by
+running <em>wdiff&nbsp;--help</em>.</p>
+
 
 <h3 id="news">News</h3>
 
 <dl>
-
 <dt>Version <strong>0.6.5</strong> - December 2010, by Martin von Gagern</dt>
 <dd><ul>
 <li>Never initialize or deinitialize terminals, as we do no cursor movement</li>
@@ -105,18 +121,72 @@ Everything since 0.5 was inofficial.</p>
 </dl>
 
 <p>You will find a listing of release notes and other news items in
-the <a href="https://savannah.gnu.org/news/?group_id=9335">Savannah
+the <a href="https://savannah.gnu.org/news/?group=wdiff">Savannah
 news archive</a>.</p>
 
-<h3 id="community">Community</h3>
 
-<p>The <a href="https://savannah.gnu.org/projects/wdiff/">wdiff project page
-at Savannah</a> offers many resources for people wanting to help the
-project in any form. Some of these are described here as well.
-The <a href="devguide.html">developer's guide</a> has a lot more details
-for those wishing to contribute code or documentation.</p>
+<h3 id="mail">Mailing lists</h3>
 
-<h4 id="bugreporting">Bug reporting</h4>
+<p>Wdiff
+has the following mailing lists:
+
+<ul>
+<li><a href="https://lists.gnu.org/mailman/listinfo/wdiff-bugs">wdiff-bugs</a>
+is used to discuss most aspects of
+Wdiff,
+including development and enhancement requests, as well as bug reports.</li>
+<li><a
+href="https://lists.gnu.org/mailman/listinfo/wdiff-dev">wdiff-dev</a> helps
+wdiff developers coordinate their efforts.</li>
+</ul>
+
+<p>Announcements about
+Wdiff
+and most other GNU software are made on
+<a href="http://lists.gnu.org/mailman/listinfo/info-gnu">info-gnu</a>
+(<a href="http://lists.gnu.org/archive/html/info-gnu/">archive</a>).
+<p>Announcements about Wdiff are also available from
+the <a href="https://savannah.gnu.org/news/?group=wdiff">Savannah news
+archive</a>.</p>
+</p>
+
+
+<h3 id="contribute">Getting involved</h3>
+
+<p>Development of
+Wdiff,
+and GNU in general, is a volunteer effort, and you can contribute.  For
+information, please read <a href="/help/">How to help GNU</a>.  If you'd
+like to get involved, it's a good idea to join the discussion mailing
+list (see above).</p>
+
+
+<dl>
+<!--
+<dt>Test releases</dt>
+
+<dd>Trying the latest test release (when available) is always
+appreciated.  Test releases of
+Wdiff
+can be found at
+<a href="http://alpha.gnu.org/gnu/wdiff/">http://alpha.gnu.org/gnu/wdiff/</a>
+(via HTTP) and
+<a href="ftp://alpha.gnu.org/gnu/wdiff/">ftp://alpha.gnu.org/gnu/wdiff/</a>
+(via FTP).</dd>
+-->
+
+<dt>Development</dt>
+
+<dd>For development sources, issue trackers, and other
+information, please see the
+<a href="http://savannah.gnu.org/projects/wdiff/">Wdiff
+project page</a>
+at <a href="http://savannah.gnu.org">savannah.gnu.org</a>.
+The <a href="devguide">developer's guide</a> has a lot more details
+for those wishing to contribute code or documentation.</dd>
+
+
+<dt id="bugreporting">Reporting bugs</dt>
 
 <p>There are two means of dealing with bugs,
 the <a href="https://savannah.gnu.org/bugs/?group=wdiff">Savannah
@@ -129,81 +199,77 @@ the <a href="http://lists.gnu.org/archive/html/wdiff-bugs/">mailing list
 archives</a> will include bugs reported by mail or web interface,
 and is therefore likely to increase the number of hits for your search.</p>
 
-<p>If you are fairly certain that the issue hasn't been reported before,
-please <a href="https://savannah.gnu.org/bugs/?group=wdiff&amp;func=additem">file
-a bug report</a> using the Savannah bug tracker. You may also report bugs
-by <a href="mailto:wdiff-bugs@gnu.org">writing to the wdiff-bugs</a> mailing
-list, but reports there are harder to find and easier to forget.</p>
 
-<h4 id="mailinglists">Mailing Lists</h4>
+<dt>Translating
+  Wdiff</dt>
 
-<p>
-To subscribe to any GNU mailing list, please send an empty mail with
-a Subject: header line of just "subscribe" to the relevant -request list.
-For example, to subscribe yourself to the wdiff list, you would send mail to
-<a href="mailto:wdiff-bugs-request@gnu.org">&lt;wdiff-bugs-request@gnu.org&gt;</a>
-with no body and a Subject: header line of just "subscribe".
-</p>
+<dd>To translate
+Wdiff's
+messages into other languages, please see the <a
+href="http://translationproject.org/domain/wdiff.html">Translation Project
+page for
+Wdiff</a>.
+If you have a new translation of the message strings,
+or updates to the existing strings, please have the changes made in this
+repository.  Only translations from this site will be incorporated into
+Wdiff.
+For more information, see the <a
+href="http://translationproject.org/html/welcome.html">Translation
+Project</a>.</dd>
 
-<p>
-The mailing list for wdiff is
-<a href="http://lists.gnu.org/mailman/listinfo/wdiff-bugs">&lt;wdiff-bugs@gnu.org&gt;</a>,
-and is used to discuss all aspects of wdiff, including bug reports,
-patches, and testing.  Announcements about wdiff and most other GNU
-Software are also made on
-<a href="http://lists.gnu.org/mailman/listinfo/info-gnu">&lt;info-gnu@gnu.org&gt;</a>.
 
-</p>
+<dt>Maintainer</dt>
 
-<h3 id="maintainer">Maintainer</h3>
+<dd>Wdiff
+is currently being maintained by
+Martin von Gagern.
+Please use the mailing lists for contact.</dd>
 
-<p>
-wdiff is currently being maintained by Denver Gingerich and Martin von Gagern.
-</p>
 
-<!-- If needed, change the copyright block at the bottom. In general, -->
-<!-- all pages on the GNU web server should have the section about    -->
-<!-- verbatim copying.  Please do NOT remove this without talking     -->
-<!-- with the webmasters first. --> 
-<!-- Please make sure the copyright date is consistent with the document -->
-<!-- and that it is like this "2001, 2002" not this "2001-2002." -->
+</dl>
+
+
+<h3 id="license">Licensing</h3>
+
+<p>Wdiff
+is free software; you can redistribute it and/or modify it under the
+terms of the <a href="http://www.gnu.org/licenses/gpl.html"
+rel="license">GNU General Public License</a> as published by the Free
+Software Foundation; either version&nbsp;3 of the License, or (at your
+option) any later version.</p>
+
+
+<!-- If needed, change the copyright block at the bottom. In general,
+     pages on the GNU web server should be under CC BY-ND 3.0 US.
+     Please do NOT change or remove this without talking
+     with the webmasters or licensing team first.
+     Please make sure the copyright date is consistent with the document
+     and that it is like this: "2001, 2002", not this: "2001-2002". -->
 </div><!-- for id="content", starts in the include above -->
-<!--#include virtual="/server/footer-short.html" -->
+<!--#include virtual="/server/footer.html" -->
 <div id="footer">
 
-<p>
-Please send FSF &amp; GNU inquiries to 
-<a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
-There are also <a href="/contact/">other ways to contact</a> 
-the FSF.
-<br />
+<p>Please send general FSF &amp; GNU inquiries to
+<a href="mailto:gnu@gnu.org">&lt;gnu@gnu.org&gt;</a>.
+There are also <a href="/contact/">other ways to contact</a>
+the FSF.<br />
 Please send broken links and other corrections or suggestions to
-<!-- If you are a project maintainer or developer, please use -->
-<!-- your own email, as webmasters does not manage most -->
-<!-- project webpages (those that we do, you know who you are). -->
-<a href="mailto:wdiff-bugs@gnu.org"><em>wdiff-bugs@gnu.org</em></a>.
-</p>
+<a href="mailto:wdiff-bugs@gnu.org">&lt;wdiff-bugs@gnu.org&gt;</a>.</p>
 
-<p>
-Please see the 
-<a href="/server/standards/README.translations.html">Translations
-README</a> for information on coordinating and submitting
-translations of this article.
-</p>
+<p>Please see the <a
+href="/server/standards/README.translations.html">Translations
+README</a> for information on coordinating and submitting translations
+of this article.</p>
 
-<p>
-Copyright &copy; 1998, 2007, 2010 Free Software Foundation, Inc.,
-</p>
-<address>51 Franklin St, Fifth Floor, Boston, MA 02110, USA</address>
-<p>Verbatim copying and distribution of this entire article are
-permitted worldwide, without royalty, in any medium, provided this
-notice, and the copyright notice, are preserved.
-</p>
+<p>Copyright &copy; 1998, 2007, 2010, 2011 Free Software Foundation, Inc.</p>
 
-<p>
-Updated:
+<p>This page is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-nd/3.0/us/">Creative
+Commons Attribution-NoDerivs 3.0 United States License</a>.</p>
+
+<p>Updated:
 <!-- timestamp start -->
-$Date: 2010/12/07 20:01:49 $
+$Date: 2011/09/05 09:01:38 $
 <!-- timestamp end -->
 </p>
 </div>
@@ -211,23 +277,28 @@ $Date: 2010/12/07 20:01:49 $
 <div id="translations">
 <h4>Translations of this page</h4>
 
-<!-- Please keep this list alphabetical. -->
-<!-- Comment what the language is for each type, i.e. de is German. -->
-<!-- Write the language name in its own language (Deutsch) in the text. -->
-<!-- If you add a new language here, please -->
-<!-- advise web-translators@gnu.org and add it to -->
-<!--  - /home/www/bin/nightly-vars either TAGSLANG or WEBLANG -->
-<!--  - /home/www/html/server/standards/README.translations.html -->
-<!--  - one of the lists under the section "Translations Underway" -->
-<!--  - if there is a translation team, you also have to add an alias -->
-<!--  to mail.gnu.org:/com/mailer/aliases -->
-<!-- Please also check you have the 2 letter language code right, cf. -->
-<!-- <URL:http://www.w3.org/WAI/ER/IG/ert/iso639.htm> -->
-<!-- Please use W3C normative character entities. -->
+<!-- Please keep this list alphabetical by language code.
+     Comment what the language is for each type, i.e. de is German.
+     Write the language name in its own language (Deutsch) in the text.
+     If you add a new language here, please
+     advise web-translators@gnu.org and add it to
+      - /home/www/html/server/standards/README.translations.html
+      - one of the lists under the section "Translations Underway"
+      - if there is a translation team, you also have to add an alias
+      to mail.gnu.org:/com/mailer/aliases
+     Please also check you have the language code right; see:
+     http://www.loc.gov/standards/iso639-2/php/code_list.php
+     If the 2-letter ISO 639-1 code is not available,
+     use the 3-letter ISO 639-2.
+     Please use W3C normative character entities.
+
+     See also '(web-trans)Capitalization':
+     http://gnu.org/software/trans-coord/manual/web-trans/html_node/Capitalization.html
+     -->
 
 <ul class="translations-list">
 <!-- English -->
-<li><a href="/software/wdiff/wdiff.html">English</a>&nbsp;[en]</li>
+<li><a href="wdiff.html">English</a>&nbsp;[en]</li>
 </ul>
 </div>
 </div>
