@@ -6,7 +6,7 @@ with some other `diff' related tools.  Note that some tools documented
 here are considered experimental and may not be part of every `wdiff'
 installation.  *Note Experimental::.
 
-This is for release 1.0.0.
+This is for release 1.0.1.
 
 Table of Contents
 *****************
