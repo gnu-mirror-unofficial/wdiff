@@ -1,18 +1,9 @@
-<html lang="en">
-<head>
-<title>Overview - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="index.html#Top" title="Top">
-<link rel="next" href="wdiff.html#wdiff" title="wdiff">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -29,65 +20,104 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<a name="Overview"></a>
-<p>
-Next:&nbsp;<a rel="next" accesskey="n" href="wdiff.html#wdiff">wdiff</a>,
-Previous:&nbsp;<a rel="previous" accesskey="p" href="index.html#Top">Top</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
-</div>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): Overview</title>
 
+<meta name="description" content="A word difference finder (and others): Overview">
+<meta name="keywords" content="A word difference finder (and others): Overview">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="wdiff.html#wdiff" rel="next" title="wdiff">
+<link href="index.html#Top" rel="prev" title="Top">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Overview"></a>
+<div class="header">
+<p>
+Next: <a href="wdiff.html#wdiff" accesskey="n" rel="next">wdiff</a>, Previous: <a href="index.html#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Overview-1"></a>
 <h2 class="chapter">1 Overview</h2>
 
-<!-- ============================================================= -->
-<p><samp><span class="command">wdiff</span></samp> is a front end to <samp><span class="command">diff</span></samp> for comparing files on
+<p><code>wdiff</code> is a front end to <code>diff</code> for comparing files on
 a word per word basis. It works by creating two temporary files, one
-word per line, and then executes <samp><span class="command">diff</span></samp> on these files. It collects the
-<samp><span class="command">diff</span></samp> output and uses it to produce a nicer display of word differences
+word per line, and then executes <code>diff</code> on these files. It collects the
+<code>diff</code> output and uses it to produce a nicer display of word differences
 between the original files.
+</p>
 
-   <p><samp><span class="command">mdiff</span></samp> studies one or more input files altogether, and discovers
+<p><code>mdiff</code> studies one or more input files altogether, and discovers
 blocks of items which repeat at more than one place.  Items may be lines,
-words, or units defined by user.  When in word mode, <samp><span class="command">mdiff</span></samp> compares
+words, or units defined by user.  When in word mode, <code>mdiff</code> compares
 two files, finding which words have been deleted or added to the first
 in order to create the second, which is useful when two texts differ
 only by a few words and paragraphs have been refilled.  The program has
 many output formats and interacts well with terminals and pagers (notably
-with <samp><span class="command">less</span></samp>).
-
-   <p><samp><span class="command">unify</span></samp> is able to convert context diffs to unidiff format, or the
+with <code>less</code>).
+</p>
+<p><code>unify</code> is able to convert context diffs to unidiff format, or the
 other way around.  Some people just prefer one format and despise the
 other, it is a religious issue.  This program brings peace back to Earth.
-
-   <p><samp><span class="command">wdiff2</span></samp> is intended as a replacement to <samp><span class="command">wdiff</span></samp>. 
-It aims at supporting the same set of options, but uses <samp><span class="command">mdiff</span></samp>
-instead of <samp><span class="command">diff</span></samp> as its backend.
-
-   <p><samp><span class="command">wdiff</span></samp>, <samp><span class="command">mdiff</span></samp> and <samp><span class="command">wdiff2</span></samp>
+</p>
+<p><code>wdiff2</code> is intended as a replacement to <code>wdiff</code>.
+It aims at supporting the same set of options, but uses <code>mdiff</code>
+instead of <code>diff</code> as its backend.
+</p>
+<p><code>wdiff</code>, <code>mdiff</code> and <code>wdiff2</code>
 were written by Fran&ccedil;ois Pinard, while
-<samp><span class="command">unify</span></samp> has been contributed by Wayne Davison. 
-Please report bugs to <a href="mailto:wdiff-bugs@gnu.org">wdiff-bugs@gnu.org</a>. 
+<code>unify</code> has been contributed by Wayne Davison.
+Please report bugs to <a href="mailto:wdiff-bugs@gnu.org">wdiff-bugs@gnu.org</a>.
 Include the version number, which
-you can find by running the program with <samp><span class="option">--version</span></samp>.  Please include
+you can find by running the program with <samp>--version</samp>.  Please include
 in your message sufficient input to reproduce what you got, the output you
 indeed expected, and careful explanations about the nature of the problem.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="wdiff.html#wdiff" accesskey="n" rel="next">wdiff</a>, Previous: <a href="index.html#Top" accesskey="p" rel="prev">Top</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
 
-<!-- ============================================================= -->
-   </body></html>
 
+
+</body>
+</html>

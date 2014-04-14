@@ -1,18 +1,9 @@
-<html lang="en">
-<head>
-<title>Efficiency - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="mdiff.html#mdiff" title="mdiff">
-<link rel="prev" href="mdiff-invocation.html#mdiff-invocation" title="mdiff invocation">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -29,77 +20,117 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<a name="Efficiency"></a>
-<p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="mdiff-invocation.html#mdiff-invocation">mdiff invocation</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="mdiff.html#mdiff">mdiff</a>
-<hr>
-</div>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): Efficiency</title>
 
+<meta name="description" content="A word difference finder (and others): Efficiency">
+<meta name="keywords" content="A word difference finder (and others): Efficiency">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="mdiff.html#mdiff" rel="up" title="mdiff">
+<link href="unify.html#unify" rel="next" title="unify">
+<link href="mdiff-invocation.html#mdiff-invocation" rel="prev" title="mdiff invocation">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Efficiency"></a>
+<div class="header">
+<p>
+Previous: <a href="mdiff-invocation.html#mdiff-invocation" accesskey="p" rel="prev">mdiff invocation</a>, Up: <a href="mdiff.html#mdiff" accesskey="u" rel="up">mdiff</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Resource-considerations-and-efficiency"></a>
 <h3 class="section">3.2 Resource considerations and efficiency</h3>
 
-     <dl>
-<dt>Memory consumption<dd>
-<samp><span class="command">mdiff</span></samp> can easily handle medium-sized project.  For a 32 bits
+<dl compact="compact">
+<dt>Memory consumption</dt>
+<dd>
+<p><code>mdiff</code> can easily handle medium-sized project.  For a 32 bits
 architecture, the memory requirements may computed like this:
+</p>
+<ul>
+<li> 8 bytes per file
+</li><li> 8 bytes per line
+</li><li> 4 bytes per cluster
+</li><li> 8 bytes per cluster member
+</li></ul>
 
-          <ul>
-<li>8 bytes per file
-<li>8 bytes per line
-<li>4 bytes per cluster
-<li>8 bytes per cluster member
-</ul>
-
-     <br><dt>Time consumption<dd>
-To evaluate the speed, consider the example shown above
+</dd>
+<dt>Time consumption</dt>
+<dd>
+<p>To evaluate the speed, consider the example shown above
 (see <a href="mdiff.html#mdiff">mdiff</a>), and yielding these statistics:
+</p>
+<div class="example">
+<pre class="example">Read summary: 137 files, 41975 lines
+Work summary: 439 clusters, 1608 members &hellip;
+</pre></div>
 
-     <pre class="example">          Read summary: 137 files, 41975 lines
-          Work summary: 439 clusters, 1608 members ...
-</pre>
-     <p class="noindent">Once many files in the memory cache, and redirecting the output to
-<samp><span class="file">/dev/null</span></samp>, the processing takes 3 seconds of real time on an
+<p>Once many files in the memory cache, and redirecting the output to
+<samp>/dev/null</samp>, the processing takes 3 seconds of real time on an
 Intel 486/100, which looks good.  I was indeed afraid of some hidden
-O(<var>n</var>^2) behaviour<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>,
+O(<var>n</var>^2) behaviour<a name="DOCF1" href="#FOOT1"><sup>1</sup></a>,
 even if the program is mostly O(<var>n</var>*log(<var>n</var>)).  Maybe one will
-discover or construct cases putting <samp><span class="command">mdiff</span></samp> on its knees.  So far,
-<samp><span class="command">mdiff</span></samp> seemingly behaves well for the little problems given to it. 
-If we devise and generate a more traditional <samp><span class="command">diff</span></samp>-like output,
+discover or construct cases putting <code>mdiff</code> on its knees.  So far,
+<code>mdiff</code> seemingly behaves well for the little problems given to it.
+If we devise and generate a more traditional <code>diff</code>-like output,
 in which all input files are relisted, this will add some time to the
 processing, but it will be only linear with regard with the total length
 of input files.
-
-     <p>There is a clever optimized sorting algorithm for <em>all</em> substrings
+</p>
+<p>There is a clever optimized sorting algorithm for <em>all</em> substrings
 of a file, which might be generalised to handle words or lines for
-<samp><span class="command">mdiff</span></samp>.  But since the program is already faster than we initially
+<code>mdiff</code>.  But since the program is already faster than we initially
 expected, there is no emergency to resort to using such an algorithm.
-
-     <br><dt>Trading complexity for clarity<dd>
-When lines repeat a lot, there are surprisingly many ways to relate blocks
-of lines, and reporting them <em>all</em> can make very hairy listings. 
+</p>
+</dd>
+<dt>Trading complexity for clarity</dt>
+<dd>
+<p>When lines repeat a lot, there are surprisingly many ways to relate blocks
+of lines, and reporting them <em>all</em> can make very hairy listings.
 Any choice about reporting similarities, or not, is somewhat arbitrary,
-but we ought to make some of such choices for the program to be practical. 
+but we ought to make some of such choices for the program to be practical.
 Some of these choices are detailed here.
-
-     <p>If all members of a given cluster <var>A</var> are proper subsets of all
+</p>
+<p>If all members of a given cluster <var>A</var> are proper subsets of all
 members of another given cluster <var>B</var>, then cluster <var>A</var> is wholly
-forgotten.  However, let's presume for example that there are more members
+forgotten.  However, let&rsquo;s presume for example that there are more members
 in <var>A</var> than in <var>B</var>.  Then, some members of <var>A</var> necessarily
 appear unrelated to any member of <var>B</var>.  In such case, it has been
 decided more useful to report <em>all</em> occurrences of <var>A</var> members,
@@ -107,30 +138,39 @@ even those embedded within occurrences of <var>B</var> members.  When only
 interested in members <var>B</var>, annotations pertaining to <var>A</var> may be
 perceived as clutter.  However, when interested in members of <var>A</var>,
 getting all of them is probably the most useful choice.
-
-     <p>It sometimes happen that members of a very same cluster overlap.  In the
-string &lsquo;<samp><span class="samp">a&nbsp;a&nbsp;a<!-- /@w --></span></samp>&rsquo;, there are two overlapping members for the cluster
-represented by the string &lsquo;<samp><span class="samp">a&nbsp;a<!-- /@w --></span></samp>&rsquo;, one from the first two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;,
-another from the last two &lsquo;<samp><span class="samp">a</span></samp>&rsquo;.  In such cases, one member of such
+</p>
+<p>It sometimes happen that members of a very same cluster overlap.  In the
+string &lsquo;<samp>a&nbsp;a&nbsp;a<!-- /@w --></samp>&rsquo;, there are two overlapping members for the cluster
+represented by the string &lsquo;<samp>a&nbsp;a<!-- /@w --></samp>&rsquo;, one from the first two &lsquo;<samp>a</samp>&rsquo;,
+another from the last two &lsquo;<samp>a</samp>&rsquo;.  In such cases, one member of such
 an overlap is automatically chopped so the overlap does not occur.
-
-     <p>White lines and items containing only delimiters are the possible source of
+</p>
+<p>White lines and items containing only delimiters are the possible source of
 a lot of complexity, if these are fully taken as significant.  Since this
 does not add much to clarity, they are better ignored, usually, through
-using <samp><span class="option">--ignore-blank-lines</span></samp> (<samp><span class="option">-B</span></samp>) or <samp><span class="option">--ignore-delimiters</span></samp>
-(<samp><span class="option">-j</span></samp>).  Increasing the value of <samp><span class="option">--minimum-size=</span><var>items</var></samp>
-(&lsquo;<samp><span class="samp">-J&nbsp;</span><var>items</var><span class="samp"><!-- /@w --></span></samp>&rsquo;) option also cut off complexity in favor of
+using <samp>--ignore-blank-lines</samp> (<samp>-B</samp>) or <samp>--ignore-delimiters</samp>
+(<samp>-j</samp>).  Increasing the value of <samp>--minimum-size=<var>items</var></samp>
+(&lsquo;<samp><span class="nolinebreak">-J</span>&nbsp;<var>items</var><!-- /@w --></samp>&rsquo;) option also cut off complexity in favor of
 clarity, yet some small matches may then go unnoticed.  Exactly how to
 best adjust the <var>items</var> value is left for the user to decide.
-
+</p>
+</dd>
 </dl>
 
-<!-- ============================================================= -->
-   <div class="footnote">
+<div class="footnote">
 <hr>
-<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> <var>n</var> is the total number of lines.</p>
+<h4 class="footnotes-heading">Footnotes</h4>
 
-   <hr></div>
+<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<p><var>n</var> is the total number of lines.</p>
+</div>
+<hr>
+<div class="header">
+<p>
+Previous: <a href="mdiff-invocation.html#mdiff-invocation" accesskey="p" rel="prev">mdiff invocation</a>, Up: <a href="mdiff.html#mdiff" accesskey="u" rel="up">mdiff</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
 
-   </body></html>
 
+
+</body>
+</html>

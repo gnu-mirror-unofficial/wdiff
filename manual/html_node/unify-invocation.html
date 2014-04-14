@@ -1,17 +1,9 @@
-<html lang="en">
-<head>
-<title>unify invocation - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="unify.html#unify" title="unify">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -28,93 +20,167 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): unify invocation</title>
+
+<meta name="description" content="A word difference finder (and others): unify invocation">
+<meta name="keywords" content="A word difference finder (and others): unify invocation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="unify.html#unify" rel="up" title="unify">
+<link href="Compatibility.html#Compatibility" rel="next" title="Compatibility">
+<link href="unify.html#unify" rel="prev" title="unify">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="unify-invocation"></a>
+<div class="header">
 <p>
-Up:&nbsp;<a rel="up" accesskey="u" href="unify.html#unify">unify</a>
-<hr>
+Up: <a href="unify.html#unify" accesskey="u" rel="up">unify</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
+<hr>
+<a name="Invoking-unify"></a>
+<h3 class="section">4.1 Invoking <code>unify</code></h3>
 
-<h3 class="section">4.1 Invoking <samp><span class="command">unify</span></samp></h3>
+<p>The format for running the <code>unify</code> program is:
+</p>
+<div class="example">
+<pre class="example">unify <var>option</var> &hellip; [<var>file</var>]
+</pre></div>
 
-<p>The format for running the <samp><span class="command">unify</span></samp> program is:
-
-<pre class="example">     unify <var>option</var> ... [<var>file</var>]
-</pre>
-   <p>The program reads the diff to convert from <var>file</var>, or if the
-source file is not mentioned, it will be read from the standard input. 
+<p>The program reads the diff to convert from <var>file</var>, or if the
+source file is not mentioned, it will be read from the standard input.
 The default is to output the diff in the opposite style of whatever was
 input, that is, regular context diffs will become unified context diffs,
 and unified context diffs will become unified context diffs, but this
 can be overridden by options.
-
-   <p><samp><span class="command">unify</span></samp> supports the following command line options:
-
-     <dl>
-<dt><samp><span class="option">--version</span></samp><dd>Merely prints the version numbers on standard output, and exits without
+</p>
+<p><code>unify</code> supports the following command line options:
+</p>
+<dl compact="compact">
+<dt><samp>--version</samp></dt>
+<dd><p>Merely prints the version numbers on standard output, and exits without
 doing anything else.
-
-     <br><dt><samp><span class="option">--help</span></samp><dd>Merely prints a page of help on standard output, and exits without doing
+</p>
+</dd>
+<dt><samp>--help</samp></dt>
+<dd><p>Merely prints a page of help on standard output, and exits without doing
 anything else.
-
-     <br><dt><samp><span class="option">--context-diffs</span></samp><dt><samp><span class="option">-c</span></samp><dd>Forces context diff output.
-
-     <br><dt><samp><span class="option">--echo-comments</span></samp><dt><samp><span class="option">-e</span></samp><dd>Echoes non-diff (comment) lines to stderr.  If a comment line is
-being stripped via the <samp><span class="option">-p</span></samp> option, it is echoed with a preceding
-&lsquo;<samp><span class="samp">!!! </span></samp>&rsquo;.  If all comments are being stripped (via the <samp><span class="option">-s</span></samp>
+</p>
+</dd>
+<dt><samp>--context-diffs</samp></dt>
+<dt><samp>-c</samp></dt>
+<dd><p>Forces context diff output.
+</p>
+</dd>
+<dt><samp>--echo-comments</samp></dt>
+<dt><samp>-e</samp></dt>
+<dd><p>Echoes non-diff (comment) lines to stderr.  If a comment line is
+being stripped via the <samp>-p</samp> option, it is echoed with a preceding
+&lsquo;<samp>!!! </samp>&rsquo;.  If all comments are being stripped (via the <samp>-s</samp>
 option), no special designation is given.
-
-     <br><dt><samp><span class="option">--old-diffs</span></samp><dt><samp><span class="option">-o</span></samp><dd>Is used to force a context diff to be interpreted as being of the
+</p>
+</dd>
+<dt><samp>--old-diffs</samp></dt>
+<dt><samp>-o</samp></dt>
+<dd><p>Is used to force a context diff to be interpreted as being of the
 old-style even if it has the extra trailing asterisks that normally mark
-the new-style.  This is only needed if <samp><span class="command">unify</span></samp> fails to work with
-your version of <samp><span class="command">diff</span></samp>.
+the new-style.  This is only needed if <code>unify</code> fails to work with
+your version of <code>diff</code>.
+</p>
+</dd>
+<dt><samp>--patch-format</samp></dt>
+<dt><samp>-p</samp></dt>
+<dd><p>Turns on patch-output mode.  This will do two things:
+</p>
+<ol>
+<li> Transform a header like:
 
-     <br><dt><samp><span class="option">--patch-format</span></samp><dt><samp><span class="option">-p</span></samp><dd>Turns on patch-output mode.  This will do two things:
+<div class="example">
+<pre class="example">*** orig/file	Sat May  5 02:59:37 1990
+--- ./file	Sat May  5 03:00:08 1990
+</pre></div>
 
-          <ol type=1 start=1>
-<li>Transform a header like:
+<p>into a line of &lsquo;<samp>Index: file</samp>&rsquo; &mdash; we choose the shorter name and strip
+a leading &lsquo;<samp>./</samp>&rsquo; sequence if present.
+</p>
+</li><li> Strip lines that begin with &lsquo;<samp>Only&nbsp;in&nbsp;<!-- /@w --></samp>&rsquo;, &lsquo;<samp>Common&nbsp;subdir<!-- /@w --></samp>&rsquo;,
+&lsquo;<samp>Binary&nbsp;files<!-- /@w --></samp>&rsquo; or &lsquo;<samp>diff&nbsp;<span class="nolinebreak">-</span><!-- /@w --></samp>&rsquo;.
 
-          <pre class="example">               *** orig/file	Sat May  5 02:59:37 1990
-               --- ./file	Sat May  5 03:00:08 1990
-</pre>
-          <p class="noindent">into a line of &lsquo;<samp><span class="samp">Index: file</span></samp>&rsquo; &mdash; we choose the shorter name and strip
-a leading &lsquo;<samp><span class="samp">./</span></samp>&rsquo; sequence if present.
+</li></ol>
 
-          <li>Strip lines that begin with &lsquo;<samp><span class="samp">Only&nbsp;in&nbsp;<!-- /@w --></span></samp>&rsquo;, &lsquo;<samp><span class="samp">Common&nbsp;subdir<!-- /@w --></span></samp>&rsquo;,
-&lsquo;<samp><span class="samp">Binary&nbsp;files<!-- /@w --></span></samp>&rsquo; or &lsquo;<samp><span class="samp">diff&nbsp;-<!-- /@w --></span></samp>&rsquo;.
-
-          </ol>
-
-     <br><dt><samp><span class="option">-P</span></samp><dd>Is the same as <samp><span class="option">-p</span></samp>.
-
-     <br><dt><samp><span class="option">--strip-comments</span></samp><dt><samp><span class="option">-s</span></samp><dd>Strips non-diff lines (comments).
-
-     <br><dt><samp><span class="option">--unidiffs</span></samp><dt><samp><span class="option">-u</span></samp><dd>Forces unified diff output.
-
-     <br><dt><samp><span class="option">-U</span></samp><dd>Is the same as <samp><span class="option">-up</span></samp>.
-
-     <br><dt><samp><span class="option">--use-equals</span></samp><dt><samp><span class="option">-=</span></samp><dd>Will use a &lsquo;<samp><span class="samp">=</span></samp>&rsquo; prefix in a unified diff for lines that are common
+</dd>
+<dt><samp>-P</samp></dt>
+<dd><p>Is the same as <samp>-p</samp>.
+</p>
+</dd>
+<dt><samp>--strip-comments</samp></dt>
+<dt><samp>-s</samp></dt>
+<dd><p>Strips non-diff lines (comments).
+</p>
+</dd>
+<dt><samp>--unidiffs</samp></dt>
+<dt><samp>-u</samp></dt>
+<dd><p>Forces unified diff output.
+</p>
+</dd>
+<dt><samp>-U</samp></dt>
+<dd><p>Is the same as <samp>-up</samp>.
+</p>
+</dd>
+<dt><samp>--use-equals</samp></dt>
+<dt><samp>-=</samp></dt>
+<dd><p>Will use a &lsquo;<samp>=</samp>&rsquo; prefix in a unified diff for lines that are common
 to both files instead of using a leading space.  Though this is harder to
 read, it is less likely to be mangled by trailing-space-stripping sites
 when posted to Usenet.
+</p>
+</dd>
+</dl>
 
-   </dl>
+<hr>
+<div class="header">
+<p>
+Up: <a href="unify.html#unify" accesskey="u" rel="up">unify</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
 
-<!-- ============================================================= -->
-   </body></html>
 
+
+</body>
+</html>

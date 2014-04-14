@@ -1,18 +1,9 @@
-<html lang="en">
-<head>
-<title>A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="../index.html#dir" title="(dir)">
-<link rel="next" href="Overview.html#Overview" title="Overview">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -29,129 +20,167 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<h1 class="settitle">A word difference finder (and others)</h1>
-<div class="node">
-<a name="Top"></a>
-<p>
-Next:&nbsp;<a rel="next" accesskey="n" href="Overview.html#Overview">Overview</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
-<hr>
-</div>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): Top</title>
 
-<h2 class="unnumbered">GNU wdiff</h2>
-
-<!-- ============================================================= -->
-<p>These Info pages document <samp><span class="command">wdiff</span></samp>, a word difference finder, together
-with some other <samp><span class="command">diff</span></samp> related tools. 
-Note that some tools documented here are considered experimental and may
-not be part of every <samp><span class="command">wdiff</span></samp> installation. 
-See <a href="Experimental.html#Experimental">Experimental</a>.
-
-<p>This is for release 1.2.1.
-
-<ul class="menu">
-<li><a accesskey="1" href="Overview.html#Overview">Overview</a>:                     Overview
-<li><a accesskey="2" href="wdiff.html#wdiff">wdiff</a>:                        The word difference finder 
-<li><a accesskey="3" href="mdiff.html#mdiff">mdiff</a>:                        The line cluster finder
-<li><a accesskey="4" href="unify.html#unify">unify</a>:                        The diff format converter
-<li><a accesskey="5" href="Compatibility.html#Compatibility">Compatibility</a>:                How <samp><span class="command">mdiff</span></samp> differs
-<li><a accesskey="6" href="Experimental.html#Experimental">Experimental</a>:                 About experimental programs
-
-</li></ul>
-<p>--- The Detailed Node Listing ---
-
-<p>The word difference finder
-
-</p>
-<ul class="menu">
-<li><a accesskey="7" href="wdiff-invocation.html#wdiff-invocation">wdiff invocation</a>:             Invoking <samp><span class="command">wdiff</span></samp>
-<li><a accesskey="8" href="wdiff-Examples.html#wdiff-Examples">wdiff Examples</a>:               Actual examples of <samp><span class="command">wdiff</span></samp> usage
-
-</li></ul>
-<p>The multi-difference finder
-
-</p>
-<ul class="menu">
-<li><a accesskey="9" href="mdiff-invocation.html#mdiff-invocation">mdiff invocation</a>:             Invoking <samp><span class="command">mdiff</span></samp>
-<li><a href="Efficiency.html#Efficiency">Efficiency</a>:                   Resource considerations and efficiency
-
-</li></ul>
-<p>The diff format converter
-
-</p>
-<ul class="menu">
-<li><a href="unify-invocation.html#unify-invocation">unify invocation</a>:             Invoking <samp><span class="command">unify</span></samp>
-
-</li></ul>
-<p>How <samp><span class="command">mdiff</span></samp> differs
-
-</p>
-<ul class="menu">
-<li><a href="diff-Compatibility.html#diff-Compatibility">diff Compatibility</a>:           Differences with <samp><span class="command">diff</span></samp>
-<li><a href="wdiff-Compatibility.html#wdiff-Compatibility">wdiff Compatibility</a>:          Differences with <samp><span class="command">wdiff</span></samp>
-
-</li></ul>
-<p>Experimental programs
-
-</p>
-<ul class="menu">
-<li><a href="Experimental-History.html#Experimental-History">Experimental History</a>:         History of the experimental programs
-
-   </ul>
-
-   <div class="contents">
-<h2>Table of Contents</h2>
-<ul>
-<li><a name="toc_Top" href="index.html#Top">GNU wdiff</a>
-<li><a name="toc_Overview" href="Overview.html#Overview">1 Overview</a>
-<li><a name="toc_wdiff" href="wdiff.html#wdiff">2 The word difference finder</a>
-<ul>
-<li><a href="wdiff-invocation.html#wdiff-invocation">2.1 Invoking <samp><span class="command">wdiff</span></samp></a>
-<li><a href="wdiff-Examples.html#wdiff-Examples">2.2 Actual examples of <samp><span class="command">wdiff</span></samp> usage</a>
-</li></ul>
-<li><a name="toc_mdiff" href="mdiff.html#mdiff">3 The multi-difference finder</a>
-<ul>
-<li><a href="mdiff-invocation.html#mdiff-invocation">3.1 Invoking <samp><span class="command">mdiff</span></samp></a>
-<li><a href="Efficiency.html#Efficiency">3.2 Resource considerations and efficiency</a>
-</li></ul>
-<li><a name="toc_unify" href="unify.html#unify">4 The diff format converter</a>
-<ul>
-<li><a href="unify-invocation.html#unify-invocation">4.1 Invoking <samp><span class="command">unify</span></samp></a>
-</li></ul>
-<li><a name="toc_Compatibility" href="Compatibility.html#Compatibility">5 How <samp><span class="command">mdiff</span></samp> differs</a>
-<ul>
-<li><a href="diff-Compatibility.html#diff-Compatibility">5.1 Differences with <samp><span class="command">diff</span></samp></a>
-<li><a href="wdiff-Compatibility.html#wdiff-Compatibility">5.2 Differences with <samp><span class="command">wdiff</span></samp></a>
-</li></ul>
-<li><a name="toc_Experimental" href="Experimental.html#Experimental">6 Experimental programs</a>
-<ul>
-<li><a href="Experimental-History.html#Experimental-History">6.1 History of the Experimental programs</a>
-</li></ul>
-</li></ul>
-</div>
-
-<!-- ============================================================= -->
-   </body></html>
-
+<meta name="description" content="A word difference finder (and others): Top">
+<meta name="keywords" content="A word difference finder (and others): Top">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="#Top" rel="start" title="Top">
+<link href="#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="../dir/index.html" rel="up" title="(dir)">
+<link href="Overview.html#Overview" rel="next" title="Overview">
+<style type="text/css">
 <!--
-
-Local Variables:
-coding: utf-8
-End:
-
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
 -->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<h1 class="settitle" align="center">A word difference finder (and others)</h1>
+
+
+
+
+
+<a name="Top"></a>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="GNU-wdiff"></a>
+<h1 class="top">GNU wdiff</h1>
+
+<p>These Info pages document <code>wdiff</code>, a word difference finder, together
+with some other <code>diff</code> related tools.
+Note that some tools documented here are considered experimental and may
+not be part of every <code>wdiff</code> installation.
+See <a href="Experimental.html#Experimental">Experimental</a>.
+</p>
+<p>This is for release 1.2.2.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Overview.html#Overview" accesskey="1">Overview</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Overview
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="wdiff.html#wdiff" accesskey="2">wdiff</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The word difference finder </td></tr>
+<tr><td align="left" valign="top">&bull; <a href="mdiff.html#mdiff" accesskey="3">mdiff</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The line cluster finder
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="unify.html#unify" accesskey="4">unify</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The diff format converter
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Compatibility.html#Compatibility" accesskey="5">Compatibility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">How <code>mdiff</code> differs
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Experimental.html#Experimental" accesskey="6">Experimental</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">About experimental programs
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr><tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+&mdash; The Detailed Node Listing &mdash;
+
+The word difference finder
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="wdiff-invocation.html#wdiff-invocation" accesskey="7">wdiff invocation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Invoking <code>wdiff</code>
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="wdiff-Examples.html#wdiff-Examples" accesskey="8">wdiff Examples</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Actual examples of <code>wdiff</code> usage
+The multi-difference finder
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="mdiff-invocation.html#mdiff-invocation" accesskey="9">mdiff invocation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Invoking <code>mdiff</code>
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="Efficiency.html#Efficiency">Efficiency</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Resource considerations and efficiency
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+The diff format converter
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="unify-invocation.html#unify-invocation">unify invocation</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Invoking <code>unify</code>
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+How <code>mdiff</code> differs
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="diff-Compatibility.html#diff-Compatibility">diff Compatibility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Differences with <code>diff</code>
+</td></tr>
+<tr><td align="left" valign="top">&bull; <a href="wdiff-Compatibility.html#wdiff-Compatibility">wdiff Compatibility</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Differences with <code>wdiff</code>
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+Experimental programs
+
+</pre></th></tr><tr><td align="left" valign="top">&bull; <a href="Experimental-History.html#Experimental-History">Experimental History</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">History of the experimental programs
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr></table>
+
+
+<a name="SEC_Contents"></a>
+<h2 class="contents-heading">Table of Contents</h2>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a name="toc-Overview-1" href="Overview.html#Overview">1 Overview</a></li>
+  <li><a name="toc-The-word-difference-finder" href="wdiff.html#wdiff">2 The word difference finder</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Invoking-wdiff" href="wdiff-invocation.html#wdiff-invocation">2.1 Invoking <code>wdiff</code></a></li>
+    <li><a name="toc-Actual-examples-of-wdiff-usage" href="wdiff-Examples.html#wdiff-Examples">2.2 Actual examples of <code>wdiff</code> usage</a></li>
+  </ul></li>
+  <li><a name="toc-The-multi_002ddifference-finder" href="mdiff.html#mdiff">3 The multi-difference finder</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Invoking-mdiff" href="mdiff-invocation.html#mdiff-invocation">3.1 Invoking <code>mdiff</code></a></li>
+    <li><a name="toc-Resource-considerations-and-efficiency" href="Efficiency.html#Efficiency">3.2 Resource considerations and efficiency</a></li>
+  </ul></li>
+  <li><a name="toc-The-diff-format-converter" href="unify.html#unify">4 The diff format converter</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Invoking-unify" href="unify-invocation.html#unify-invocation">4.1 Invoking <code>unify</code></a></li>
+  </ul></li>
+  <li><a name="toc-How-mdiff-differs" href="Compatibility.html#Compatibility">5 How <code>mdiff</code> differs</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Differences-with-diff" href="diff-Compatibility.html#diff-Compatibility">5.1 Differences with <code>diff</code></a></li>
+    <li><a name="toc-Differences-with-wdiff" href="wdiff-Compatibility.html#wdiff-Compatibility">5.2 Differences with <code>wdiff</code></a></li>
+  </ul></li>
+  <li><a name="toc-Experimental-programs" href="Experimental.html#Experimental">6 Experimental programs</a>
+  <ul class="no-bullet">
+    <li><a name="toc-History-of-the-Experimental-programs" href="Experimental-History.html#Experimental-History">6.1 History of the Experimental programs</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+<hr>
+<div class="header">
+<p>
+Next: <a href="Overview.html#Overview" accesskey="n" rel="next">Overview</a>, Up: <a href="../dir/index.html" accesskey="u" rel="up">(dir)</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

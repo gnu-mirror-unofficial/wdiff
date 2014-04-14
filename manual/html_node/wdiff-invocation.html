@@ -1,18 +1,9 @@
-<html lang="en">
-<head>
-<title>wdiff invocation - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="wdiff.html#wdiff" title="wdiff">
-<link rel="next" href="wdiff-Examples.html#wdiff-Examples" title="wdiff Examples">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -29,176 +20,264 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): wdiff invocation</title>
+
+<meta name="description" content="A word difference finder (and others): wdiff invocation">
+<meta name="keywords" content="A word difference finder (and others): wdiff invocation">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="wdiff.html#wdiff" rel="up" title="wdiff">
+<link href="wdiff-Examples.html#wdiff-Examples" rel="next" title="wdiff Examples">
+<link href="wdiff.html#wdiff" rel="prev" title="wdiff">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="wdiff-invocation"></a>
+<div class="header">
 <p>
-Next:&nbsp;<a rel="next" accesskey="n" href="wdiff-Examples.html#wdiff-Examples">wdiff Examples</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="wdiff.html#wdiff">wdiff</a>
-<hr>
+Next: <a href="wdiff-Examples.html#wdiff-Examples" accesskey="n" rel="next">wdiff Examples</a>, Up: <a href="wdiff.html#wdiff" accesskey="u" rel="up">wdiff</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
+<hr>
+<a name="Invoking-wdiff"></a>
+<h3 class="section">2.1 Invoking <code>wdiff</code></h3>
 
-<h3 class="section">2.1 Invoking <samp><span class="command">wdiff</span></samp></h3>
-
-<p>The programs <samp><span class="command">wdiff</span></samp> and <samp><span class="command">wdiff2</span></samp> aim at providing the
-same set of command line options. They are described below. 
+<p>The programs <code>wdiff</code> and <code>wdiff2</code> aim at providing the
+same set of command line options. They are described below.
 See <a href="wdiff-Compatibility.html#wdiff-Compatibility">wdiff Compatibility</a>, for a list of differences.
+</p>
+<div class="example">
+<pre class="example">wdiff <var>option</var> &hellip; <var>old_file</var> <var>new_file</var>
+wdiff <var>option</var> &hellip; -d [<var>diff_file</var>]
+</pre></div>
 
-<pre class="example">     wdiff <var>option</var> ... <var>old_file</var> <var>new_file</var>
-     wdiff <var>option</var> ... -d [<var>diff_file</var>]
-</pre>
-   <p><samp><span class="command">wdiff</span></samp> compares files <var>old_file</var> and <var>new_file</var> and
+<p><code>wdiff</code> compares files <var>old_file</var> and <var>new_file</var> and
 produces an annotated copy of <var>new_file</var> on standard output.  The
-empty string or the string &lsquo;<samp><span class="samp">-</span></samp>&rsquo; denotes standard input, but standard
+empty string or the string &lsquo;<samp>-</samp>&rsquo; denotes standard input, but standard
 input cannot be used twice in the same invocation.  The complete path of
-a file should be given, a directory name is not accepted.  <samp><span class="command">wdiff</span></samp>
+a file should be given, a directory name is not accepted.  <code>wdiff</code>
 will exit with a status of 0 if no differences were found, a status of 1
 if any differences were found, or a status of 2 for any error.
-
-   <p>In this documentation, <dfn>deleted text</dfn> refers to text in
-<var>old_file</var> which is not in <var>new_file</var>, while <dfn>inserted text</dfn>
+</p>
+<p>In this documentation, <em>deleted text</em> refers to text in
+<var>old_file</var> which is not in <var>new_file</var>, while <em>inserted text</em>
 refers to text on <var>new_file</var> which is not in <var>old_file</var>.
-
-   <p><samp><span class="command">wdiff</span></samp> supports the following command line options:
-
-     <dl>
-<dt><samp><span class="option">--help</span></samp><dt><samp><span class="option">-h</span></samp><dd>Print an informative help message describing the options.
-
-     <br><dt><samp><span class="option">--version</span></samp><dt><samp><span class="option">-v</span></samp><dd>Print the version number of <samp><span class="command">wdiff</span></samp> on the standard error output.
-
-     <br><dt><samp><span class="option">--no-deleted</span></samp><dt><samp><span class="option">-1</span></samp><dd>Avoid producing deleted words on the output.  If neither <samp><span class="option">-1</span></samp> or
-<samp><span class="option">-2</span></samp> is selected, the original right margin may be exceeded for
+</p>
+<p><code>wdiff</code> supports the following command line options:
+</p>
+<dl compact="compact">
+<dt><samp>--help</samp></dt>
+<dt><samp>-h</samp></dt>
+<dd><p>Print an informative help message describing the options.
+</p>
+</dd>
+<dt><samp>--version</samp></dt>
+<dt><samp>-v</samp></dt>
+<dd><p>Print the version number of <code>wdiff</code> on the standard error output.
+</p>
+</dd>
+<dt><samp>--no-deleted</samp></dt>
+<dt><samp>-1</samp></dt>
+<dd><p>Avoid producing deleted words on the output.  If neither <samp>-1</samp> or
+<samp>-2</samp> is selected, the original right margin may be exceeded for
 some lines.
-
-     <br><dt><samp><span class="option">--no-inserted</span></samp><dt><samp><span class="option">-2</span></samp><dd>Avoid producing inserted words on the output.  When this flag is given,
+</p>
+</dd>
+<dt><samp>--no-inserted</samp></dt>
+<dt><samp>-2</samp></dt>
+<dd><p>Avoid producing inserted words on the output.  When this flag is given,
 the whitespace in the output is taken from <var>old_file</var> instead of
-<var>new_file</var>.  If neither <samp><span class="option">-1</span></samp> or <samp><span class="option">-2</span></samp> is selected, the
+<var>new_file</var>.  If neither <samp>-1</samp> or <samp>-2</samp> is selected, the
 original right margin may be exceeded for some lines.
-
-     <br><dt><samp><span class="option">--no-common</span></samp><dt><samp><span class="option">-3</span></samp><dd>Avoid producing common words on the output.  When this option is not
+</p>
+</dd>
+<dt><samp>--no-common</samp></dt>
+<dt><samp>-3</samp></dt>
+<dd><p>Avoid producing common words on the output.  When this option is not
 selected, common words and whitespace are taken from <var>new_file</var>,
-unless option <samp><span class="option">-2</span></samp> is given, in which case common words and
+unless option <samp>-2</samp> is given, in which case common words and
 whitespace are rather taken from <var>old_file</var>.  When selected,
-differences are separated from one another by lines of dashes. 
-Moreover, if this option is selected at the same time as <samp><span class="option">-1</span></samp> or
-<samp><span class="option">-2</span></samp>, then none of the output will have any emphasis, i.e. no bold
+differences are separated from one another by lines of dashes.
+Moreover, if this option is selected at the same time as <samp>-1</samp> or
+<samp>-2</samp>, then none of the output will have any emphasis, i.e. no bold
 or underlining.  Finally, if this option is not selected, but both
-<samp><span class="option">-1</span></samp> and <samp><span class="option">-2</span></samp> are, then sections of common words between
+<samp>-1</samp> and <samp>-2</samp> are, then sections of common words between
 differences are segregated by lines of dashes.
-
-     <br><dt><samp><span class="option">--ignore-case</span></samp><dt><samp><span class="option">-i</span></samp><dd>Do not consider case difference while comparing words.  Each lower case
+</p>
+</dd>
+<dt><samp>--ignore-case</samp></dt>
+<dt><samp>-i</samp></dt>
+<dd><p>Do not consider case difference while comparing words.  Each lower case
 letter is seen as identical to its upper case equivalent for the purpose
 of deciding if two words are the same.
-
-     <br><dt><samp><span class="option">--statistics</span></samp><dt><samp><span class="option">-s</span></samp><dd>On completion, for each file, the total number of words, the number of
+</p>
+</dd>
+<dt><samp>--statistics</samp></dt>
+<dt><samp>-s</samp></dt>
+<dd><p>On completion, for each file, the total number of words, the number of
 common words between the files, the number of words deleted or inserted
 and the number of words that have changed is output.  (A changed word is
 one that has been replaced or is part of a replacement.)  Except for the
 total number of words, all of the numbers are followed by a percentage
 relative to the total number of words in the file.
-
-     <br><dt><samp><span class="option">--auto-pager</span></samp><dt><samp><span class="option">-a</span></samp><dd>Some initiatives which were previously automatically taken in previous
-versions of <samp><span class="command">wdiff</span></samp> are now put under the control of this option. 
-By using it, a pager is interposed whenever the <samp><span class="command">wdiff</span></samp> output is
-directed to the user's terminal.  Without this option, no pager will be
-called, the user is then responsible for explicitly piping <samp><span class="command">wdiff</span></samp>
+</p>
+</dd>
+<dt><samp>--auto-pager</samp></dt>
+<dt><samp>-a</samp></dt>
+<dd><p>Some initiatives which were previously automatically taken in previous
+versions of <code>wdiff</code> are now put under the control of this option.
+By using it, a pager is interposed whenever the <code>wdiff</code> output is
+directed to the user&rsquo;s terminal.  Without this option, no pager will be
+called, the user is then responsible for explicitly piping <code>wdiff</code>
 output into a pager, if required.
-
-     <p>The pager is selected by the value of the <var>PAGER</var> environment
-variable when <samp><span class="command">wdiff</span></samp> is run.  If <var>PAGER</var> is not defined at
+</p>
+<p>The pager is selected by the value of the <var>PAGER</var> environment
+variable when <code>wdiff</code> is run.  If <var>PAGER</var> is not defined at
 run time, then a default pager, selected at installation time, will be
 used instead.  A defined but empty value of <var>PAGER</var> means no pager
 at all.
-
-     <p>When a pager is interposed through the use of this option,
-one of the options <samp><span class="option">-l</span></samp> or <samp><span class="option">-t</span></samp> is also selected, depending on
-whether the string &lsquo;<samp><span class="samp">less</span></samp>&rsquo; appears in the pager's name or not.
-
-     <p>It is often useful to define &lsquo;<samp><span class="samp">wdiff</span></samp>&rsquo; as an alias for &lsquo;<samp><span class="samp">wdiff
--a</span></samp>&rsquo;.  However, this <em>hides</em> the normal <samp><span class="command">wdiff</span></samp> behaviour.  The
+</p>
+<p>When a pager is interposed through the use of this option,
+one of the options <samp>-l</samp> or <samp>-t</samp> is also selected, depending on
+whether the string &lsquo;<samp>less</samp>&rsquo; appears in the pager&rsquo;s name or not.
+</p>
+<p>It is often useful to define &lsquo;<samp>wdiff</samp>&rsquo; as an alias for &lsquo;<samp>wdiff
+-a</samp>&rsquo;.  However, this <em>hides</em> the normal <code>wdiff</code> behaviour.  The
 default behaviour may be restored simply by piping the output from
-<samp><span class="command">wdiff</span></samp> through <samp><span class="command">cat</span></samp>.  This dissociates the output from the
-user's terminal.
-
-     <br><dt><samp><span class="option">--printer</span></samp><dt><samp><span class="option">-p</span></samp><dd>Use over-striking to emphasize parts of the output.  Each character of the
-deleted text is underlined by writing an underscore &lsquo;<samp><span class="samp">_</span></samp>&rsquo; first,
+<code>wdiff</code> through <code>cat</code>.  This dissociates the output from the
+user&rsquo;s terminal.
+</p>
+</dd>
+<dt><samp>--printer</samp></dt>
+<dt><samp>-p</samp></dt>
+<dd><p>Use over-striking to emphasize parts of the output.  Each character of the
+deleted text is underlined by writing an underscore &lsquo;<samp>_</samp>&rsquo; first,
 then a backspace and then the letter to be underlined.  Each character of the
 inserted text is emboldened by writing it twice, with a backspace in
 between.  This option is not selected by default.
-
-     <br><dt><samp><span class="option">--less-mode</span></samp><dt><samp><span class="option">-l</span></samp><dd>Use over-striking to emphasize parts of output.  This option works as
-option <samp><span class="option">-p</span></samp>, but also over-strikes whitespace associated with
-inserted text.  <samp><span class="command">less</span></samp> shows such whitespace using reverse video. 
+</p>
+</dd>
+<dt><samp>--less-mode</samp></dt>
+<dt><samp>-l</samp></dt>
+<dd><p>Use over-striking to emphasize parts of output.  This option works as
+option <samp>-p</samp>, but also over-strikes whitespace associated with
+inserted text.  <code>less</code> shows such whitespace using reverse video.
 This option is not selected by default.  However, it is automatically
-turned on whenever <samp><span class="command">wdiff</span></samp> launches the pager <samp><span class="command">less</span></samp>.  See
-option <samp><span class="option">-a</span></samp>.
+turned on whenever <code>wdiff</code> launches the pager <code>less</code>.  See
+option <samp>-a</samp>.
+</p>
+<p>This option is commonly used in conjunction with <code>less</code>:
+</p>
+<div class="example">
+<pre class="example">wdiff -l <var>old_file</var> <var>new_file</var> | less
+</pre></div>
 
-     <p>This option is commonly used in conjunction with <samp><span class="command">less</span></samp>:
-
-     <pre class="example">          wdiff -l <var>old_file</var> <var>new_file</var> | less
-</pre>
-     <br><dt><samp><span class="option">--terminal</span></samp><dt><samp><span class="option">-t</span></samp><dd>Force the production of <code>termcap</code> strings for emphasising parts of
-output, even if the standard output is not associated with a terminal. 
-The <samp><span class="env">TERM</span></samp> environment variable must contain the name of a valid
+</dd>
+<dt><samp>--terminal</samp></dt>
+<dt><samp>-t</samp></dt>
+<dd><p>Force the production of <code>termcap</code> strings for emphasising parts of
+output, even if the standard output is not associated with a terminal.
+The <code>TERM</code> environment variable must contain the name of a valid
 <code>termcap</code> entry.  If the terminal description permits, underlining
 is used for marking deleted text, while bold or reverse video is used
-for marking inserted text.  This option is not selected by default. 
-However, it is automatically turned on whenever <samp><span class="command">wdiff</span></samp> launches a
-pager, and it is known that the pager is <em>not</em> <samp><span class="command">less</span></samp>.  See
-option <samp><span class="option">-a</span></samp>.
-
-     <p>This option is commonly used when <samp><span class="command">wdiff</span></samp> output is not redirected,
+for marking inserted text.  This option is not selected by default.
+However, it is automatically turned on whenever <code>wdiff</code> launches a
+pager, and it is known that the pager is <em>not</em> <code>less</code>.  See
+option <samp>-a</samp>.
+</p>
+<p>This option is commonly used when <code>wdiff</code> output is not redirected,
 but sent directly to the user terminal, as in:
+</p>
+<div class="example">
+<pre class="example">wdiff -t <var>old_file</var> <var>new_file</var>
+</pre></div>
 
-     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var>
-</pre>
-     <p>A common kludge uses <samp><span class="command">wdiff</span></samp> together with the pager <samp><span class="command">more</span></samp>,
+<p>A common kludge uses <code>wdiff</code> together with the pager <code>more</code>,
 as in:
+</p>
+<div class="example">
+<pre class="example">wdiff -t <var>old_file</var> <var>new_file</var> | more
+</pre></div>
 
-     <pre class="example">          wdiff -t <var>old_file</var> <var>new_file</var> | more
-</pre>
-     <p>However, some versions of <samp><span class="command">more</span></samp> use <code>termcap</code> emphasis for
+<p>However, some versions of <code>more</code> use <code>termcap</code> emphasis for
 their own purposes, so strange interactions are possible.
-
-     <br><dt><samp><span class="option">--start-delete </span><var>argument</var></samp><dt><samp><span class="option">-w </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start delete</dfn> string.  This string will
+</p>
+</dd>
+<dt><samp>--start-delete <var>argument</var></samp></dt>
+<dt><samp>-w <var>argument</var></samp></dt>
+<dd><p>Use <var>argument</var> as the <em>start delete</em> string.  This string will
 be output prior to any sequence of deleted text, to mark where it
 starts.  By default, no start delete string is used unless there is no
 other means of distinguishing where such text starts; in this case the
-default start delete string is &lsquo;<samp><span class="samp">[-</span></samp>&rsquo;.
-
-     <br><dt><samp><span class="option">--end-delete </span><var>argument</var></samp><dt><samp><span class="option">-x </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end delete</dfn> string.  This string will be
+default start delete string is &lsquo;<samp>[-</samp>&rsquo;.
+</p>
+</dd>
+<dt><samp>--end-delete <var>argument</var></samp></dt>
+<dt><samp>-x <var>argument</var></samp></dt>
+<dd><p>Use <var>argument</var> as the <em>end delete</em> string.  This string will be
 output after any sequence of deleted text, to mark where it ends.  By
 default, no end delete string is used unless there is no other means of
 distinguishing where such text ends; in this case the default end delete
-string is <samp><span class="option">-]</span></samp>.
-
-     <br><dt><samp><span class="option">--start-insert </span><var>argument</var></samp><dt><samp><span class="option">-y </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>start insert</dfn> string.  This string will
+string is <samp>-]</samp>.
+</p>
+</dd>
+<dt><samp>--start-insert <var>argument</var></samp></dt>
+<dt><samp>-y <var>argument</var></samp></dt>
+<dd><p>Use <var>argument</var> as the <em>start insert</em> string.  This string will
 be output prior to any sequence of inserted text, to mark where it
 starts.  By default, no start insert string is used unless there is no
 other means of distinguishing where such text starts; in this case the
-default start insert string is &lsquo;<samp><span class="samp">{+</span></samp>&rsquo;.
-
-     <br><dt><samp><span class="option">--end-insert </span><var>argument</var></samp><dt><samp><span class="option">-z </span><var>argument</var></samp><dd>Use <var>argument</var> as the <dfn>end insert</dfn> string.  This string will be
+default start insert string is &lsquo;<samp>{+</samp>&rsquo;.
+</p>
+</dd>
+<dt><samp>--end-insert <var>argument</var></samp></dt>
+<dt><samp>-z <var>argument</var></samp></dt>
+<dd><p>Use <var>argument</var> as the <em>end insert</em> string.  This string will be
 output after any sequence of inserted text, to mark where it ends.  By
 default, no end insert string is used unless there is no other means of
 distinguishing where such text ends; in this case the default end insert
-string is &lsquo;<samp><span class="samp">+}</span></samp>&rsquo;.
-
-     <br><dt><samp><span class="option">--avoid-wraps</span></samp><dt><samp><span class="option">-n</span></samp><dd>Avoid spanning the end of line while showing deleted or inserted text. 
+string is &lsquo;<samp>+}</samp>&rsquo;.
+</p>
+</dd>
+<dt><samp>--avoid-wraps</samp></dt>
+<dt><samp>-n</samp></dt>
+<dd><p>Avoid spanning the end of line while showing deleted or inserted text.
 Any single fragment of deleted or inserted text spanning many lines will
 be considered as being made up of many smaller fragments not containing
 a newline.  So deleted text, for example, will have an end delete string
@@ -206,20 +285,32 @@ at the end of each line, just before the new line, and a start delete
 string at the beginning of the next line.  A long paragraph of inserted
 text will have each line bracketed between start insert and end insert
 strings.  This behaviour is not selected by default.
-
-     <br><dt><samp><span class="option">--diff-input</span></samp><dt><samp><span class="option">-d</span></samp><dd>Use single unified diff as input. If no input file is specified,
+</p>
+</dd>
+<dt><samp>--diff-input</samp></dt>
+<dt><samp>-d</samp></dt>
+<dd><p>Use single unified diff as input. If no input file is specified,
 standard input is used instead. This can be used to post-process diffs
 generated form other applications, like version control systems:
+</p>
+<div class="example">
+<pre class="example">svn diff | wdiff -d
+</pre></div>
+</dd>
+</dl>
 
-     <pre class="example">          svn diff | wdiff -d
-</pre>
-     </dl>
-
-   <p>Note that options <samp><span class="option">-p</span></samp>, <samp><span class="option">-t</span></samp>, and <samp><span class="option">-[wxyz]</span></samp> are not
+<p>Note that options <samp>-p</samp>, <samp>-t</samp>, and <samp>-[wxyz]</samp> are not
 mutually exclusive.  If you use a combination of them, you will merely
-accumulate the effect of each.  Option <samp><span class="option">-l</span></samp> is a variant of option
-<samp><span class="option">-p</span></samp>.
+accumulate the effect of each.  Option <samp>-l</samp> is a variant of option
+<samp>-p</samp>.
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="wdiff-Examples.html#wdiff-Examples" accesskey="n" rel="next">wdiff Examples</a>, Up: <a href="wdiff.html#wdiff" accesskey="u" rel="up">wdiff</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
 
-<!--  -->
-   </body></html>
 
+
+</body>
+</html>

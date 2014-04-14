@@ -1,18 +1,9 @@
-<html lang="en">
-<head>
-<title>wdiff Compatibility - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="up" href="Compatibility.html#Compatibility" title="Compatibility">
-<link rel="prev" href="diff-Compatibility.html#diff-Compatibility" title="diff Compatibility">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -29,69 +20,104 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): wdiff Compatibility</title>
+
+<meta name="description" content="A word difference finder (and others): wdiff Compatibility">
+<meta name="keywords" content="A word difference finder (and others): wdiff Compatibility">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Compatibility.html#Compatibility" rel="up" title="Compatibility">
+<link href="Experimental.html#Experimental" rel="next" title="Experimental">
+<link href="diff-Compatibility.html#diff-Compatibility" rel="prev" title="diff Compatibility">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
 </head>
-<body>
-<div class="node">
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
 <a name="wdiff-Compatibility"></a>
+<div class="header">
 <p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="diff-Compatibility.html#diff-Compatibility">diff Compatibility</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="Compatibility.html#Compatibility">Compatibility</a>
-<hr>
+Previous: <a href="diff-Compatibility.html#diff-Compatibility" accesskey="p" rel="prev">diff Compatibility</a>, Up: <a href="Compatibility.html#Compatibility" accesskey="u" rel="up">Compatibility</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
 </div>
+<hr>
+<a name="Differences-with-wdiff"></a>
+<h3 class="section">5.2 Differences with <code>wdiff</code></h3>
 
-<h3 class="section">5.2 Differences with <samp><span class="command">wdiff</span></samp></h3>
-
-<p>Even if <samp><span class="command">mdiff</span></samp> is meant to fully support <samp><span class="command">wdiff</span></samp>, options have
-been shuffled around so <samp><span class="command">mdiff</span></samp> could better merge both <samp><span class="command">diff</span></samp>
-and <samp><span class="command">wdiff</span></samp> options in a common scheme.  <samp><span class="command">diff</span></samp> habits were
+<p>Even if <code>mdiff</code> is meant to fully support <code>wdiff</code>, options have
+been shuffled around so <code>mdiff</code> could better merge both <code>diff</code>
+and <code>wdiff</code> options in a common scheme.  <code>diff</code> habits were
 almost always favored in this option reorganisation.
-
-   <p><samp><span class="command">wdiff2</span></samp> is now a mere front-end to <samp><span class="command">mdiff</span></samp> that only
+</p>
+<p><code>wdiff2</code> is now a mere front-end to <code>mdiff</code> that only
 rewrites the options.  The following notes apply.
+</p>
+<ul>
+<li> Some options are just transmitted unchanged, these are <samp>-1</samp>,
+<samp>-2</samp>, <samp>-3</samp> and <samp>-i</samp>.
 
-     <ul>
-<li>Some options are just transmitted unchanged, these are <samp><span class="option">-1</span></samp>,
-<samp><span class="option">-2</span></samp>, <samp><span class="option">-3</span></samp> and <samp><span class="option">-i</span></samp>.
+</li><li> Option <samp>-c</samp> also gets turned into <samp>-i</samp>, to be compatible with
+<code>wdiff</code> versions up to &lsquo;<samp>0.4</samp>&rsquo;.
 
-     <li>Option <samp><span class="option">-c</span></samp> also gets turned into <samp><span class="option">-i</span></samp>, to be compatible with
-<samp><span class="command">wdiff</span></samp> versions up to &lsquo;<samp><span class="samp">0.4</span></samp>&rsquo;.
+</li><li> Simple option <samp>-a</samp> in <code>wdiff</code> becomes <samp>-A</samp> in <code>mdiff</code>,
+<samp>-l</samp> becomes <samp>-k</samp>, <samp>-n</samp> becomes <samp>-m</samp>, <samp>-p</samp> becomes
+<samp>-o</samp>, <samp>-s</samp> becomes <samp>-v</samp> and <samp>-t</samp> becomes <samp>-z</samp>.
 
-     <li>Simple option <samp><span class="option">-a</span></samp> in <samp><span class="command">wdiff</span></samp> becomes <samp><span class="option">-A</span></samp> in <samp><span class="command">mdiff</span></samp>,
-<samp><span class="option">-l</span></samp> becomes <samp><span class="option">-k</span></samp>, <samp><span class="option">-n</span></samp> becomes <samp><span class="option">-m</span></samp>, <samp><span class="option">-p</span></samp> becomes
-<samp><span class="option">-o</span></samp>, <samp><span class="option">-s</span></samp> becomes <samp><span class="option">-v</span></samp> and <samp><span class="option">-t</span></samp> becomes <samp><span class="option">-z</span></samp>.
+</li><li> Options introducing strings, which are <samp>-w</samp>, <samp>-x</samp>, <samp>-y</samp>
+and <samp>-z</samp> in <code>wdiff</code>, respectively become <samp>-Y</samp>, <samp>-Z</samp>,
+<samp>-Q</samp> and <samp>-R</samp> in <code>mdiff</code>.
 
-     <li>Options introducing strings, which are <samp><span class="option">-w</span></samp>, <samp><span class="option">-x</span></samp>, <samp><span class="option">-y</span></samp>
-and <samp><span class="option">-z</span></samp> in <samp><span class="command">wdiff</span></samp>, respectively become <samp><span class="option">-Y</span></samp>, <samp><span class="option">-Z</span></samp>,
-<samp><span class="option">-Q</span></samp> and <samp><span class="option">-R</span></samp> in <samp><span class="command">mdiff</span></samp>.
+</li><li> Options <samp>-C</samp>, <samp>-h</samp> and <samp>-v</samp> are processed directly by
+<code>wdiff</code> and are not transmitted to <code>mdiff</code>.
 
-     <li>Options <samp><span class="option">-C</span></samp>, <samp><span class="option">-h</span></samp> and <samp><span class="option">-v</span></samp> are processed directly by
-<samp><span class="command">wdiff</span></samp> and are not transmitted to <samp><span class="command">mdiff</span></samp>.
+</li><li> Further, the <samp>-C</samp> option of <code>wdiff</code> has no equivalent in
+<code>mdiff</code>.
 
-     <li>Further, the <samp><span class="option">-C</span></samp> option of <samp><span class="command">wdiff</span></samp> has no equivalent in
-<samp><span class="command">mdiff</span></samp>.
-
-     <li>A new option <samp><span class="option">-q</span></samp> inhibits the message which explains how <samp><span class="command">mdiff</span></samp>
+</li><li> A new option <samp>-q</samp> inhibits the message which explains how <code>mdiff</code>
 might have been directly called.
 
-     <li>The option <samp><span class="option">--diff-input</span></samp> (<samp><span class="option">-d</span></samp>) from <samp><span class="command">wdiff</span></samp>
-isn't supported by <samp><span class="command">wdiff2</span></samp> (yet).
+</li><li> The option <samp>--diff-input</samp> (<samp>-d</samp>) from <code>wdiff</code>
+isn&rsquo;t supported by <code>wdiff2</code> (yet).
 
-   </ul>
+</li></ul>
 
-<!-- end ifset EXPERIMENTAL -->
-<!-- ============================================================= -->
-   </body></html>
 
+
+
+
+</body>
+</html>

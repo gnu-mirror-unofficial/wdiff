@@ -1,17 +1,9 @@
-<html lang="en">
-<head>
-<title>Experimental - A word difference finder (and others)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="A word difference finder (and others)">
-<meta name="generator" content="makeinfo 4.13">
-<link title="Top" rel="start" href="index.html#Top">
-<link rel="prev" href="Compatibility.html#Compatibility" title="Compatibility">
-<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
-<!--
-This file documents the `wdiff' command, which compares two files,
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This file documents the wdiff command, which compares two files,
 finding which words have been deleted or added to the first for getting
 the second.
-It also documents some other `diff' related tools.
+It also documents some other diff related tools.
 
 Copyright (C) 1992, 1994, 1997, 1998, 1999, 2010, 2011, 2012,
 2013 Free Software Foundation, Inc.
@@ -28,56 +20,91 @@ notice identical to this one.
 Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions,
 except that this permission notice may be stated in a translation approved
-by the Foundation.-->
-<meta http-equiv="Content-Style-Type" content="text/css">
-<style type="text/css"><!--
-  pre.display { font-family:inherit }
-  pre.format  { font-family:inherit }
-  pre.smalldisplay { font-family:inherit; font-size:smaller }
-  pre.smallformat  { font-family:inherit; font-size:smaller }
-  pre.smallexample { font-size:smaller }
-  pre.smalllisp    { font-size:smaller }
-  span.sc    { font-variant:small-caps }
-  span.roman { font-family:serif; font-weight:normal; } 
-  span.sansserif { font-family:sans-serif; font-weight:normal; } 
---></style>
-</head>
-<body>
-<div class="node">
-<a name="Experimental"></a>
-<p>
-Previous:&nbsp;<a rel="previous" accesskey="p" href="Compatibility.html#Compatibility">Compatibility</a>,
-Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
-<hr>
-</div>
+by the Foundation. -->
+<!-- Created by GNU Texinfo 5.2, http://www.gnu.org/software/texinfo/ -->
+<head>
+<title>A word difference finder (and others): Experimental</title>
 
+<meta name="description" content="A word difference finder (and others): Experimental">
+<meta name="keywords" content="A word difference finder (and others): Experimental">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="index.html#Top" rel="up" title="Top">
+<link href="Experimental-History.html#Experimental-History" rel="next" title="Experimental History">
+<link href="wdiff-Compatibility.html#wdiff-Compatibility" rel="prev" title="wdiff Compatibility">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.indentedblock {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smallindentedblock {margin-left: 3.2em; font-size: smaller}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style:oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:nowrap}
+span.nolinebreak {white-space:nowrap}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+<a name="Experimental"></a>
+<div class="header">
+<p>
+Previous: <a href="Compatibility.html#Compatibility" accesskey="p" rel="prev">Compatibility</a>, Up: <a href="index.html#Top" accesskey="u" rel="up">Top</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Experimental-programs"></a>
 <h2 class="chapter">6 Experimental programs</h2>
 
-<!-- ============================================================= -->
 <p>The GNU wdiff source package contains sources for a number of tools
-besides <samp><span class="command">wdiff</span></samp> itself. 
+besides <code>wdiff</code> itself.
 These are considered experimental: they might work for you, but they
-might just as well fail. 
+might just as well fail.
 The following programs are considered experimental:
+</p>
+<ul>
+<li> <code>mdiff</code>
+</li><li> <code>wdiff2</code>
+</li><li> <code>unify</code>
+</li></ul>
 
-     <ul>
-<li><samp><span class="command">mdiff</span></samp>
-<li><samp><span class="command">wdiff2</span></samp>
-<li><samp><span class="command">unify</span></samp>
-</ul>
-
-   <p>Building these applications can be configured at build time by passing
-<samp><span class="option">--with-experimental</span></samp> to the <samp><span class="file">configure</span></samp> script.
-
-   <p><em>For this build, they have been enabled.</em>
+<p>Building these applications can be configured at build time by passing
+<samp>--with-experimental</samp> to the <samp>configure</samp> script.
+</p>
+<p><em>For this build, they have been enabled.</em>
 If you encounter a bug in an experimental program, the maintainers would
 still like to learn about it, but there is a greater chance that they
 decide not to fix such issues unless you provide a patch as well.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top">&bull; <a href="Experimental-History.html#Experimental-History" accesskey="1">Experimental History</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">History of the experimental programs
+</td></tr>
+</table>
 
-<ul class="menu">
-<li><a accesskey="1" href="Experimental-History.html#Experimental-History">Experimental History</a>:    History of the experimental programs
-</ul>
 
-<!--  -->
-   </body></html>
 
+
+</body>
+</html>
